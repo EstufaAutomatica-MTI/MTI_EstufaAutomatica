@@ -5,7 +5,7 @@
 - Fabrício Pereira Lutz ([GitHub](https://github.com/FabricioLutz/))
 - Jordana Pedroso Dutra ([GitHub](https://github.com/DutraJordana/))
 ### Professor: Marcos Zuccolotto ([GitHub](https://github.com/Zucco1997/)), Disciplina: Micros II, Curso Técnico de Eletrônica - 4° ANO
-### [Fundação Escola Técnica Liberato Salzano Vieira da Cunha](www.liberato.com.br)
+### [Fundação Escola Técnica Liberato Salzano Vieira da Cunha](https://liberato.com.br)
 
 ## PROJETO
 -	O projeto Estufa Automática tem por objetivo desenvolver três estufas, medindo e atuando sobre a temperatura, luminosidade e umidade do solo. Essa implementação fará uso do protocolo MQTT, tornando as estufas em objetos virtuais para IoT, o que permitirá um controle à distância das estufas (que estarão colocadas em duas cidades) e,além disso, permitirá uma análise de consumo por parte de cada estufa à partir do consumo medido nas. Dessa maneira, cria-se a possibilidade de identificar falhas na aplicação, qual estufa obteve menores gastos e criar alertas em caso de defeitos.
