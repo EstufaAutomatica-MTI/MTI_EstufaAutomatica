@@ -27,27 +27,35 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "DHT.h"
+#include "string.h"
+#include "stdio.h"
+#include "stdlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+DHT_DataTypedef DHT11_Data;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define SAMPLE  20
+#define PERCENT (100.0/(4095.0*10.0))
+#define SIZE    100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE BEGIN PV */
-
+float Temperature, Humidity, Light, Moisture;
+volatile uint16_t measure[SAMPLE];
+uint16_t average[2];
+uint8_t bufferRX[SIZE];
+char bufferTX[SIZE];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -95,7 +103,10 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim10);
+  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure, SAMPLE);
+  HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -155,7 +166,26 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  DHT_GetData(&DHT11_Data);
+  Temperature = DHT11_Data.Temperature;
+  Humidity = DHT11_Data.Humidity;
+	sprintf(bufferTX, "{ \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}", Temperature, Light, Moisture, Humidity);
+	HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
+}
 
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	average[0] = 0; average[1] = 0;
+	for(int i=0;i<SAMPLE;i++)
+		{
+		if((i%2)==0)average[0] += measure[i];
+		else average[1] += measure[i];
+		}
+	Light = average[0]*PERCENT;
+	Moisture = average[1]*PERCENT;
+}
 /* USER CODE END 4 */
 
 /**
