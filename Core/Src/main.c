@@ -1,18 +1,15 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
+  * @file       main.c
+  * @authors	Adriano André, Bruno Berwanger, Fabrício Lutz, Jordana Dutra.
+  * @class		4411
+  * @date		Agosto -> Setembro/ 2020
+  * @company	Eletrônica - Fundação Liberato
+  * @brief      Controle de Temperatura, Umidade do solo e Luz.
   ******************************************************************************
   * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * Código utilizado para o trabalho MeuTrecoNaInternet - MICROS II - FETLSVC
   *
   ******************************************************************************
   */
@@ -27,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "DHT.h"
+#include "DHT.h"								///< Biblioteca para o sensor DHT11 - Desenvolvida por: Controllers Tech (controllerstech.com)
 #include "string.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -35,14 +32,17 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-DHT_DataTypedef DHT11_Data;
+DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SAMPLE  20
-#define PERCENT (100.0/(4095.0*10.0))
-#define SIZE    100
+#define SAMPLE  20								///< Número de amostras
+#define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem a partir da resolução
+#define SIZE    100								///< Tamanho máximo do buffer da usart
+#define LIGHT 	0								///< Para auxiliar no vetor de média
+#define MOIST 	1								///< Para auxiliar no vetor de média
+#define NAME 	"GAMA"							///< Nome da estufa
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -50,12 +50,17 @@ DHT_DataTypedef DHT11_Data;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 /* USER CODE BEGIN PV */
-float Temperature, Humidity, Light, Moisture;
-volatile uint16_t measure[SAMPLE];
-uint16_t average[2];
-uint8_t bufferRX[SIZE];
-char bufferTX[SIZE];
+float Temperature, Humidity, Light, Moisture;	///< Variáveis de cada sensor
+uint8_t Peltier_State, Cooler_State;			///< Variáveis para acompanhar o acionamento dos atuadores
+volatile uint16_t measure[SAMPLE];				///< Vetor para armazenar as medições do ADC
+uint16_t average[2];							///< Média aritmética das medições do ADC
+char bufferRX[4];								///< Buffer USART
+char bufferTX[SIZE];							///< Buffer USART
+float temp_min = 20.00, temp_max = 30.00;
+char Valor_temperatura[8];
+uint32_t atoffe;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -103,10 +108,10 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim10);
-  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure, SAMPLE);
-  HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE);
+  HAL_TIM_Base_Start_IT(&htim10);							// Ativa o timer 10 para leitura da temperatura e umidade do ar a cada 3s
+  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);					// Ativa o timer 3 como trigger do ADC
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure, SAMPLE);	// Dispara a conversão circular do ADC
+  HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE);	// Ativa o recebimento de dados pela USART
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -166,25 +171,73 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+  * @brief  Callback do timer 10 para medição dos dados coletados do DHT11 e envio de todas as informações.
+  * @retval None
+  */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  DHT_GetData(&DHT11_Data);
-  Temperature = DHT11_Data.Temperature;
-  Humidity = DHT11_Data.Humidity;
-	sprintf(bufferTX, "{ \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}", Temperature, Light, Moisture, Humidity);
-	HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
-}
+	// Salva os valores da estrutura do DHT11
+		DHT_GetData(&DHT11_Data);
+		Temperature = DHT11_Data.Temperature;
+		Humidity = DHT11_Data.Humidity;
+		  if(Temperature<temp_min){																		//Acionar Peltier
+			  HAL_GPIO_WritePin(Acionamento_Peltier_GPIO_Port, Acionamento_Peltier_Pin, GPIO_PIN_SET);
+			  HAL_GPIO_WritePin(Acionamento_Cooler_GPIO_Port, Acionamento_Cooler_Pin, GPIO_PIN_SET);
+			  Peltier_State = 1;
+			  Cooler_State = 1;
+		  }
+		  if((Temperature>=temp_min)&&(Temperature<=temp_max)){											// Desliga a Peltier e o Cooler
+			  HAL_GPIO_WritePin(Acionamento_Peltier_GPIO_Port, Acionamento_Peltier_Pin, GPIO_PIN_RESET);
+			  HAL_GPIO_WritePin(Acionamento_Cooler_GPIO_Port, Acionamento_Cooler_Pin, GPIO_PIN_RESET);
+			  Peltier_State = 0;
+			  Cooler_State = 0;
+		  }
+		  if(Temperature>temp_max){																		// Acionar Cooler
+			  HAL_GPIO_WritePin(Acionamento_Peltier_GPIO_Port, Acionamento_Peltier_Pin, GPIO_PIN_RESET);
+			  HAL_GPIO_WritePin(Acionamento_Cooler_GPIO_Port, Acionamento_Cooler_Pin, GPIO_PIN_SET);
+			  Peltier_State = 0;
+			  Cooler_State = 1;
+		  }
+	// Envio dos dados coletados em JSON Object
+		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}",NAME, Temperature, Light, Moisture, Humidity);
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
 
+}
+/**
+  * @brief  Callback de conversão completa do ADC.
+  * @retval None
+  */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	average[0] = 0; average[1] = 0;
-	for(int i=0;i<SAMPLE;i++)
-		{
-		if((i%2)==0)average[0] += measure[i];
-		else average[1] += measure[i];
-		}
-	Light = average[0]*PERCENT;
-	Moisture = average[1]*PERCENT;
+	// Zera as posições do vetor de média
+		average[LIGHT] = 0; average[MOIST] = 0;
+	// Preencher o vetor com a soma de todas as medidas feitas para cada sensor
+		for(int i=0;i<SAMPLE;i++)
+			{
+			if((i%2)==0)average[LIGHT] += measure[i];
+			else average[MOIST] += measure[i];
+			}
+	// Retorna a porcentagem de cada sensor
+		Light = average[LIGHT]*PERCENT;
+		Moisture = average[MOIST]*PERCENT;
+}
+/**
+  * @brief  Callback de recepção da USART(Testando).
+  * @retval None
+  */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
+{
+	__HAL_UART_FLUSH_DRREGISTER(huart);
+//	for(int aux=0; aux<=strlen((char*)bufferRX);aux++)
+//	{
+//		if(bufferRX[aux]!=",")
+//		{
+			atoffe = atoff(&bufferRX);
+//		}
+//
+//	}
+
 }
 /* USER CODE END 4 */
 

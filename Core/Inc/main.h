@@ -60,6 +60,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define Acionamento_Cooler_Pin GPIO_PIN_0
+#define Acionamento_Cooler_GPIO_Port GPIOC
+#define Acionamento_Peltier_Pin GPIO_PIN_1
+#define Acionamento_Peltier_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
