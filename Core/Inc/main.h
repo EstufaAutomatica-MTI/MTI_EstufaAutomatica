@@ -60,16 +60,22 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
-#define Acionamento_Cooler_Pin GPIO_PIN_0
-#define Acionamento_Cooler_GPIO_Port GPIOC
-#define Acionamento_Peltier_Pin GPIO_PIN_1
-#define Acionamento_Peltier_GPIO_Port GPIOC
+#define CoolerPeltier_Pin GPIO_PIN_0
+#define CoolerPeltier_GPIO_Port GPIOC
+#define PeltierPlate_Pin GPIO_PIN_1
+#define PeltierPlate_GPIO_Port GPIOC
+#define CoolerFreeze_Pin GPIO_PIN_2
+#define CoolerFreeze_GPIO_Port GPIOC
+#define LedStrip_Pin GPIO_PIN_3
+#define LedStrip_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define WaterPump_Pin GPIO_PIN_4
+#define WaterPump_GPIO_Port GPIOC
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
