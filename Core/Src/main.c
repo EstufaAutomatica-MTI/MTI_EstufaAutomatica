@@ -61,7 +61,7 @@ uint16_t average[2];							///< Média aritmética das medições do ADC
 char bufferRX[SIZE_RX];							///< Buffer de recebimento da USART
 char bufferTX[SIZE_TX];							///< Buffer de envio da USART
 float parameter[6]={0,50,0,100,0,100};			///< Vetor com os parâmetros ideias da estufa
-enum PARAM{										///< Enumeração para uso auxiliar dos vetores
+enum PARAM{	 									///< Enumeração para uso auxiliar dos vetores
 	Temperature_Min,
 	Temperature_Max,
 	Moisture_Min,
