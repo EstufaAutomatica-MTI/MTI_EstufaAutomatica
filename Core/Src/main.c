@@ -10,7 +10,7 @@
   ******************************************************************************************************************
   * @attention
   * Código utilizado para o trabalho MeuTrecoNaInternet - MICROS II - FETLSVC
-  * Pinagem atuadores: PC0->CoolerPeltier, PC1->PeltierPlate, PC2->CoolerFreeze, PC3->LedStrip, PC4->WaterPump
+  * Pinagem atuadores: PC0->CoolerPeltier, PC1->PeltierPlate, PC2->CoolerFreeze, PB9->LedStrip, PC4->WaterPump
   * Pinagem  sensores: PA0->LDR, PA1->DHT11, PA4->YL-69
   *
   ******************************************************************************************************************
@@ -123,6 +123,8 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM3_Init();
   MX_TIM10_Init();
+  MX_TIM2_Init();
+  MX_TIM11_Init();
   /* USER CODE BEGIN 2 */
   // ATIVAÇÃO DO ADC
   HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);								// Ativa o timer 3 como trigger do ADC
@@ -131,6 +133,9 @@ int main(void)
   // USART
   HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE_RX);			// Ativa o recebimento de dados pela USART
   HAL_TIM_Base_Start_IT(&htim10);										// Ativa o timer 10 para leitura da temperatura/umidade e envia pela usart
+  HAL_TIM_Base_Start_IT(&htim11);
+  // PWM
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);								// Dispara a geração do sinal PWM - TIMER 2
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -196,22 +201,16 @@ void SystemClock_Config(void)
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	if(htim->Instance==TIM10){
 	// Salva os valores da estrutura do DHT11
 		DHT_GetData(&DHT11_Data);
 		Temperature = DHT11_Data.Temperature;
 		Humidity = DHT11_Data.Humidity;
+	}
 
+	if(htim->Instance==TIM11){
 	// Análisa os estados da temperatura
-		if(Temperature<parameter[Temperature_Min])													// Acionar modo de aquecimento
-		{
-			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_SET);
-			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
-			StateOf[PeltierPlate]  = 1;
-			StateOf[CoolerPeltier] = 1;
-			StateOf[CoolerFreeze]  = 0;
-		}
-		if((Temperature>=parameter[Temperature_Min])&&(Temperature<=parameter[Temperature_Max]))	// Acionar modo de espera
+		if(Temperature<=(parameter[Temperature_Min]+1)&&(StateOf[CoolerFreeze]==1))
 		{
 			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
@@ -220,20 +219,48 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			StateOf[CoolerPeltier] = 0;
 			StateOf[CoolerFreeze]  = 0;
 		}
-		if(Temperature>parameter[Temperature_Max])													// Acionar modo de resfriamento
+		else if((Temperature<parameter[Temperature_Min])&&(StateOf[CoolerFreeze]==0))
+		{
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_SET);
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
+			StateOf[PeltierPlate]  = 1;
+			StateOf[CoolerPeltier] = 1;
+			StateOf[CoolerFreeze]  = 0;
+		}
+		else if(Temperature>=(parameter[Temperature_Max]-1)&&(StateOf[PeltierPlate]==1))
+		{
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
+			StateOf[PeltierPlate]  = 0;
+			StateOf[CoolerPeltier] = 0;
+			StateOf[CoolerFreeze]  = 0;
+		}
+		else if((Temperature>parameter[Temperature_Max])&&(StateOf[PeltierPlate]==0))
 		{
 			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_SET);
 			StateOf[PeltierPlate]  = 0;
 			StateOf[CoolerPeltier] = 1;
-			StateOf[CoolerFreeze]  = 1;
+			StateOf[CoolerFreeze]  = 0;
 		}
 
+		if(Moisture<parameter[Moisture_Min])
+		{
+			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);					// Acionar modo de irrigação
+		}
 
+		if(Moisture>=parameter[Moisture_Max])
+		{
+			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);					// Desliga o modo de irrigação
+		}
 	// Envio dos dados coletados em JSON Object
 		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}",NAME, Temperature, Light, Moisture, Humidity);
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
+
+	}
 }
 /**
   * @brief  Callback de conversão completa do ADC, faz a média dos valores e calcula a porcentagem.

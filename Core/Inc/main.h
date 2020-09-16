@@ -66,8 +66,6 @@ void Error_Handler(void);
 #define PeltierPlate_GPIO_Port GPIOC
 #define CoolerFreeze_Pin GPIO_PIN_2
 #define CoolerFreeze_GPIO_Port GPIOC
-#define LedStrip_Pin GPIO_PIN_3
-#define LedStrip_GPIO_Port GPIOC
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
@@ -82,6 +80,8 @@ void Error_Handler(void);
 #define TCK_GPIO_Port GPIOA
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
+#define LedStrip_Pin GPIO_PIN_9
+#define LedStrip_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
