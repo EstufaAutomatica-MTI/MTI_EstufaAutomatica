@@ -10,7 +10,7 @@
   ******************************************************************************************************************
   * @attention
   * Código utilizado para o trabalho MeuTrecoNaInternet - MICROS II - FETLSVC
-  * Pinagem atuadores: PC0->CoolerPeltier, PC1->PeltierPlate, PC2->CoolerFreeze, PB9->LedStrip, PC4->WaterPump
+  * Pinagem atuadores: PC0->WaterPump, PC1->PeltierPlate, PC2->CoolerFreeze, PC3->CoolerPeltier, PB9->LedStrip
   * Pinagem  sensores: PA0->LDR, PA1->DHT11, PA4->YL-69
   *
   ******************************************************************************************************************
