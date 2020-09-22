@@ -44,7 +44,7 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelo ADC na medição de Luz e Umidade do Solo
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
 #define SIZE_TX 100								///< Tamanho máximo do buffer TX da usart
-#define SIZE_RX 29								///< Tamanho máximo do buffer RX da usart
+#define SIZE_RX 31								///< Tamanho máximo do buffer RX da usart
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -60,14 +60,15 @@ volatile uint16_t measure[SAMPLE];				///< Vetor para armazenar as medições do
 uint16_t average[2];							///< Média aritmética das medições do ADC
 char bufferRX[SIZE_RX];							///< Buffer de recebimento da USART
 char bufferTX[SIZE_TX];							///< Buffer de envio da USART
-float parameter[6]={0,50,0,100,0,100};			///< Vetor com os parâmetros ideias da estufa
+float parameter[7]={0,50,0,100,255,255,255};	///< Vetor com os parâmetros ideias da estufa
 enum PARAM{	 									///< Enumeração para uso auxiliar dos vetores
 	Temperature_Min,
 	Temperature_Max,
 	Moisture_Min,
 	Moisture_Max,
-	Lightness_Min,
-	Lightness_Max,
+	LightRed,
+	LightGreen,
+	LightBlue,
 	CoolerPeltier=0,
 	PeltierPlate,
 	CoolerFreeze,
@@ -127,7 +128,7 @@ int main(void)
   MX_TIM11_Init();
   /* USER CODE BEGIN 2 */
   // ATIVAÇÃO DO ADC
-  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);								// Ativa o timer 3 como trigger do ADC
+  HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_1);								// Ativa o timer 3 como trigger do ADC
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure, SAMPLE);				// Dispara a conversão circular do ADC
 
   // USART
@@ -135,13 +136,16 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim10);										// Ativa o timer 10 para leitura da temperatura/umidade e envia pela usart
   HAL_TIM_Base_Start_IT(&htim11);
   // PWM
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);								// Dispara a geração do sinal PWM - TIMER 2
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);								// Dispara a geração do sinal PWM - TIMER 3
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);								// Dispara a geração do sinal PWM - TIMER 3
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);								// Dispara a geração do sinal PWM - TIMER 3
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -244,18 +248,24 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_SET);
 			StateOf[PeltierPlate]  = 0;
 			StateOf[CoolerPeltier] = 1;
-			StateOf[CoolerFreeze]  = 0;
+			StateOf[CoolerFreeze]  = 1;
 		}
 
 		if(Moisture<parameter[Moisture_Min])
 		{
 			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);					// Acionar modo de irrigação
+			StateOf[WaterPump]  = 1;
 		}
-
 		if(Moisture>=parameter[Moisture_Max])
 		{
 			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);					// Desliga o modo de irrigação
+			StateOf[WaterPump]  = 0;
 		}
+
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,parameter[LightRed]);
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3,parameter[LightGreen]);
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4,parameter[LightBlue]);
+
 	// Envio dos dados coletados em JSON Object
 		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}",NAME, Temperature, Light, Moisture, Humidity);
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
