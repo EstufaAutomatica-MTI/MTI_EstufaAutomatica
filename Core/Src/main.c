@@ -30,6 +30,7 @@
 #include "string.h"								///< Biblioteca básica
 #include "stdio.h"								///< Biblioteca básica
 #include "stdlib.h"								///< Biblioteca básica
+#include "math.h"								///< Biblioteca básica
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,14 +55,15 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-float Temperature, Humidity, Light, Moisture;	///< Variáveis de cada sensor [Medições]
-uint8_t StateOf[N_ACT];							///< Vetor para acompanhar estado de cada atuador
-volatile uint16_t measure[SAMPLE];				///< Vetor para armazenar as medições do ADC
-uint16_t average[2];							///< Média aritmética das medições do ADC
-char bufferRX[SIZE_RX];							///< Buffer de recebimento da USART
-char bufferTX[SIZE_TX];							///< Buffer de envio da USART
-float parameter[7]={0,50,0,100,255,255,255};	///< Vetor com os parâmetros ideias da estufa
-enum PARAM{	 									///< Enumeração para uso auxiliar dos vetores
+float Temperature, Humidity, Light, Moisture, Current;					///< Variáveis de cada sensor [Medições]
+uint8_t StateOf[N_ACT];													///< Vetor para acompanhar estado de cada atuador
+volatile uint16_t measure_ADC1[SAMPLE];									///< Vetor para armazenar as medições do ADC1
+volatile uint16_t measure_ADC2[SAMPLE];									///< Vetor para armazenar as leituras de corrente do ADC2
+uint16_t average[3];													///< Média aritmética das medições do ADC1 e ADC2 (LDR YL-69 ACS712)
+char bufferRX[SIZE_RX];													///< Buffer de recebimento da USART
+char bufferTX[SIZE_TX];													///< Buffer de envio da USART
+float parameter[7]={0,50,0,100,255,255,255};							///< Vetor com os parâmetros ideias da estufa
+enum AUX{	 															///< Enumeração para uso auxiliar dos vetores
 	Temperature_Min,
 	Temperature_Max,
 	Moisture_Min,
@@ -75,7 +77,8 @@ enum PARAM{	 									///< Enumeração para uso auxiliar dos vetores
 	LedStrip,
 	WaterPump,
 	LDR=0,
-	YL_69
+	YL_69,
+	ACS712
 };
 
 /* USER CODE END PV */
@@ -126,10 +129,14 @@ int main(void)
   MX_TIM10_Init();
   MX_TIM2_Init();
   MX_TIM11_Init();
+  MX_ADC2_Init();
+  MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
   // ATIVAÇÃO DO ADC
-  HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_1);								// Ativa o timer 3 como trigger do ADC
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure, SAMPLE);				// Dispara a conversão circular do ADC
+  HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_1);								// Ativa o timer 2 como trigger do ADC1
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure_ADC1, SAMPLE);				// Dispara a conversão circular do ADC1
+  HAL_TIM_Base_Start(&htim8);											// Ativa o timer 8 como trigger do ADC2
+  HAL_ADC_Start_DMA(&hadc2, (uint32_t*) measure_ADC2, SAMPLE);				// Dispara a conversão circular do ADC2
 
   // USART
   HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE_RX);			// Ativa o recebimento de dados pela USART
@@ -278,17 +285,33 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
+	if(hadc->Instance==ADC1)
+	{
 	// Zera as posições do vetor de média
 		average[LDR] = 0; average[YL_69] = 0;
 	// Preencher o vetor com a soma de todas as medidas feitas para cada sensor
 		for(int i=0;i<SAMPLE;i++)
 			{
-			if((i%2)==0)average[LDR] += measure[i];
-			else average[YL_69] += measure[i];
+			if((i%2)==0)average[LDR] += measure_ADC1[i];
+			else average[YL_69] += measure_ADC1[i];
 			}
 	// Retorna a porcentagem de cada sensor
 		Light = average[LDR]*PERCENT;
 		Moisture = average[YL_69]*PERCENT;
+	}
+	if(hadc->Instance==ADC2)
+	{
+	// Zera as posições do vetor de média
+		average[ACS712] = 0;
+	// Preencher o vetor com a soma de todas as medidas feitas para cada sensor
+		for(int i=0;i<SAMPLE;i++)
+			{
+			average[ACS712] += measure_ADC2[i];
+			}
+	// Retorna a porcentagem de cada sensor
+		Current = (2047.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1);
+
+	}
 }
 /**
   * @brief  Callback de recepção da USART, os dados do usuário são recebidos, divididos e convertidos nos valores de parâmetros.
@@ -298,6 +321,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 {
 	__HAL_UART_FLUSH_DRREGISTER(huart);				// Limpa o buffer de recepção para evitar overrun
 	int i=0;										// Variável auxiliar de contagem do vetor parameter
+	// Desativa os atuadores após receber um novo parâmetro
+	HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);
+	StateOf[PeltierPlate]  = 0;
+	StateOf[CoolerPeltier] = 0;
+	StateOf[CoolerFreeze]  = 0;
+	StateOf[WaterPump]  = 0;
+
 	// Código explicado por CodeVault (youtube.com/channel/UC6qj_bPq6tQ6hLwOBpBQ42Q)
 	char* pieces = strtok(bufferRX, " ");			// Cria um ponteiro Char que aponta para o primeiro "pedaço" da string até o caracter " "
 	while (pieces != NULL)							// Enquanto o ponteiro não indicar o fim da string
