@@ -41,10 +41,11 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define NAME 	"GAMA"							///< Nome da estufa (ALFA, BETA, GAMA)
+#define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores
 #define N_ACT   5								///< Número de dispositivos atuadores da estufa
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelo ADC na medição de Luz e Umidade do Solo
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
-#define SIZE_TX 100								///< Tamanho máximo do buffer TX da usart
+#define SIZE_TX 150								///< Tamanho máximo do buffer TX da usart
 #define SIZE_RX 31								///< Tamanho máximo do buffer RX da usart
 /* USER CODE END PD */
 
@@ -55,30 +56,31 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-float Temperature, Humidity, Light, Moisture, Current;					///< Variáveis de cada sensor [Medições]
-uint8_t StateOf[N_ACT];													///< Vetor para acompanhar estado de cada atuador
-volatile uint16_t measure_ADC1[SAMPLE];									///< Vetor para armazenar as medições do ADC1
-volatile uint16_t measure_ADC2[SAMPLE];									///< Vetor para armazenar as leituras de corrente do ADC2
-uint16_t average[3];													///< Média aritmética das medições do ADC1 e ADC2 (LDR YL-69 ACS712)
-char bufferRX[SIZE_RX];													///< Buffer de recebimento da USART
-char bufferTX[SIZE_TX];													///< Buffer de envio da USART
-float parameter[7]={0,50,0,100,255,255,255};							///< Vetor com os parâmetros ideias da estufa
-enum AUX{	 															///< Enumeração para uso auxiliar dos vetores
-	Temperature_Min,
-	Temperature_Max,
-	Moisture_Min,
-	Moisture_Max,
-	LightRed,
-	LightGreen,
-	LightBlue,
-	CoolerPeltier=0,
-	PeltierPlate,
-	CoolerFreeze,
-	LedStrip,
-	WaterPump,
-	LDR=0,
-	YL_69,
-	ACS712
+float Temperature, Humidity, Light, Moisture, Current;	///< Variáveis de cada sensor
+float Power;											///< Variáveis de consumo elétrico
+uint8_t StateOf[N_ACT];									///< Vetor para acompanhar estado de cada atuador
+volatile uint16_t measure_ADC1[SAMPLE];					///< Vetor para armazenar as leituras do YL-69 e LDR, no ADC1
+volatile uint16_t measure_ADC2[SAMPLE];					///< Vetor para armazenar as leituras do ACS712, no ADC2
+uint16_t average[3];									///< Média aritmética das medições do ADC1 e ADC2 (LDR, YL-69, ACS712)
+char bufferRX[SIZE_RX];									///< Buffer de recebimento da USART
+char bufferTX[SIZE_TX];									///< Buffer de envio da USART
+float parameter[7]={0,50,0,100,255,255,255};			///< Vetor com os parâmetros ideais da estufa (TemperaturaMinima,TemperaturaMaxima,UmidadeDoSoloMinima, UmidadeDoSoloMaxima, LuzVermelha, LuzVerde, LuzAzul)
+enum AUX{	 											///< Enumeração para uso auxiliar dos vetores
+	Temperature_Min,									// Variáveis para vetor parameter[]
+	Temperature_Max,									// -
+	Moisture_Min,										// -
+	Moisture_Max,										// -
+	LightRed,											// -
+	LightGreen,											// -
+	LightBlue,											// -
+	CoolerPeltier=0,									// Variáveis para vetor StateOf[]
+	PeltierPlate,										// -
+	CoolerFreeze,										// -
+	LedStrip,											// -
+	WaterPump,											// -
+	LDR=0,												// Variáveis paravetor average[]
+	YL_69,												// -
+	ACS712												// -
 };
 
 /* USER CODE END PV */
@@ -132,20 +134,27 @@ int main(void)
   MX_ADC2_Init();
   MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
-  // ATIVAÇÃO DO ADC
+  // ATIVAÇÃO DO ADC1 E ADC2
   HAL_TIM_OC_Start(&htim2, TIM_CHANNEL_1);								// Ativa o timer 2 como trigger do ADC1
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure_ADC1, SAMPLE);				// Dispara a conversão circular do ADC1
-  HAL_TIM_Base_Start(&htim8);											// Ativa o timer 8 como trigger do ADC2
-  HAL_ADC_Start_DMA(&hadc2, (uint32_t*) measure_ADC2, SAMPLE);				// Dispara a conversão circular do ADC2
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t*) measure_ADC1, SAMPLE);			// Dispara a conversão DMA circular do ADC1
 
-  // USART
+  HAL_TIM_Base_Start(&htim8);											// Ativa o timer 8 como trigger do ADC2
+  HAL_ADC_Start_DMA(&hadc2, (uint32_t*) measure_ADC2, SAMPLE);			// Dispara a conversão DMA circular do ADC2
+
+  // ATIVAÇÃO DA USART2 PARA RECEBIMENTO DE DADOS
   HAL_UART_Receive_DMA(&huart2, (uint8_t*) bufferRX, SIZE_RX);			// Ativa o recebimento de dados pela USART
-  HAL_TIM_Base_Start_IT(&htim10);										// Ativa o timer 10 para leitura da temperatura/umidade e envia pela usart
-  HAL_TIM_Base_Start_IT(&htim11);
-  // PWM
+
+  // ATIVAÇÃO DO TIM11 PARA ATIVAÇÃO DOS ATUADORES E ENVIO DE DADOS
+  HAL_TIM_Base_Start_IT(&htim11);										// Ativa o timer 11 para análisar os estados da estufa e enviar os dados lidos
+
+  // ATIVAÇÃO DO TIM10 PARA LEITURAS DO DHT11
+  HAL_TIM_Base_Start_IT(&htim10);										// Ativa o timer 10 para leitura da temperatura/umidade do DHT11
+
+  // PWM PARA FITA DE LED
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);								// Dispara a geração do sinal PWM - TIMER 3
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);								// Dispara a geração do sinal PWM - TIMER 3
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);								// Dispara a geração do sinal PWM - TIMER 3
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -207,111 +216,113 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 /**
-  * @brief  Callback do timer 10 para medição dos dados coletados do DHT11 e envio de todas as informações dos sensores.
+  * @brief  Callback dos timers 10 e 11 para medição dos dados coletados do DHT11, análise de estados e envio de todas as informações dos sensores.
   * @retval None
   */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	if(htim->Instance==TIM10){
-	// Salva os valores da estrutura do DHT11
-		DHT_GetData(&DHT11_Data);
-		Temperature = DHT11_Data.Temperature;
-		Humidity = DHT11_Data.Humidity;
-	}
+	// GUARDA OS VALORES DA ESTRUTURA DO DHT11 PÓS SALVAMENTO
+	if(htim->Instance==TIM10)
+	{											//
+		DHT_GetData(&DHT11_Data);				// Pega os valores do sensor
+		Temperature = DHT11_Data.Temperature;	// Guarda a temperatura na variável flutuante
+		Humidity = DHT11_Data.Humidity;			// Guarda a umidade do ar na variável flutuante
+	}											// Fim do estouro do TIM10
 
-	if(htim->Instance==TIM11){
-	// Análisa os estados da temperatura
-		if(Temperature<=(parameter[Temperature_Min]+1)&&(StateOf[CoolerFreeze]==1))
-		{
-			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
-			StateOf[PeltierPlate]  = 0;
-			StateOf[CoolerPeltier] = 0;
-			StateOf[CoolerFreeze]  = 0;
-		}
-		else if((Temperature<parameter[Temperature_Min])&&(StateOf[CoolerFreeze]==0))
-		{
-			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_SET);
-			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
-			StateOf[PeltierPlate]  = 1;
-			StateOf[CoolerPeltier] = 1;
-			StateOf[CoolerFreeze]  = 0;
-		}
-		else if(Temperature>=(parameter[Temperature_Max]-1)&&(StateOf[PeltierPlate]==1))
-		{
-			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
-			StateOf[PeltierPlate]  = 0;
-			StateOf[CoolerPeltier] = 0;
-			StateOf[CoolerFreeze]  = 0;
-		}
-		else if((Temperature>parameter[Temperature_Max])&&(StateOf[PeltierPlate]==0))
-		{
-			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_SET);
-			StateOf[PeltierPlate]  = 0;
-			StateOf[CoolerPeltier] = 1;
-			StateOf[CoolerFreeze]  = 1;
-		}
-
-		if(Moisture<parameter[Moisture_Min])
-		{
-			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);					// Acionar modo de irrigação
-			StateOf[WaterPump]  = 1;
-		}
-		if(Moisture>=parameter[Moisture_Max])
-		{
-			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);					// Desliga o modo de irrigação
-			StateOf[WaterPump]  = 0;
-		}
-
-		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,parameter[LightRed]);
-		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3,parameter[LightGreen]);
-		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4,parameter[LightBlue]);
-
-	// Envio dos dados coletados em JSON Object
-		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f}",NAME, Temperature, Light, Moisture, Humidity);
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));
-
-	}
+	// ANÁLISE DOS ESTADOS DA ESTUFA E ENVIO DOS DADOS COLETADOS
+	if(htim->Instance==TIM11)
+	{
+		// ENVIO DOS DADOS COLETADOS EM FORMATO JSON OBJECT PARA O NODE RED
+		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f, \"Power\": %2.1f}", NAME, Temperature, Light, Moisture, Humidity, Power);
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));				// Envia a string bufferTX pela função Transmit DMA
+		// ESTADOS DE TEMPERATURA COM HISTERESE
+		if(Temperature<=(parameter[Temperature_Min]+1)&&(StateOf[CoolerFreeze]==1))			// Se o resfriamento está ativado, desliga somente ao alcançar a temperatura mínimo
+		{																					//
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desliga o atuador
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			StateOf[PeltierPlate]  = 0;														// Guarda o estado atual
+			StateOf[CoolerPeltier] = 0;														// Guarda o estado atual
+			StateOf[CoolerFreeze]  = 0;														// Guarda o estado atual
+		}																					//
+		else if((Temperature<parameter[Temperature_Min])&&(StateOf[CoolerFreeze]==0))		// Se o resfriamento está desativado e a temperatura está abaixo do mínimo
+		{																					//
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_SET);	// Liga o atuador
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);	// Liga o atuador
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			StateOf[PeltierPlate]  = 1;														// Guarda o estado atual
+			StateOf[CoolerPeltier] = 1;														// Guarda o estado atual
+			StateOf[CoolerFreeze]  = 0;														// Guarda o estado atual
+		}																					//
+		else if(Temperature>=(parameter[Temperature_Max]-1)&&(StateOf[PeltierPlate]==1))	// Se o aquecimento está ativado, desliga somente ao alcançar a temperatura máxima
+		{																					//
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desliga o atuador
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			StateOf[PeltierPlate]  = 0;														// Guarda o estado atual
+			StateOf[CoolerPeltier] = 0;														// Guarda o estado atual
+			StateOf[CoolerFreeze]  = 0;														// Guarda o estado atual
+		}																					//
+		else if((Temperature>parameter[Temperature_Max])&&(StateOf[PeltierPlate]==0))		// Se o aquecimento está desativado e a temperatura está acima do máximo
+		{																					//
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desliga o atuador
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);	// Liga o atuador
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_SET);	// Liga o atuador
+			StateOf[PeltierPlate]  = 0;														// Guarda o estado atual
+			StateOf[CoolerPeltier] = 1;														// Guarda o estado atual
+			StateOf[CoolerFreeze]  = 1;														// Guarda o estado atual
+		}																					//
+		// ESTADOS DA UMIDADE DO SOLO COM HISTERESE
+		if(Moisture<parameter[Moisture_Min])												// Se a umidade está menor que o mínimo
+		{																					//
+			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);			// Acionar modo de irrigação
+			StateOf[WaterPump]  = 1;														// Guarda o estado atual
+		}																					//
+		if(Moisture>=parameter[Moisture_Max])												// Se a umidade está acima do máximo
+		{																					//
+			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);			// Desliga o modo de irrigação
+			StateOf[WaterPump]  = 0;														// Guarda o estado atual
+		}																					//
+		// ESTADOS DA LUZ
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,parameter[LightRed]);					// Corrige a intensidade da cor
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3,parameter[LightGreen]);					// Corrige a intensidade da cor
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4,parameter[LightBlue]);					// Corrige a intensidade da cor
+		StateOf[LedStrip] = (parameter[LightRed]+parameter[LightRed]+parameter[LightRed])/3;// Calcula a média artmética da intensidade da fita de led
+		// ENVIO DOS DADOS DE ACIONAMENTO EM FORMATO JSON OBJECT PARA NODE RED
+		sprintf(bufferTX, "{\"Name\": \"%s\", \"Peltier\": %d, \"CoolerP\": %d, \"CoolerF\": %d, \"WaterPump\": %d, \"LedStrip\": %d}", NAME,StateOf[PeltierPlate],StateOf[CoolerPeltier],StateOf[CoolerFreeze],StateOf[WaterPump],StateOf[LedStrip]);
+		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));				// Envia a string bufferTX pela função Transmit DMA
+	}																						// Fim do estouro do TIM11
 }
 /**
-  * @brief  Callback de conversão completa do ADC, faz a média dos valores e calcula a porcentagem.
+  * @brief  Callback de conversão completa do ADC1 e o ADC2, faz o processamento dos valores obtidos.
   * @retval None
   */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	if(hadc->Instance==ADC1)
-	{
-	// Zera as posições do vetor de média
-		average[LDR] = 0; average[YL_69] = 0;
-	// Preencher o vetor com a soma de todas as medidas feitas para cada sensor
-		for(int i=0;i<SAMPLE;i++)
-			{
-			if((i%2)==0)average[LDR] += measure_ADC1[i];
-			else average[YL_69] += measure_ADC1[i];
-			}
-	// Retorna a porcentagem de cada sensor
-		Light = average[LDR]*PERCENT;
-		Moisture = average[YL_69]*PERCENT;
-	}
-	if(hadc->Instance==ADC2)
-	{
-	// Zera as posições do vetor de média
-		average[ACS712] = 0;
-	// Preencher o vetor com a soma de todas as medidas feitas para cada sensor
-		for(int i=0;i<SAMPLE;i++)
-			{
-			average[ACS712] += measure_ADC2[i];
-			}
-	// Retorna a porcentagem de cada sensor
-		Current = (2047.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1);
-
-	}
+	// GUARDA OS VALORES DOS SENSORES LDR E YL-69
+	if(hadc->Instance==ADC1)								//
+	{														//
+		average[LDR] = 0; average[YL_69] = 0;				// Zera as posições dos vetors de média
+		for(int i=0;i<SAMPLE;i++)							// Laço para guardar as medidas
+			{												//
+				if((i%2)==0)average[LDR] += measure_ADC1[i];// Os valores pares são o LDR, soma todas as medições e salva no vetor
+				else average[YL_69] += measure_ADC1[i];		// Os valores ímpares são o YL-69, soma todas as medições e salva no vetor
+			}												//
+		Light = average[LDR]*PERCENT;						// Retorna a porcentagem do valor medido de cada sensor
+		Moisture = average[YL_69]*PERCENT;					// Retorna a porcentagem do valor medido de cada sensor
+	}														// Fim da conversão completa do ADC1
+	// GUARDA OS VALORES DO SENSOR DE CORRENTE
+	if(hadc->Instance==ADC2)								//
+	{														//
+		average[ACS712] = 0;								// Zera as posições do vetor de média
+		for(int i=0;i<SAMPLE;i++)							// Laço para guardar as medidas
+			{												//
+			average[ACS712] += measure_ADC2[i];				// Soma todas as medições e salva no vetor
+			}												//
+		//Cálculo da potência elétrica
+		Current = (2047.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1);		// Calcula a corrente elétrica da medição média do sensor de corrente
+		Power = VOLTAGE * Current;										// Calcula a potência elétrica do instante
+	} 														// Fim da conversão completa do ADC2
 }
 /**
   * @brief  Callback de recepção da USART, os dados do usuário são recebidos, divididos e convertidos nos valores de parâmetros.
@@ -320,25 +331,24 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 {
 	__HAL_UART_FLUSH_DRREGISTER(huart);				// Limpa o buffer de recepção para evitar overrun
+	// DESATIVAÇÃO DOS ATUADORES PARA EVITAR CONFLITOS COM POSSÍVEIS NOVOS VALORES
+	HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+	HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desativação do atuador
+	HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+	HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,      GPIO_PIN_RESET);	// Desativação do atuador
+	StateOf[PeltierPlate]  = 0;	// Guarda estado atual
+	StateOf[CoolerPeltier] = 0;	// Guarda estado atual
+	StateOf[CoolerFreeze]  = 0;	// Guarda estado atual
+	StateOf[WaterPump]     = 0;	// Guarda estado atual
+	// SEPARAÇÃO DA STRING E CONVERSÃO PARA FLOAT - Código explicado por CodeVault (youtube.com/channel/UC6qj_bPq6tQ6hLwOBpBQ42Q)
 	int i=0;										// Variável auxiliar de contagem do vetor parameter
-	// Desativa os atuadores após receber um novo parâmetro
-	HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);
-	StateOf[PeltierPlate]  = 0;
-	StateOf[CoolerPeltier] = 0;
-	StateOf[CoolerFreeze]  = 0;
-	StateOf[WaterPump]  = 0;
-
-	// Código explicado por CodeVault (youtube.com/channel/UC6qj_bPq6tQ6hLwOBpBQ42Q)
 	char* pieces = strtok(bufferRX, " ");			// Cria um ponteiro Char que aponta para o primeiro "pedaço" da string até o caracter " "
 	while (pieces != NULL)							// Enquanto o ponteiro não indicar o fim da string
-	{
+	{												//
 		parameter[i] = atof(pieces);				// Converte o pedaço da string para float
 		pieces = strtok(NULL, " ");					// Indica que permanece na mesma string e, então, segue para o próximo pedaço dela
 		i++;										// Segue para o próximo parâmetro ser convertido
-	}
+	}												//
 }
 /* USER CODE END 4 */
 
