@@ -4,14 +4,15 @@
   * @file       main.c
   * @authors	Adriano André, Bruno Berwanger, Fabrício Lutz, Jordana Dutra.
   * @class		4411
-  * @date		Agosto -> Setembro/ 2020
+  * @date		Agosto -> Setembro -> Outubro/ 2020
   * @company	Eletrônica - Fundação Liberato
   * @brief      Controle de Temperatura, Umidade do solo e Luz.
   ******************************************************************************************************************
   * @attention
   * Código utilizado para o trabalho MeuTrecoNaInternet - MICROS II - FETLSVC
-  * Pinagem atuadores: PC0->WaterPump, PC1->PeltierPlate, PC2->CoolerFreeze, PC3->CoolerPeltier, PB9->LedStrip
-  * Pinagem  sensores: PA0->LDR, PA1->DHT11, PA4->YL-69
+  * Pinagem atuadores: PC0->WaterPump, PC1->PeltierPlate, PC2->CoolerFreeze, PC3->CoolerPeltier, PC6->LedVermelho, PC8->LedVerde, PC9->LedAzul
+  * Pinagem sensores: PA0->LDR, PA1->DHT11, PA4->YL-69, PA7->ACS712
+  * Pinagem de falha: PB7->Shutdown
   *
   ******************************************************************************************************************
   */
@@ -41,8 +42,8 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define NAME 	"GAMA"							///< Nome da estufa (ALFA, BETA, GAMA)
-#define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores
-#define N_ACT   5								///< Número de dispositivos atuadores da estufa
+#define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores (Volts)
+#define I_MAX   4.00							///< Máxima corrente elétrica (Amperes)
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelo ADC na medição de Luz e Umidade do Solo
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
 #define SIZE_TX 150								///< Tamanho máximo do buffer TX da usart
@@ -58,7 +59,7 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 /* USER CODE BEGIN PV */
 float Temperature, Humidity, Light, Moisture, Current;	///< Variáveis de cada sensor
 float Power;											///< Variáveis de consumo elétrico
-uint8_t StateOf[N_ACT];									///< Vetor para acompanhar estado de cada atuador
+uint8_t StateOf[4];										///< Vetor para acompanhar estado de alguns atuadores
 volatile uint16_t measure_ADC1[SAMPLE];					///< Vetor para armazenar as leituras do YL-69 e LDR, no ADC1
 volatile uint16_t measure_ADC2[SAMPLE];					///< Vetor para armazenar as leituras do ACS712, no ADC2
 uint16_t average[3];									///< Média aritmética das medições do ADC1 e ADC2 (LDR, YL-69, ACS712)
@@ -76,8 +77,7 @@ enum AUX{	 											///< Enumeração para uso auxiliar dos vetores
 	CoolerPeltier=0,									// Variáveis para vetor StateOf[]
 	PeltierPlate,										// -
 	CoolerFreeze,										// -
-	LedStrip,											// -
-	WaterPump,											// -
+	ShutDown,											// -
 	LDR=0,												// Variáveis paravetor average[]
 	YL_69,												// -
 	ACS712												// -
@@ -229,12 +229,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		Humidity = DHT11_Data.Humidity;			// Guarda a umidade do ar na variável flutuante
 	}											// Fim do estouro do TIM10
 
-	// ANÁLISE DOS ESTADOS DA ESTUFA E ENVIO DOS DADOS COLETADOS
-	if(htim->Instance==TIM11)
+	// AN�?LISE DOS ESTADOS DA ESTUFA E ENVIO DOS DADOS COLETADOS
+	if((htim->Instance==TIM11)&&(StateOf[ShutDown]==0))	// Se o timer 11 estourou e o Shutdown está desativado
 	{
 		// ENVIO DOS DADOS COLETADOS EM FORMATO JSON OBJECT PARA O NODE RED
 		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f, \"Power\": %2.1f}", NAME, Temperature, Light, Moisture, Humidity, Power);
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));				// Envia a string bufferTX pela função Transmit DMA
+
 		// ESTADOS DE TEMPERATURA COM HISTERESE
 		if(Temperature<=(parameter[Temperature_Min]+1)&&(StateOf[CoolerFreeze]==1))			// Se o resfriamento está ativado, desliga somente ao alcançar a temperatura mínimo
 		{																					//
@@ -276,21 +277,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		if(Moisture<parameter[Moisture_Min])												// Se a umidade está menor que o mínimo
 		{																					//
 			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);			// Acionar modo de irrigação
-			StateOf[WaterPump]  = 1;														// Guarda o estado atual
 		}																					//
 		if(Moisture>=parameter[Moisture_Max])												// Se a umidade está acima do máximo
 		{																					//
 			HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);			// Desliga o modo de irrigação
-			StateOf[WaterPump]  = 0;														// Guarda o estado atual
 		}																					//
 		// ESTADOS DA LUZ
 		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,parameter[LightRed]);					// Corrige a intensidade da cor
 		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_3,parameter[LightGreen]);					// Corrige a intensidade da cor
 		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_4,parameter[LightBlue]);					// Corrige a intensidade da cor
-		StateOf[LedStrip] = (parameter[LightRed]+parameter[LightRed]+parameter[LightRed])/3;// Calcula a média artmética da intensidade da fita de led
-		// ENVIO DOS DADOS DE ACIONAMENTO EM FORMATO JSON OBJECT PARA NODE RED
-		sprintf(bufferTX, "{\"Name\": \"%s\", \"Peltier\": %d, \"CoolerP\": %d, \"CoolerF\": %d, \"WaterPump\": %d, \"LedStrip\": %d}", NAME,StateOf[PeltierPlate],StateOf[CoolerPeltier],StateOf[CoolerFreeze],StateOf[WaterPump],StateOf[LedStrip]);
-		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));				// Envia a string bufferTX pela função Transmit DMA
 	}																						// Fim do estouro do TIM11
 }
 /**
@@ -318,10 +313,26 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		for(int i=0;i<SAMPLE;i++)							// Laço para guardar as medidas
 			{												//
 			average[ACS712] += measure_ADC2[i];				// Soma todas as medições e salva no vetor
-			}												//
-		//Cálculo da potência elétrica
+			}
+		//Cálculo da corrente elétrica
 		Current = (2047.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1);		// Calcula a corrente elétrica da medição média do sensor de corrente
-		Power = VOLTAGE * Current;										// Calcula a potência elétrica do instante
+		//Controle de falhas
+		if(Current>I_MAX)// Se a corrente atual ultrapassa o valor de todos os atuadores ligados o circuito entra em proteção e é desligado
+		{
+			HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_SET);				// Ativa o desligamento forçado dos atuadores
+			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desativação do atuador
+			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+			HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,      GPIO_PIN_RESET);	// Desativação do atuador
+		    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);										// Desliga a geração do sinal PWM - TIMER 3
+		    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_3);										// Desliga a geração do sinal PWM - TIMER 3
+		    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_4);										// Desliga a geração do sinal PWM - TIMER 3
+			StateOf[PeltierPlate]  = 0;	// Guarda estado atual
+			StateOf[CoolerPeltier] = 0;	// Guarda estado atual
+			StateOf[CoolerFreeze]  = 0;	// Guarda estado atual
+		}
+		//Cálculo da potência elétrica
+		Power = VOLTAGE * Current;							// Calcula a potência elétrica do instante
 	} 														// Fim da conversão completa do ADC2
 }
 /**
@@ -331,7 +342,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 {
 	__HAL_UART_FLUSH_DRREGISTER(huart);				// Limpa o buffer de recepção para evitar overrun
-	// DESATIVAÇÃO DOS ATUADORES PARA EVITAR CONFLITOS COM POSSÍVEIS NOVOS VALORES
+	// DESATIVAÇÃO DOS ATUADORES PARA EVITAR CONFLITOS COM POSSIVEIS NOVOS VALORES
 	HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
 	HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desativação do atuador
 	HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
@@ -339,7 +350,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 	StateOf[PeltierPlate]  = 0;	// Guarda estado atual
 	StateOf[CoolerPeltier] = 0;	// Guarda estado atual
 	StateOf[CoolerFreeze]  = 0;	// Guarda estado atual
-	StateOf[WaterPump]     = 0;	// Guarda estado atual
 	// SEPARAÇÃO DA STRING E CONVERSÃO PARA FLOAT - Código explicado por CodeVault (youtube.com/channel/UC6qj_bPq6tQ6hLwOBpBQ42Q)
 	int i=0;										// Variável auxiliar de contagem do vetor parameter
 	char* pieces = strtok(bufferRX, " ");			// Cria um ponteiro Char que aponta para o primeiro "pedaço" da string até o caracter " "
@@ -348,7 +358,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 		parameter[i] = atof(pieces);				// Converte o pedaço da string para float
 		pieces = strtok(NULL, " ");					// Indica que permanece na mesma string e, então, segue para o próximo pedaço dela
 		i++;										// Segue para o próximo parâmetro ser convertido
-	}												//
+	}
+	if((StateOf[ShutDown] == 1)&&(parameter[0] == 99.9))						// Se o desligamento forçado foi ativado e o código de reativação foi recebido
+	{
+		HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_RESET); 	// Desativa o desligamento forçado dos atuadores
+		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);								// Dispara a geração do sinal PWM - TIMER 3
+		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);								// Dispara a geração do sinal PWM - TIMER 3
+		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);								// Dispara a geração do sinal PWM - TIMER 3
+		StateOf[ShutDown] = 0;
+		parameter[0] = 0.0;
+	}
 }
 /* USER CODE END 4 */
 
