@@ -41,7 +41,7 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define NAME 	"GAMA"							///< Nome da estufa (ALFA, BETA, GAMA)
+#define NAME 	"ALFA"							///< Nome da estufa (ALFA, BETA, GAMA)
 #define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores (Volts)
 #define I_MAX   4.00							///< Máxima corrente elétrica (Amperes)
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelo ADC na medição de Luz e Umidade do Solo
@@ -315,7 +315,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 			average[ACS712] += measure_ADC2[i];				// Soma todas as medições e salva no vetor
 			}
 		//Cálculo da corrente elétrica
-		Current = (2047.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1);		// Calcula a corrente elétrica da medição média do sensor de corrente
+		Current = abs((3103.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1));		            // Calcula a corrente elétrica da medição média do sensor de corrente
 		//Controle de falhas
 		if(Current>I_MAX)// Se a corrente atual ultrapassa o valor de todos os atuadores ligados o circuito entra em proteção e é desligado
 		{
