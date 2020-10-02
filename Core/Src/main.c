@@ -44,7 +44,8 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 #define NAME 	"ALFA"							///< Nome da estufa (ALFA, BETA, GAMA)
 #define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores (Volts)
 #define I_MAX   4.00							///< Máxima corrente elétrica (Amperes)
-#define SAMPLE  20								///< Número de amostras a serem analisadas pelo ADC na medição de Luz e Umidade do Solo
+#define C_SENS  0.066							///< Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)]
+#define SAMPLE  20								///< Número de amostras a serem analisadas pelos ADC's
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
 #define SIZE_TX 150								///< Tamanho máximo do buffer TX da usart
 #define SIZE_RX 31								///< Tamanho máximo do buffer RX da usart
@@ -315,11 +316,13 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 			average[ACS712] += measure_ADC2[i];				// Soma todas as medições e salva no vetor
 			}
 		//Cálculo da corrente elétrica
-		Current = abs((3103.0-(average[ACS712]/20.0))/4096.0*(3.3/0.1));		            // Calcula a corrente elétrica da medição média do sensor de corrente
+		average[ACS712] /= SAMPLE;									// Calcula a média aritmética das medidas
+		Current = (((3122.0-average[ACS712])/4096.0)*(3.3/C_SENS));	// Calcula a corrente elétrica a partir da medição do sensor de corrente
+		Current = abs(Current*1000)/1000.0;							// Arredonda o módulo do valor em 3 casas decimais
 		//Controle de falhas
 		if(Current>I_MAX)// Se a corrente atual ultrapassa o valor de todos os atuadores ligados o circuito entra em proteção e é desligado
 		{
-			HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_SET);				// Ativa o desligamento forçado dos atuadores
+			HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin,             GPIO_PIN_SET);	// Ativa o desligamento forçado dos atuadores
 			HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
 			HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desativação do atuador
 			HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
