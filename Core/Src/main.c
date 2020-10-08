@@ -78,7 +78,7 @@ enum AUX{	 											///< Enumeração para uso auxiliar dos vetores
 	CoolerPeltier=0,									// Variáveis para vetor StateOf[]
 	PeltierPlate,										// -
 	CoolerFreeze,										// -
-	ShutDown,											// -
+	Status,												// -
 	LDR=0,												// Variáveis paravetor average[]
 	YL_69,												// -
 	ACS712												// -
@@ -156,6 +156,8 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);								// Dispara a geração do sinal PWM - TIMER 3
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);								// Dispara a geração do sinal PWM - TIMER 3
 
+  StateOf[Status] = 1;													// Estado inicial é ligado
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -223,7 +225,7 @@ void SystemClock_Config(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	// GUARDA OS VALORES DA ESTRUTURA DO DHT11 PÓS SALVAMENTO
-	if(htim->Instance==TIM10)
+	if(htim->Instance==TIM10)					// Se o timer 10 estourou
 	{											//
 		DHT_GetData(&DHT11_Data);				// Pega os valores do sensor
 		Temperature = DHT11_Data.Temperature;	// Guarda a temperatura na variável flutuante
@@ -231,10 +233,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	}											// Fim do estouro do TIM10
 
 	// AN�?LISE DOS ESTADOS DA ESTUFA E ENVIO DOS DADOS COLETADOS
-	if((htim->Instance==TIM11)&&(StateOf[ShutDown]==0))	// Se o timer 11 estourou e o Shutdown está desativado
+	if((htim->Instance==TIM11)&&(StateOf[Status]==1))	// Se o timer 11 estourou e o Status é ligado
 	{
 		// ENVIO DOS DADOS COLETADOS EM FORMATO JSON OBJECT PARA O NODE RED
-		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f, \"Power\": %2.1f}", NAME, Temperature, Light, Moisture, Humidity, Power);
+		sprintf(bufferTX, "{\"Name\": \"%s\", \"Temperature\": %2.1f, \"Light\": %2.1f, \"Moisture\": %2.1f, \"Humidity\": %2.1f, \"Power\": %2.1f, \"Status\": %i}", NAME, Temperature, Light, Moisture, Humidity, Power, StateOf[Status]);
 		HAL_UART_Transmit_DMA(&huart2, (uint8_t*) bufferTX, strlen(bufferTX));				// Envia a string bufferTX pela função Transmit DMA
 
 		// ESTADOS DE TEMPERATURA COM HISTERESE
@@ -296,8 +298,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	// GUARDA OS VALORES DOS SENSORES LDR E YL-69
-	if(hadc->Instance==ADC1)								//
-	{														//
+	if(hadc->Instance==ADC1)								// Verifica se o CallBack foi feito pelo ADC1
+	{														// Início da conversao completa do ADC1
 		average[LDR] = 0; average[YL_69] = 0;				// Zera as posições dos vetors de média
 		for(int i=0;i<SAMPLE;i++)							// Laço para guardar as medidas
 			{												//
@@ -308,8 +310,8 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		Moisture = average[YL_69]*PERCENT;					// Retorna a porcentagem do valor medido de cada sensor
 	}														// Fim da conversão completa do ADC1
 	// GUARDA OS VALORES DO SENSOR DE CORRENTE
-	if(hadc->Instance==ADC2)								//
-	{														//
+	if(hadc->Instance==ADC2)								// Verifica se o CallBack foi feito pelo ADC2
+	{														// Início da conversao completa do ADC2
 		average[ACS712] = 0;								// Zera as posições do vetor de média
 		for(int i=0;i<SAMPLE;i++)							// Laço para guardar as medidas
 			{												//
@@ -362,14 +364,30 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 		pieces = strtok(NULL, " ");					// Indica que permanece na mesma string e, então, segue para o próximo pedaço dela
 		i++;										// Segue para o próximo parâmetro ser convertido
 	}
-	if((StateOf[ShutDown] == 1)&&(parameter[0] == 99.9))						// Se o desligamento forçado foi ativado e o código de reativação foi recebido
+	if((StateOf[Status] == 0)&&(parameter[0] == 99.9))						// Se o sistema estiver desligado e o código de reativação foi recebido
 	{
 		HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_RESET); 	// Desativa o desligamento forçado dos atuadores
 		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);								// Dispara a geração do sinal PWM - TIMER 3
 		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);								// Dispara a geração do sinal PWM - TIMER 3
 		HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);								// Dispara a geração do sinal PWM - TIMER 3
-		StateOf[ShutDown] = 0;
-		parameter[0] = 0.0;
+		parameter[0] = 0.0;														// Remove o código de reativação
+		StateOf[Status] = 1;													// Guarda estado atual
+	}
+	if((StateOf[Status] == 1)&& (parameter[0] == 88.8))						// Se o sistema estiver ativado e o código de deativação foi recebido
+	{
+		HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin,             GPIO_PIN_SET);	// Ativa o desligamento forçado dos atuadores
+		HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+		HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);	// Desativação do atuador
+		HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);	// Desativação do atuador
+		HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,      GPIO_PIN_RESET);	// Desativação do atuador
+	    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);										// Desliga a geração do sinal PWM - TIMER 3
+	    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_3);										// Desliga a geração do sinal PWM - TIMER 3
+	    HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_4);										// Desliga a geração do sinal PWM - TIMER 3
+	    parameter[0] = 0.0;			// Remove o código de desativação
+		StateOf[PeltierPlate]  = 0;	// Guarda estado atual
+		StateOf[CoolerPeltier] = 0;	// Guarda estado atual
+		StateOf[CoolerFreeze]  = 0;	// Guarda estado atual
+		StateOf[Status]        = 0; // Guarda estado atual
 	}
 }
 /* USER CODE END 4 */
