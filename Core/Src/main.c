@@ -41,14 +41,14 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define NAME 	"ALFA"							///< Nome da estufa (ALFA, BETA, GAMA)
+#define NAME 	"BETA"							///< Nome da estufa (ALFA, BETA, GAMA)
 #define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores (Volts)
 #define I_MAX   4.00							///< Máxima corrente elétrica (Amperes)
 #define C_SENS  0.066							///< Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)]
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelos ADC's
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
 #define SIZE_TX 150								///< Tamanho máximo do buffer TX da usart
-#define SIZE_RX 31								///< Tamanho máximo do buffer RX da usart
+#define SIZE_RX 25								///< Tamanho máximo do buffer RX da usart
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
