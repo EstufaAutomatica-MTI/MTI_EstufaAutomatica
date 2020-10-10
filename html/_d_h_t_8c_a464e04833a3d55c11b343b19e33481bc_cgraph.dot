@@ -1,0 +1,24 @@
+digraph "DHT_GetData"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="DHT_GetData",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="DHT_Check_Response",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#a8430977113c91b3be265deb778d163ab",tooltip=" "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="delay",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="DHT_Read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c",tooltip=" "];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="DHT_Start",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#ac9b035e01ef84cfc4f7536a8dc4c2600",tooltip=" "];
+  Node5 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="DWT_Delay_Init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#a4fe08aec7b56318b01ca3ab4172861e3",tooltip=" "];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Set_Pin_Input",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#a3b8cee858a35581caf1bcb14ce5cb367",tooltip=" "];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Set_Pin_Output",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_d_h_t_8c.html#aef1aec2157382676edb25c22e4b7ecef",tooltip=" "];
+}

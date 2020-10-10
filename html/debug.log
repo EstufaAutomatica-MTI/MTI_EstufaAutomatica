@@ -1,0 +1,31 @@
+[1009/201509.181:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/201509.317:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1009/202509.166:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\370fba79-b2e6-4e94-8711-fdf5f97d527f.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\5a5e3c8e-a563-48a9-98c8-0755b0e59950.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\268a60df-0d69-4508-9a20-8bd58afe014b.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\9b8c1cbe-3c78-4663-a43b-62258dc94b4a.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\4df49e96-1111-4494-9ad2-0c71ab87c634.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\b299b95c-701d-495e-b91c-67237d33ddf8.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\f736845d-163b-4ec6-9799-f66082d55369.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\91cfc0e1-e11d-4ab8-a794-c9a021b2cdf1.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.167:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\2fa1942f-1f39-4dd3-9441-e3140595ed69.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.168:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\Usuario\AppData\Local\Google\Chrome\User Data\Crashpad\reports\551a6380-b117-4fdb-ba47-9da9972097b6.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[1009/202509.168:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)

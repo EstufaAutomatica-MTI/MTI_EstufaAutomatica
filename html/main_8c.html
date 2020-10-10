@@ -1,0 +1,1340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MTI_EstufaAutomatica: Referência do Arquivo Core/Src/main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">MTI_EstufaAutomatica
+   &#160;<span id="projectnumber">v1.16</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('main_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Definições e Macros</a> &#124;
+<a href="#enum-members">Enumerações</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência do Arquivo main.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Controle de Temperatura, Umidade do solo e Luz.  
+<a href="#details">Mais...</a></p>
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;adc.h&quot;</code><br />
+<code>#include &quot;dma.h&quot;</code><br />
+<code>#include &quot;tim.h&quot;</code><br />
+<code>#include &quot;usart.h&quot;</code><br />
+<code>#include &quot;gpio.h&quot;</code><br />
+<code>#include &quot;DHT.h&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+<code>#include &quot;stdio.h&quot;</code><br />
+<code>#include &quot;stdlib.h&quot;</code><br />
+<code>#include &quot;math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependência de inclusões para main.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c__incl.png" border="0" usemap="#_core_2_src_2main_8c" alt=""/></div>
+</div>
+</div>
+<p><a href="main_8c_source.html">Vá para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a47f2e62c0dbebc787052c165afcada0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a47f2e62c0dbebc787052c165afcada0e">NAME</a>&#160;&#160;&#160;&quot;ALFA&quot;</td></tr>
+<tr class="memdesc:a47f2e62c0dbebc787052c165afcada0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nome da estufa (ALFA, BETA, GAMA)  <a href="main_8c.html#a47f2e62c0dbebc787052c165afcada0e">Mais...</a><br /></td></tr>
+<tr class="separator:a47f2e62c0dbebc787052c165afcada0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95f77a4b46f8270143622e8f7de8faa7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a95f77a4b46f8270143622e8f7de8faa7">VOLTAGE</a>&#160;&#160;&#160;12.00</td></tr>
+<tr class="memdesc:a95f77a4b46f8270143622e8f7de8faa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tensão elétrica usada para acionamento dos atuadores (Volts)  <a href="main_8c.html#a95f77a4b46f8270143622e8f7de8faa7">Mais...</a><br /></td></tr>
+<tr class="separator:a95f77a4b46f8270143622e8f7de8faa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f66474c13206cee6d401b2d1a028cea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0f66474c13206cee6d401b2d1a028cea">I_MAX</a>&#160;&#160;&#160;4.00</td></tr>
+<tr class="memdesc:a0f66474c13206cee6d401b2d1a028cea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máxima corrente elétrica (Amperes)  <a href="main_8c.html#a0f66474c13206cee6d401b2d1a028cea">Mais...</a><br /></td></tr>
+<tr class="separator:a0f66474c13206cee6d401b2d1a028cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4cb5300b1267c3f753c6e2c81eb52b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aff4cb5300b1267c3f753c6e2c81eb52b">C_SENS</a>&#160;&#160;&#160;0.066</td></tr>
+<tr class="memdesc:aff4cb5300b1267c3f753c6e2c81eb52b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)].  <a href="main_8c.html#aff4cb5300b1267c3f753c6e2c81eb52b">Mais...</a><br /></td></tr>
+<tr class="separator:aff4cb5300b1267c3f753c6e2c81eb52b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc597c76b4f04a2da506a240d51d89a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>&#160;&#160;&#160;20</td></tr>
+<tr class="memdesc:afc597c76b4f04a2da506a240d51d89a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de amostras a serem analisadas pelos ADC's.  <a href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">Mais...</a><br /></td></tr>
+<tr class="separator:afc597c76b4f04a2da506a240d51d89a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b321fc8474a410f24deb460c4fa014e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9b321fc8474a410f24deb460c4fa014e">PERCENT</a>&#160;&#160;&#160;(100.0/(4095.0*10.0))</td></tr>
+<tr class="memdesc:a9b321fc8474a410f24deb460c4fa014e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cálculo da porcentagem para medição de Luz e Umidade do Solo.  <a href="main_8c.html#a9b321fc8474a410f24deb460c4fa014e">Mais...</a><br /></td></tr>
+<tr class="separator:a9b321fc8474a410f24deb460c4fa014e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f28b43c8547d756cbc5b1bfe87fc5b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8f28b43c8547d756cbc5b1bfe87fc5b4">SIZE_TX</a>&#160;&#160;&#160;150</td></tr>
+<tr class="memdesc:a8f28b43c8547d756cbc5b1bfe87fc5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho máximo do buffer TX da usart.  <a href="main_8c.html#a8f28b43c8547d756cbc5b1bfe87fc5b4">Mais...</a><br /></td></tr>
+<tr class="separator:a8f28b43c8547d756cbc5b1bfe87fc5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb84dc998ad42b5b08dbb90d090630d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">SIZE_RX</a>&#160;&#160;&#160;25</td></tr>
+<tr class="memdesc:a7eb84dc998ad42b5b08dbb90d090630d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamanho máximo do buffer RX da usart.  <a href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">Mais...</a><br /></td></tr>
+<tr class="separator:a7eb84dc998ad42b5b08dbb90d090630d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:a98b5db52b002ff78f33e52e32bb5cab2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2">AUX</a> { <br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c">Temperature_Min</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81">Temperature_Max</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952">Moisture_Min</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e">Moisture_Max</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7">LightRed</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18">LightGreen</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243">LightBlue</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a> =0, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a> =0, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a>, 
+<br />
+&#160;&#160;<a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:a98b5db52b002ff78f33e52e32bb5cab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeração para uso auxiliar dos vetores.  <a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2">Mais...</a><br /></td></tr>
+<tr class="separator:a98b5db52b002ff78f33e52e32bb5cab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a70af21c671abfcc773614a9a4f63d920"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a> (void)</td></tr>
+<tr class="memdesc:a70af21c671abfcc773614a9a4f63d920"><td class="mdescLeft">&#160;</td><td class="mdescRight">System Clock Configuration.  <a href="main_8c.html#a70af21c671abfcc773614a9a4f63d920">Mais...</a><br /></td></tr>
+<tr class="separator:a70af21c671abfcc773614a9a4f63d920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df846a207773eaeaee7e3795b56c151"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9df846a207773eaeaee7e3795b56c151">turnOn</a> (void)</td></tr>
+<tr class="memdesc:a9df846a207773eaeaee7e3795b56c151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função de religamento da estufa. O PWM da fita de led é reativado, os demais atuadores esperarão por solicitação.  <a href="main_8c.html#a9df846a207773eaeaee7e3795b56c151">Mais...</a><br /></td></tr>
+<tr class="separator:a9df846a207773eaeaee7e3795b56c151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf88b454de739ce6d17ee6e7daadb9be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#acf88b454de739ce6d17ee6e7daadb9be">turnOff</a> (void)</td></tr>
+<tr class="memdesc:acf88b454de739ce6d17ee6e7daadb9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função de desligamento da estufa. O Shutdon é ativado, todos os atuadores são desativados, o PWM da fita de led é desligado.  <a href="main_8c.html#acf88b454de739ce6d17ee6e7daadb9be">Mais...</a><br /></td></tr>
+<tr class="separator:acf88b454de739ce6d17ee6e7daadb9be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The application entry point.  <a href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">Mais...</a><br /></td></tr>
+<tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a3b0ad512a6e6c6157440b68d395eac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8a3b0ad512a6e6c6157440b68d395eac">HAL_TIM_PeriodElapsedCallback</a> (TIM_HandleTypeDef *htim)</td></tr>
+<tr class="memdesc:a8a3b0ad512a6e6c6157440b68d395eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback dos timers 10 e 11 para medição dos dados coletados do DHT11, análise de estados e envio de todas as informações dos sensores.  <a href="main_8c.html#a8a3b0ad512a6e6c6157440b68d395eac">Mais...</a><br /></td></tr>
+<tr class="separator:a8a3b0ad512a6e6c6157440b68d395eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af20a88180db1113be1e89266917d148b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af20a88180db1113be1e89266917d148b">HAL_ADC_ConvCpltCallback</a> (ADC_HandleTypeDef *hadc)</td></tr>
+<tr class="memdesc:af20a88180db1113be1e89266917d148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback de conversão completa do ADC1 e o ADC2, faz o processamento dos valores obtidos.  <a href="main_8c.html#af20a88180db1113be1e89266917d148b">Mais...</a><br /></td></tr>
+<tr class="separator:af20a88180db1113be1e89266917d148b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae494a9643f29b87d6d81e5264e60e57b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae494a9643f29b87d6d81e5264e60e57b">HAL_UART_RxCpltCallback</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:ae494a9643f29b87d6d81e5264e60e57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback de recepção da USART, os dados do usuário são recebidos, divididos e convertidos nos valores de parâmetros.  <a href="main_8c.html#ae494a9643f29b87d6d81e5264e60e57b">Mais...</a><br /></td></tr>
+<tr class="separator:ae494a9643f29b87d6d81e5264e60e57b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1730ffe1e560465665eb47d9264826f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a> (void)</td></tr>
+<tr class="memdesc:a1730ffe1e560465665eb47d9264826f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is executed in case of error occurrence.  <a href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Mais...</a><br /></td></tr>
+<tr class="separator:a1730ffe1e560465665eb47d9264826f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:a77cfd3a4cea65c292c25621e0c82aaf5"><td class="memItemLeft" align="right" valign="top">DHT_DataTypedef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">DHT11_Data</a></td></tr>
+<tr class="memdesc:a77cfd3a4cea65c292c25621e0c82aaf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria a estrutura para o sensor.  <a href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">Mais...</a><br /></td></tr>
+<tr class="separator:a77cfd3a4cea65c292c25621e0c82aaf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa66fac91ab948980be979b768e67c5a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a></td></tr>
+<tr class="memdesc:afa66fac91ab948980be979b768e67c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperatura medida pelo sensor DHT11, em graus Celsius.  <a href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Mais...</a><br /></td></tr>
+<tr class="separator:afa66fac91ab948980be979b768e67c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe6173f00c89e1ccfe06abd8502ff19f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afe6173f00c89e1ccfe06abd8502ff19f">Humidity</a></td></tr>
+<tr class="memdesc:afe6173f00c89e1ccfe06abd8502ff19f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Umidade do ar medida pelo sensor DHT11, em porcentagem.  <a href="main_8c.html#afe6173f00c89e1ccfe06abd8502ff19f">Mais...</a><br /></td></tr>
+<tr class="separator:afe6173f00c89e1ccfe06abd8502ff19f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f4bd50e066f30cae126c62e6a2bbaa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a77f4bd50e066f30cae126c62e6a2bbaa">Light</a></td></tr>
+<tr class="memdesc:a77f4bd50e066f30cae126c62e6a2bbaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Luz medida pelo sensor LDR, em porcentagem.  <a href="main_8c.html#a77f4bd50e066f30cae126c62e6a2bbaa">Mais...</a><br /></td></tr>
+<tr class="separator:a77f4bd50e066f30cae126c62e6a2bbaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af07f33abf605e1e61bf0fd255ed308f0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a></td></tr>
+<tr class="memdesc:af07f33abf605e1e61bf0fd255ed308f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Umidade do solo medida pelo sensor YL-69, em porcentagem.  <a href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Mais...</a><br /></td></tr>
+<tr class="separator:af07f33abf605e1e61bf0fd255ed308f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d3473f04d1b074e042108e0816efe6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a></td></tr>
+<tr class="memdesc:ae8d3473f04d1b074e042108e0816efe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Corrente elétrica medida pelo sensor ACS712, em ampéres.  <a href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Mais...</a><br /></td></tr>
+<tr class="separator:ae8d3473f04d1b074e042108e0816efe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeca176f09c48cbe15df7fc4fff7c77f7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aeca176f09c48cbe15df7fc4fff7c77f7">Power</a></td></tr>
+<tr class="memdesc:aeca176f09c48cbe15df7fc4fff7c77f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variáveis de consumo elétrico.  <a href="main_8c.html#aeca176f09c48cbe15df7fc4fff7c77f7">Mais...</a><br /></td></tr>
+<tr class="separator:aeca176f09c48cbe15df7fc4fff7c77f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4beeda96c3bc524c99719f9cf30c68e2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a> [4]</td></tr>
+<tr class="memdesc:a4beeda96c3bc524c99719f9cf30c68e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vetor para acompanhar estado de alguns atuadores (Cooler da Peltier, Placa Peltier, Cooler de resfriamento e Status da Estufa)  <a href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">Mais...</a><br /></td></tr>
+<tr class="separator:a4beeda96c3bc524c99719f9cf30c68e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7f32953ba17c92cbf90579d42732593"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af7f32953ba17c92cbf90579d42732593">measure_ADC1</a> [<a class="el" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>]</td></tr>
+<tr class="memdesc:af7f32953ba17c92cbf90579d42732593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vetor para armazenar as leituras do YL-69 e LDR, no ADC1.  <a href="main_8c.html#af7f32953ba17c92cbf90579d42732593">Mais...</a><br /></td></tr>
+<tr class="separator:af7f32953ba17c92cbf90579d42732593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c05a885c354f8cf4fb9f1d9710a224"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac8c05a885c354f8cf4fb9f1d9710a224">measure_ADC2</a> [<a class="el" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>]</td></tr>
+<tr class="memdesc:ac8c05a885c354f8cf4fb9f1d9710a224"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vetor para armazenar as leituras do ACS712, no ADC2.  <a href="main_8c.html#ac8c05a885c354f8cf4fb9f1d9710a224">Mais...</a><br /></td></tr>
+<tr class="separator:ac8c05a885c354f8cf4fb9f1d9710a224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3561c24e38962967c1ee8a2ffe5eb74b"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a> [3]</td></tr>
+<tr class="memdesc:a3561c24e38962967c1ee8a2ffe5eb74b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Média aritmética das medições do ADC1 e ADC2 (LDR, YL-69, ACS712)  <a href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">Mais...</a><br /></td></tr>
+<tr class="separator:a3561c24e38962967c1ee8a2ffe5eb74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90a7a2a4bac3e3ffab65a693973bbd61"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a90a7a2a4bac3e3ffab65a693973bbd61">bufferRX</a> [<a class="el" href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">SIZE_RX</a>]</td></tr>
+<tr class="memdesc:a90a7a2a4bac3e3ffab65a693973bbd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer de recebimento da USART.  <a href="main_8c.html#a90a7a2a4bac3e3ffab65a693973bbd61">Mais...</a><br /></td></tr>
+<tr class="separator:a90a7a2a4bac3e3ffab65a693973bbd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af23c9ef1d63df23dd4aa0dd829b3acb4"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">bufferTX</a> [<a class="el" href="main_8c.html#a8f28b43c8547d756cbc5b1bfe87fc5b4">SIZE_TX</a>]</td></tr>
+<tr class="memdesc:af23c9ef1d63df23dd4aa0dd829b3acb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer de envio da USART.  <a href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">Mais...</a><br /></td></tr>
+<tr class="separator:af23c9ef1d63df23dd4aa0dd829b3acb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96df901ccc3b4e728bb157f9124c12fa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a> [7] ={0,50,0,100,255,255,255}</td></tr>
+<tr class="memdesc:a96df901ccc3b4e728bb157f9124c12fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vetor com os parâmetros ideais da estufa (TemperaturaMinima,TemperaturaMaxima,UmidadeDoSoloMinima, UmidadeDoSoloMaxima, LuzVermelha, LuzVerde, LuzAzul)  <a href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">Mais...</a><br /></td></tr>
+<tr class="separator:a96df901ccc3b4e728bb157f9124c12fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Controle de Temperatura, Umidade do solo e Luz. </p>
+<dl class="section author"><dt>Autores</dt><dd>Adriano André (Adriano-Andre), Bruno Berwanger (BrunoGabrielBerwanger), Fabrício Lutz (FabricioLutz), Jordana Dutra (dutrajordana). </dd></dl>
+<dl class="section date"><dt>Data</dt><dd>Ago-Out (2020) </dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Eletrônica - Fundação Liberato </dd></dl>
+<dl class="section attention"><dt>Atenção</dt><dd>Código utilizado para o trabalho MeuTrecoNaInternet - MICROS II - FETLSVC. Pinagem atuadores: PC0-&gt;WaterPump, PC1-&gt;PeltierPlate, PC2-&gt;CoolerFreeze, PC3-&gt;CoolerPeltier, PC6-&gt;LedVermelho, PC8-&gt;LedVerde, PC9-&gt;LedAzul. Pinagem sensores: PA0-&gt;LDR, PA1-&gt;DHT11, PA4-&gt;YL-69, PA7-&gt;ACS712. Pinagem desligamento: PB7-&gt;Shutdown. </dd></dl>
+
+<p class="definition">Definição no arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+</div><h2 class="groupheader">Definições e macros</h2>
+<a id="aff4cb5300b1267c3f753c6e2c81eb52b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff4cb5300b1267c3f753c6e2c81eb52b">&#9670;&nbsp;</a></span>C_SENS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define C_SENS&#160;&#160;&#160;0.066</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)]. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00049">49</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a0f66474c13206cee6d401b2d1a028cea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f66474c13206cee6d401b2d1a028cea">&#9670;&nbsp;</a></span>I_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I_MAX&#160;&#160;&#160;4.00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Máxima corrente elétrica (Amperes) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00048">48</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a47f2e62c0dbebc787052c165afcada0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f2e62c0dbebc787052c165afcada0e">&#9670;&nbsp;</a></span>NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NAME&#160;&#160;&#160;&quot;ALFA&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nome da estufa (ALFA, BETA, GAMA) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00046">46</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a9b321fc8474a410f24deb460c4fa014e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b321fc8474a410f24deb460c4fa014e">&#9670;&nbsp;</a></span>PERCENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PERCENT&#160;&#160;&#160;(100.0/(4095.0*10.0))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cálculo da porcentagem para medição de Luz e Umidade do Solo. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00051">51</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="afc597c76b4f04a2da506a240d51d89a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc597c76b4f04a2da506a240d51d89a0">&#9670;&nbsp;</a></span>SAMPLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SAMPLE&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Número de amostras a serem analisadas pelos ADC's. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00050">50</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a7eb84dc998ad42b5b08dbb90d090630d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb84dc998ad42b5b08dbb90d090630d">&#9670;&nbsp;</a></span>SIZE_RX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_RX&#160;&#160;&#160;25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho máximo do buffer RX da usart. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00053">53</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a8f28b43c8547d756cbc5b1bfe87fc5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f28b43c8547d756cbc5b1bfe87fc5b4">&#9670;&nbsp;</a></span>SIZE_TX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SIZE_TX&#160;&#160;&#160;150</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tamanho máximo do buffer TX da usart. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00052">52</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a95f77a4b46f8270143622e8f7de8faa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95f77a4b46f8270143622e8f7de8faa7">&#9670;&nbsp;</a></span>VOLTAGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VOLTAGE&#160;&#160;&#160;12.00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tensão elétrica usada para acionamento dos atuadores (Volts) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00047">47</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumerações</h2>
+<a id="a98b5db52b002ff78f33e52e32bb5cab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98b5db52b002ff78f33e52e32bb5cab2">&#9670;&nbsp;</a></span>AUX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2">AUX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumeração para uso auxiliar dos vetores. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumeradores</th></tr><tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c"></a>Temperature_Min&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81"></a>Temperature_Max&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952"></a>Moisture_Min&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e"></a>Moisture_Max&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7"></a>LightRed&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18"></a>LightGreen&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243"></a>LightBlue&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc"></a>CoolerPeltier&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677"></a>PeltierPlate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d"></a>CoolerFreeze&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72"></a>Status&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753"></a>LDR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada"></a>YL_69&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27"></a>ACS712&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00076">76</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c">Temperature_Min</a>,                                    <span class="comment">// Variáveis para vetor parameter[]</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81">Temperature_Max</a>,                                    <span class="comment">// -</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952">Moisture_Min</a>,                                       <span class="comment">// -</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e">Moisture_Max</a>,                                       <span class="comment">// -</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7">LightRed</a>,                                           <span class="comment">// -</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18">LightGreen</a>,                                         <span class="comment">// -</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243">LightBlue</a>,                                          <span class="comment">// -</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>=0,                                    <span class="comment">// Variáveis para vetor StateOf[]</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>,                                       <span class="comment">// -</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>,                                       <span class="comment">// -</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>,                                             <span class="comment">// -</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a>=0,                                              <span class="comment">// Variáveis paravetor average[]</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a>,                                              <span class="comment">// -</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>                                              <span class="comment">// -</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Funções</h2>
+<a id="a1730ffe1e560465665eb47d9264826f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1730ffe1e560465665eb47d9264826f9">&#9670;&nbsp;</a></span>Error_Handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Error_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is executed in case of error occurrence. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00410">410</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;{</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;  <span class="comment">/* USER CODE BEGIN Error_Handler_Debug */</span></div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;  <span class="comment">/* User can add his own implementation to report the HAL error return state */</span></div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  <span class="comment">/* USER CODE END Error_Handler_Debug */</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenciado(a) por <a class="el" href="adc_8c_source.html#l00109">HAL_ADC_MspInit()</a>, <a class="el" href="usart_8c_source.html#l00051">HAL_UART_MspInit()</a>, <a class="el" href="adc_8c_source.html#l00033">MX_ADC1_Init()</a>, <a class="el" href="adc_8c_source.html#l00075">MX_ADC2_Init()</a>, <a class="el" href="tim_8c_source.html#l00158">MX_TIM10_Init()</a>, <a class="el" href="tim_8c_source.html#l00174">MX_TIM11_Init()</a>, <a class="el" href="tim_8c_source.html#l00034">MX_TIM2_Init()</a>, <a class="el" href="tim_8c_source.html#l00077">MX_TIM3_Init()</a>, <a class="el" href="tim_8c_source.html#l00128">MX_TIM8_Init()</a>, <a class="el" href="usart_8c_source.html#l00033">MX_USART2_UART_Init()</a> e <a class="el" href="main_8c_source.html#l00213">SystemClock_Config()</a>.</p>
+
+</div>
+</div>
+<a id="af20a88180db1113be1e89266917d148b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af20a88180db1113be1e89266917d148b">&#9670;&nbsp;</a></span>HAL_ADC_ConvCpltCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_ADC_ConvCpltCallback </td>
+          <td>(</td>
+          <td class="paramtype">ADC_HandleTypeDef *&#160;</td>
+          <td class="paramname"><em>hadc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback de conversão completa do ADC1 e o ADC2, faz o processamento dos valores obtidos. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00334">334</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;{</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="comment">// GUARDA OS VALORES DOS SENSORES LDR E YL-69</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="keywordflow">if</span>(hadc-&gt;Instance==ADC1)                                        <span class="comment">// Verifica se o CallBack foi feito pelo ADC1</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    {                                                               <span class="comment">// Início da conversao completa do ADC1</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a>] = 0; <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a>] = 0;                       <span class="comment">// Zera as posições dos vetors de média</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;<a class="code" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>;i++)                                   <span class="comment">// Laço para guardar as medidas</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;            {                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                <span class="keywordflow">if</span>((i%2)==0)<a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a>] += <a class="code" href="main_8c.html#af7f32953ba17c92cbf90579d42732593">measure_ADC1</a>[i];        <span class="comment">// Os valores pares são o LDR, soma todas as medições e salva no vetor</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                <span class="keywordflow">else</span> <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a>] += <a class="code" href="main_8c.html#af7f32953ba17c92cbf90579d42732593">measure_ADC1</a>[i];             <span class="comment">// Os valores ímpares são o YL-69, soma todas as medições e salva no vetor</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            }                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <a class="code" href="main_8c.html#a77f4bd50e066f30cae126c62e6a2bbaa">Light</a> = <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a>]*<a class="code" href="main_8c.html#a9b321fc8474a410f24deb460c4fa014e">PERCENT</a>;                               <span class="comment">// Retorna a porcentagem do valor medido de cada sensor</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;        <a class="code" href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a> = <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a>]*<a class="code" href="main_8c.html#a9b321fc8474a410f24deb460c4fa014e">PERCENT</a>;                          <span class="comment">// Retorna a porcentagem do valor medido de cada sensor</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    }                                                               <span class="comment">// Fim da conversão completa do ADC1</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="comment">// GUARDA OS VALORES DO SENSOR DE CORRENTE</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    <span class="keywordflow">if</span>(hadc-&gt;Instance==ADC2)                                        <span class="comment">// Verifica se o CallBack foi feito pelo ADC2</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    {                                                               <span class="comment">// Início da conversao completa do ADC2</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>] = 0;                                        <span class="comment">// Zera as posições do vetor de média</span></div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;<a class="code" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>;i++)                                   <span class="comment">// Laço para guardar as medidas</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            {                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>] += <a class="code" href="main_8c.html#ac8c05a885c354f8cf4fb9f1d9710a224">measure_ADC2</a>[i];                     <span class="comment">// Soma todas as medições e salva no vetor</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            }                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="comment">// CALCULO DA CORRENTE ELÉTRICA</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>] /= <a class="code" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>;                                  <span class="comment">// Calcula a média aritmética das medidas</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <a class="code" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a> = (((3122.0-<a class="code" href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a>])/4096.0)*(3.3/<a class="code" href="main_8c.html#aff4cb5300b1267c3f753c6e2c81eb52b">C_SENS</a>)); <span class="comment">// Calcula a corrente elétrica a partir da medição do sensor de corrente</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        <a class="code" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a> = abs(<a class="code" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a>*1000)/1000.0;                         <span class="comment">// Arredonda o módulo do valor em 3 casas decimais</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <span class="comment">// CONTROLE DE SOBRECORRENTE</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a>&gt;<a class="code" href="main_8c.html#a0f66474c13206cee6d401b2d1a028cea">I_MAX</a>)                                           <span class="comment">// Se a corrente atual ultrapassa o valor máximo</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        {                                                           <span class="comment">//</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;            <a class="code" href="main_8c.html#acf88b454de739ce6d17ee6e7daadb9be">turnOff</a>();                                              <span class="comment">// Chama a função de desligamento</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        }                                                           <span class="comment">// Fim da condição de sobrecorrente</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <span class="comment">// CALCULO DA POTÊNCIA ELÉTRICA</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <a class="code" href="main_8c.html#aeca176f09c48cbe15df7fc4fff7c77f7">Power</a> = <a class="code" href="main_8c.html#a95f77a4b46f8270143622e8f7de8faa7">VOLTAGE</a> * <a class="code" href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a>;                                  <span class="comment">// Calcula a potência elétrica do instante</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    }                                                               <span class="comment">// Fim da conversão completa do ADC2</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00091">ACS712</a>, <a class="el" href="main_8c_source.html#l00072">average</a>, <a class="el" href="main_8c_source.html#l00049">C_SENS</a>, <a class="el" href="main_8c_source.html#l00067">Current</a>, <a class="el" href="main_8c_source.html#l00048">I_MAX</a>, <a class="el" href="main_8c_source.html#l00089">LDR</a>, <a class="el" href="main_8c_source.html#l00065">Light</a>, <a class="el" href="main_8c_source.html#l00070">measure_ADC1</a>, <a class="el" href="main_8c_source.html#l00071">measure_ADC2</a>, <a class="el" href="main_8c_source.html#l00066">Moisture</a>, <a class="el" href="main_8c_source.html#l00051">PERCENT</a>, <a class="el" href="main_8c_source.html#l00068">Power</a>, <a class="el" href="main_8c_source.html#l00050">SAMPLE</a>, <a class="el" href="main_8c_source.html#l00121">turnOff()</a>, <a class="el" href="main_8c_source.html#l00047">VOLTAGE</a> e <a class="el" href="main_8c_source.html#l00090">YL_69</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_af20a88180db1113be1e89266917d148b_cgraph.png" border="0" usemap="#main_8c_af20a88180db1113be1e89266917d148b_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a8a3b0ad512a6e6c6157440b68d395eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a3b0ad512a6e6c6157440b68d395eac">&#9670;&nbsp;</a></span>HAL_TIM_PeriodElapsedCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_TIM_PeriodElapsedCallback </td>
+          <td>(</td>
+          <td class="paramtype">TIM_HandleTypeDef *&#160;</td>
+          <td class="paramname"><em>htim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback dos timers 10 e 11 para medição dos dados coletados do DHT11, análise de estados e envio de todas as informações dos sensores. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00259">259</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;{</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="comment">// GUARDA OS VALORES DA ESTRUTURA DO DHT11 PÓS SALVAMENTO</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordflow">if</span>(htim-&gt;Instance==TIM10)                                                                   <span class="comment">// Se o timer 10 estourou</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    {                                                                                           <span class="comment">//</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <a class="code" href="_d_h_t_8c.html#a464e04833a3d55c11b343b19e33481bc">DHT_GetData</a>(&amp;<a class="code" href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">DHT11_Data</a>);                                                               <span class="comment">// Pega os valores do sensor</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a> = <a class="code" href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">DHT11_Data</a>.Temperature;                                                   <span class="comment">// Guarda a temperatura na variável flutuante</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <a class="code" href="main_8c.html#afe6173f00c89e1ccfe06abd8502ff19f">Humidity</a> = <a class="code" href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">DHT11_Data</a>.Humidity;                                                         <span class="comment">// Guarda a umidade do ar na variável flutuante</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    }                                                                                           <span class="comment">// Fim do estouro do TIM10</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="comment">// ANALISE DOS ESTADOS DA ESTUFA E ENVIO DOS DADOS COLETADOS</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">if</span>(htim-&gt;Instance==TIM11)                                                                   <span class="comment">// Se o timer 11 estourou</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    {                                                                                           <span class="comment">//</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="comment">// ENVIO DOS DADOS COLETADOS EM FORMATO JSON OBJECT PARA O NODE RED</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        sprintf(<a class="code" href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">bufferTX</a>, <span class="stringliteral">&quot;{\&quot;Name\&quot;: \&quot;%s\&quot;, \&quot;Temperature\&quot;: %2.1f, \&quot;Light\&quot;: %2.1f, \&quot;Moisture\&quot;: %2.1f, \&quot;Humidity\&quot;: %2.1f, \&quot;Power\&quot;: %2.1f, \&quot;Status\&quot;: %i}&quot;</span>, <a class="code" href="main_8c.html#a47f2e62c0dbebc787052c165afcada0e">NAME</a>, <a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a>, <a class="code" href="main_8c.html#a77f4bd50e066f30cae126c62e6a2bbaa">Light</a>, <a class="code" href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a>, <a class="code" href="main_8c.html#afe6173f00c89e1ccfe06abd8502ff19f">Humidity</a>, <a class="code" href="main_8c.html#aeca176f09c48cbe15df7fc4fff7c77f7">Power</a>, <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>]);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        HAL_UART_Transmit_DMA(&amp;<a class="code" href="stm32f4xx__it_8c.html#aa9479c261d65eecedd3d9582f7f0f89c">huart2</a>, (uint8_t*) <a class="code" href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">bufferTX</a>, strlen(<a class="code" href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">bufferTX</a>));                  <span class="comment">// Envia a string bufferTX pela função Transmit DMA</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="comment">// CONTROLE DOS ATUADORES PELOS DADOS RECEBIDOS</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>]==1)                                                                  <span class="comment">// Se a estufa está ativada</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        {                                                                                       <span class="comment">//</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            <span class="comment">// ESTADOS DE TEMPERATURA COM HISTERESE</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a>&lt;=(<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c">Temperature_Min</a>]+1)&amp;&amp;(<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]==1))         <span class="comment">// Se o resfriamento está ativado, desliga somente ao alcançar a temperatura mínimo</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>((<a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a>&lt;<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c">Temperature_Min</a>])&amp;&amp;(<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]==0))       <span class="comment">// Se o resfriamento está desativado e a temperatura está abaixo do mínimo</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_SET);    <span class="comment">// Liga o atuador</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);    <span class="comment">// Liga o atuador</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  = 1;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] = 1;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a>&gt;=(<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81">Temperature_Max</a>]-1)&amp;&amp;(<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]==1))    <span class="comment">// Se o aquecimento está ativado, desliga somente ao alcançar a temperatura máxima</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>((<a class="code" href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a>&gt;<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81">Temperature_Max</a>])&amp;&amp;(<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]==0))       <span class="comment">// Se o aquecimento está desativado e a temperatura está acima do máximo</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desliga o atuador</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_SET);    <span class="comment">// Liga o atuador</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_SET);    <span class="comment">// Liga o atuador</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  = 0;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] = 1;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  = 1;                                                     <span class="comment">// Guarda o estado atual</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="comment">// ESTADOS DA UMIDADE DO SOLO COM HISTERESE</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a>&lt;<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952">Moisture_Min</a>])                                                <span class="comment">// Se a umidade está menor que o mínimo</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_SET);            <span class="comment">// Acionar modo de irrigação</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a>&gt;=<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e">Moisture_Max</a>])                                               <span class="comment">// Se a umidade está acima do máximo</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;            {                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;                HAL_GPIO_WritePin(WaterPump_GPIO_Port, WaterPump_Pin, GPIO_PIN_RESET);          <span class="comment">// Desliga o modo de irrigação</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            }                                                                                   <span class="comment">//</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="comment">// ESTADOS DA LUZ</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            __HAL_TIM_SET_COMPARE(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>,TIM_CHANNEL_1,<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7">LightRed</a>]);                    <span class="comment">// Corrige a intensidade da cor</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            __HAL_TIM_SET_COMPARE(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>,TIM_CHANNEL_3,<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18">LightGreen</a>]);                  <span class="comment">// Corrige a intensidade da cor</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            __HAL_TIM_SET_COMPARE(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>,TIM_CHANNEL_4,<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243">LightBlue</a>]);                   <span class="comment">// Corrige a intensidade da cor</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        }                                                                                       <span class="comment">// Fim do controle de atuadores</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }                                                                                           <span class="comment">// Fim do estouro do TIM11</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00074">bufferTX</a>, <a class="el" href="main_8c_source.html#l00087">CoolerFreeze</a>, <a class="el" href="main_8c_source.html#l00085">CoolerPeltier</a>, <a class="el" href="main_8c_source.html#l00041">DHT11_Data</a>, <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>, <a class="el" href="tim_8c_source.html#l00028">htim3</a>, <a class="el" href="usart_8c_source.html#l00027">huart2</a>, <a class="el" href="main_8c_source.html#l00064">Humidity</a>, <a class="el" href="main_8c_source.html#l00065">Light</a>, <a class="el" href="main_8c_source.html#l00084">LightBlue</a>, <a class="el" href="main_8c_source.html#l00083">LightGreen</a>, <a class="el" href="main_8c_source.html#l00082">LightRed</a>, <a class="el" href="main_8c_source.html#l00066">Moisture</a>, <a class="el" href="main_8c_source.html#l00081">Moisture_Max</a>, <a class="el" href="main_8c_source.html#l00080">Moisture_Min</a>, <a class="el" href="main_8c_source.html#l00046">NAME</a>, <a class="el" href="main_8c_source.html#l00075">parameter</a>, <a class="el" href="main_8c_source.html#l00086">PeltierPlate</a>, <a class="el" href="main_8c_source.html#l00068">Power</a>, <a class="el" href="main_8c_source.html#l00069">StateOf</a>, <a class="el" href="main_8c_source.html#l00088">Status</a>, <a class="el" href="main_8c_source.html#l00063">Temperature</a>, <a class="el" href="main_8c_source.html#l00079">Temperature_Max</a> e <a class="el" href="main_8c_source.html#l00078">Temperature_Min</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a8a3b0ad512a6e6c6157440b68d395eac_cgraph.png" border="0" usemap="#main_8c_a8a3b0ad512a6e6c6157440b68d395eac_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ae494a9643f29b87d6d81e5264e60e57b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae494a9643f29b87d6d81e5264e60e57b">&#9670;&nbsp;</a></span>HAL_UART_RxCpltCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_UART_RxCpltCallback </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *&#160;</td>
+          <td class="paramname"><em>huart</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback de recepção da USART, os dados do usuário são recebidos, divididos e convertidos nos valores de parâmetros. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00373">373</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;{</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    __HAL_UART_FLUSH_DRREGISTER(huart);                                             <span class="comment">// Limpa o buffer de recepção para evitar overrun</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="comment">// DESATIVAÇÃO DOS ATUADORES PARA EVITAR CONFLITOS COM POSSIVEIS NOVOS VALORES</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    HAL_GPIO_WritePin(PeltierPlate_GPIO_Port, PeltierPlate_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port, CoolerPeltier_Pin, GPIO_PIN_RESET);  <span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin,   GPIO_PIN_RESET);  <span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,      GPIO_PIN_RESET);  <span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  = 0;                                                     <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] = 0;                                                     <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  = 0;                                                     <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="comment">// SEPARAÇÃO DA STRING E CONVERSÃO PARA FLOAT - Código explicado por CodeVault (youtube.com/channel/UC6qj_bPq6tQ6hLwOBpBQ42Q)</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordtype">int</span> i=0;                                                                        <span class="comment">// Variável auxiliar de contagem do vetor parameter</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordtype">char</span>* pieces = strtok(<a class="code" href="main_8c.html#a90a7a2a4bac3e3ffab65a693973bbd61">bufferRX</a>, <span class="stringliteral">&quot; &quot;</span>);                                           <span class="comment">// Cria um ponteiro Char que aponta para o primeiro &quot;pedaço&quot; da string até o caracter &quot; &quot;</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="keywordflow">while</span> (pieces != NULL)                                                          <span class="comment">// Enquanto o ponteiro não indicar o fim da string</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    {                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[i] = atof(pieces);                                                <span class="comment">// Converte o pedaço da string para float</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        pieces = strtok(NULL, <span class="stringliteral">&quot; &quot;</span>);                                                 <span class="comment">// Indica que permanece na mesma string e, então, segue para o próximo pedaço dela</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        i++;                                                                        <span class="comment">// Segue para o próximo parâmetro ser convertido</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    }                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="comment">// REATIVAÇÃO DA ESTUFA</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordflow">if</span>((<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>] == 0)&amp;&amp;(<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[0] == 99.9))                              <span class="comment">// Se o sistema estiver desligado e o código de reativação foi recebido</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    {                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <a class="code" href="main_8c.html#a9df846a207773eaeaee7e3795b56c151">turnOn</a>();                                                                   <span class="comment">// Chama a função de religamento da estufa</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    }                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="comment">// DESLIGAMENTO DA ESTUFA</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordflow">if</span>((<a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>] == 1)&amp;&amp; (<a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[0] == 88.8))                             <span class="comment">// Se o sistema estiver ativado e o código de deativação foi recebido</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    {                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        <a class="code" href="main_8c.html#acf88b454de739ce6d17ee6e7daadb9be">turnOff</a>();                                                                  <span class="comment">// Chama a função de desligamento da estufa</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    }                                                                               <span class="comment">//</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00073">bufferRX</a>, <a class="el" href="main_8c_source.html#l00087">CoolerFreeze</a>, <a class="el" href="main_8c_source.html#l00085">CoolerPeltier</a>, <a class="el" href="main_8c_source.html#l00075">parameter</a>, <a class="el" href="main_8c_source.html#l00086">PeltierPlate</a>, <a class="el" href="main_8c_source.html#l00069">StateOf</a>, <a class="el" href="main_8c_source.html#l00088">Status</a>, <a class="el" href="main_8c_source.html#l00121">turnOff()</a> e <a class="el" href="main_8c_source.html#l00108">turnOn()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph.png" border="0" usemap="#main_8c_ae494a9643f29b87d6d81e5264e60e57b_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a840291bc02cba5474a4cb46a9b9566fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The application entry point. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">int</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00143">143</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;{</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="comment">/* USER CODE BEGIN 1 */</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <span class="comment">/* USER CODE END 1 */</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="comment">/* MCU Configuration--------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  <span class="comment">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  HAL_Init();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <span class="comment">/* USER CODE BEGIN Init */</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="comment">/* USER CODE END Init */</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <span class="comment">/* Configure the system clock */</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <a class="code" href="main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="comment">/* USER CODE BEGIN SysInit */</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  <span class="comment">/* USER CODE END SysInit */</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <span class="comment">/* Initialize all configured peripherals */</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <a class="code" href="gpio_8c.html#ac724e431d2af879252de35615be2bdea">MX_GPIO_Init</a>();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <a class="code" href="dma_8c.html#a323249dac769f9855c10b4ec9446b707">MX_DMA_Init</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <a class="code" href="usart_8c.html#a052088fe5bb3f807a4b2502e664fd4fd">MX_USART2_UART_Init</a>();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <a class="code" href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a>();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <a class="code" href="tim_8c.html#a7912f2916786a2c33cb6fb8259ade58c">MX_TIM3_Init</a>();</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <a class="code" href="tim_8c.html#a897293ac5474c491773ec7404c531c3b">MX_TIM10_Init</a>();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <a class="code" href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202">MX_TIM2_Init</a>();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  <a class="code" href="tim_8c.html#a0b1802cec6c627135b6c10a1ab67f7f3">MX_TIM11_Init</a>();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <a class="code" href="adc_8c.html#a101e2e3433dfe72bbbd0ae3a84489263">MX_ADC2_Init</a>();</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  <a class="code" href="tim_8c.html#a265aef7a46164094e791259bf59d9cb4">MX_TIM8_Init</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="comment">/* USER CODE BEGIN 2 */</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  <span class="comment">// ATIVAÇÃO DO ADC1 E ADC2</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  HAL_TIM_OC_Start(&amp;<a class="code" href="tim_8c.html#a2c80fd5510e2990a59a5c90d745c716c">htim2</a>, TIM_CHANNEL_1);                              <span class="comment">// Ativa o timer 2 como trigger do ADC1</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  HAL_ADC_Start_DMA(&amp;<a class="code" href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a>, (uint32_t*) <a class="code" href="main_8c.html#af7f32953ba17c92cbf90579d42732593">measure_ADC1</a>, <a class="code" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>);          <span class="comment">// Dispara a conversão DMA circular do ADC1</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  HAL_TIM_Base_Start(&amp;<a class="code" href="tim_8c.html#a5faa27108379f799afb6984010bf0384">htim8</a>);                                           <span class="comment">// Ativa o timer 8 como trigger do ADC2</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  HAL_ADC_Start_DMA(&amp;<a class="code" href="adc_8c.html#acd9221f1aa19aebfe0b744947f2daf49">hadc2</a>, (uint32_t*) <a class="code" href="main_8c.html#ac8c05a885c354f8cf4fb9f1d9710a224">measure_ADC2</a>, <a class="code" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>);          <span class="comment">// Dispara a conversão DMA circular do ADC2</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <span class="comment">// ATIVAÇÃO DA USART2 PARA RECEBIMENTO DE DADOS</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  HAL_UART_Receive_DMA(&amp;<a class="code" href="stm32f4xx__it_8c.html#aa9479c261d65eecedd3d9582f7f0f89c">huart2</a>, (uint8_t*) <a class="code" href="main_8c.html#a90a7a2a4bac3e3ffab65a693973bbd61">bufferRX</a>, <a class="code" href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">SIZE_RX</a>);          <span class="comment">// Ativa o recebimento de dados pela USART</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="comment">// ATIVAÇÃO DO TIM11 PARA ATIVAÇÃO DOS ATUADORES E ENVIO DE DADOS</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  HAL_TIM_Base_Start_IT(&amp;<a class="code" href="stm32f4xx__it_8c.html#a2f22f985c4f33318fdcd4cc996623bf4">htim11</a>);                                       <span class="comment">// Ativa o timer 11 para análisar os estados da estufa e enviar os dados lidos</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  <span class="comment">// ATIVAÇÃO DO TIM10 PARA LEITURAS DO DHT11</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  HAL_TIM_Base_Start_IT(&amp;<a class="code" href="stm32f4xx__it_8c.html#a3c386e4f1937c518c1beccddef92045e">htim10</a>);                                       <span class="comment">// Ativa o timer 10 para leitura da temperatura/umidade do DHT11</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="comment">// PWM PARA FITA DE LED</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_1);                             <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_3);                             <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_4);                             <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  <span class="comment">// ESTADO DA ESTUFA</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>] = 1;                                                  <span class="comment">// Estado inicial da estufa: ligado</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="comment">/* USER CODE END 2 */</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  <span class="comment">/* Infinite loop */</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  <span class="comment">/* USER CODE BEGIN WHILE */</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  <span class="keywordflow">while</span> (1)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;  {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">/* USER CODE END WHILE */</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="comment">/* USER CODE BEGIN 3 */</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  <span class="comment">/* USER CODE END 3 */</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00073">bufferRX</a>, <a class="el" href="adc_8c_source.html#l00027">hadc1</a>, <a class="el" href="adc_8c_source.html#l00028">hadc2</a>, <a class="el" href="tim_8c_source.html#l00030">htim10</a>, <a class="el" href="tim_8c_source.html#l00031">htim11</a>, <a class="el" href="tim_8c_source.html#l00027">htim2</a>, <a class="el" href="tim_8c_source.html#l00028">htim3</a>, <a class="el" href="tim_8c_source.html#l00029">htim8</a>, <a class="el" href="usart_8c_source.html#l00027">huart2</a>, <a class="el" href="main_8c_source.html#l00070">measure_ADC1</a>, <a class="el" href="main_8c_source.html#l00071">measure_ADC2</a>, <a class="el" href="adc_8c_source.html#l00033">MX_ADC1_Init()</a>, <a class="el" href="adc_8c_source.html#l00075">MX_ADC2_Init()</a>, <a class="el" href="dma_8c_source.html#l00038">MX_DMA_Init()</a>, <a class="el" href="gpio_8c_source.html#l00040">MX_GPIO_Init()</a>, <a class="el" href="tim_8c_source.html#l00158">MX_TIM10_Init()</a>, <a class="el" href="tim_8c_source.html#l00174">MX_TIM11_Init()</a>, <a class="el" href="tim_8c_source.html#l00034">MX_TIM2_Init()</a>, <a class="el" href="tim_8c_source.html#l00077">MX_TIM3_Init()</a>, <a class="el" href="tim_8c_source.html#l00128">MX_TIM8_Init()</a>, <a class="el" href="usart_8c_source.html#l00033">MX_USART2_UART_Init()</a>, <a class="el" href="main_8c_source.html#l00050">SAMPLE</a>, <a class="el" href="main_8c_source.html#l00053">SIZE_RX</a>, <a class="el" href="main_8c_source.html#l00069">StateOf</a>, <a class="el" href="main_8c_source.html#l00088">Status</a> e <a class="el" href="main_8c_source.html#l00213">SystemClock_Config()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#main_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a70af21c671abfcc773614a9a4f63d920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70af21c671abfcc773614a9a4f63d920">&#9670;&nbsp;</a></span>SystemClock_Config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SystemClock_Config </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>System Clock Configuration. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Configure the main internal regulator output voltage</p>
+<p>Initializes the RCC Oscillators according to the specified parameters in the RCC_OscInitTypeDef structure.</p>
+<p>Initializes the CPU, AHB and APB buses clocks</p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00213">213</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;{</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;  RCC_OscInitTypeDef RCC_OscInitStruct = {0};</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  __HAL_RCC_PWR_CLK_ENABLE();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  RCC_OscInitStruct.HSIState = RCC_HSI_ON;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  RCC_OscInitStruct.PLL.PLLM = 16;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  RCC_OscInitStruct.PLL.PLLN = 336;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;  RCC_OscInitStruct.PLL.PLLQ = 2;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  RCC_OscInitStruct.PLL.PLLR = 2;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  <span class="keywordflow">if</span> (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <a class="code" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;  <span class="keywordflow">if</span> (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;  {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a>();</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;  }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00410">Error_Handler()</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00143">main()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8c_a70af21c671abfcc773614a9a4f63d920_cgraph.png" border="0" usemap="#main_8c_a70af21c671abfcc773614a9a4f63d920_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="acf88b454de739ce6d17ee6e7daadb9be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf88b454de739ce6d17ee6e7daadb9be">&#9670;&nbsp;</a></span>turnOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void turnOff </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função de desligamento da estufa. O Shutdon é ativado, todos os atuadores são desativados, o PWM da fita de led é desligado. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00121">121</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin,           GPIO_PIN_SET);<span class="comment">// Ativa o desligamento forçado dos atuadores</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    HAL_GPIO_WritePin(PeltierPlate_GPIO_Port,PeltierPlate_Pin,  GPIO_PIN_RESET);<span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port,CoolerPeltier_Pin,GPIO_PIN_RESET);<span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin, GPIO_PIN_RESET);<span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,    GPIO_PIN_RESET);<span class="comment">// Desativação do atuador</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    HAL_TIM_PWM_Stop(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_1);                                    <span class="comment">// Desliga a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    HAL_TIM_PWM_Stop(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_3);                                    <span class="comment">// Desliga a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    HAL_TIM_PWM_Stop(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_4);                                    <span class="comment">// Desliga a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[0]           = 0.0;                                               <span class="comment">// Remove o código de desativação</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a>]  =   0;                                               <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a>] =   0;                                               <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a>]  =   0;                                               <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>]        =   0;                                               <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="main_8c_source.html#l00087">CoolerFreeze</a>, <a class="el" href="main_8c_source.html#l00085">CoolerPeltier</a>, <a class="el" href="tim_8c_source.html#l00028">htim3</a>, <a class="el" href="main_8c_source.html#l00075">parameter</a>, <a class="el" href="main_8c_source.html#l00086">PeltierPlate</a>, <a class="el" href="main_8c_source.html#l00069">StateOf</a> e <a class="el" href="main_8c_source.html#l00088">Status</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00373">HAL_UART_RxCpltCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a9df846a207773eaeaee7e3795b56c151"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df846a207773eaeaee7e3795b56c151">&#9670;&nbsp;</a></span>turnOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void turnOn </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Função de religamento da estufa. O PWM da fita de led é reativado, os demais atuadores esperarão por solicitação. </p>
+<dl class="retval"><dt>Valores Retornados</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00108">108</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_RESET);        <span class="comment">// Desativa o desligamento forçado dos atuadores</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_1);                                   <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_3);                                   <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    HAL_TIM_PWM_Start(&amp;<a class="code" href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a>, TIM_CHANNEL_4);                                   <span class="comment">// Dispara a geração do sinal PWM - TIMER 3</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a>[0] = 0.0;                                                         <span class="comment">// Remove o código de reativação</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a>[<a class="code" href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a>] = 1;                                                        <span class="comment">// Guarda estado atual</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="tim_8c_source.html#l00028">htim3</a>, <a class="el" href="main_8c_source.html#l00075">parameter</a>, <a class="el" href="main_8c_source.html#l00069">StateOf</a> e <a class="el" href="main_8c_source.html#l00088">Status</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00373">HAL_UART_RxCpltCallback()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variáveis</h2>
+<a id="a3561c24e38962967c1ee8a2ffe5eb74b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3561c24e38962967c1ee8a2ffe5eb74b">&#9670;&nbsp;</a></span>average</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t average[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Média aritmética das medições do ADC1 e ADC2 (LDR, YL-69, ACS712) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00072">72</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a90a7a2a4bac3e3ffab65a693973bbd61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90a7a2a4bac3e3ffab65a693973bbd61">&#9670;&nbsp;</a></span>bufferRX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char bufferRX[<a class="el" href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">SIZE_RX</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffer de recebimento da USART. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00073">73</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00373">HAL_UART_RxCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00143">main()</a>.</p>
+
+</div>
+</div>
+<a id="af23c9ef1d63df23dd4aa0dd829b3acb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23c9ef1d63df23dd4aa0dd829b3acb4">&#9670;&nbsp;</a></span>bufferTX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char bufferTX[<a class="el" href="main_8c.html#a8f28b43c8547d756cbc5b1bfe87fc5b4">SIZE_TX</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Buffer de envio da USART. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00074">74</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="ae8d3473f04d1b074e042108e0816efe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d3473f04d1b074e042108e0816efe6">&#9670;&nbsp;</a></span>Current</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Current</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Corrente elétrica medida pelo sensor ACS712, em ampéres. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00067">67</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a77cfd3a4cea65c292c25621e0c82aaf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cfd3a4cea65c292c25621e0c82aaf5">&#9670;&nbsp;</a></span>DHT11_Data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DHT_DataTypedef DHT11_Data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cria a estrutura para o sensor. </p>
+<p>&lt; Biblioteca para o sensor DHT11 - Desenvolvida por: Controllers Tech (controllerstech.com) Biblioteca básica Biblioteca básica Biblioteca básica Biblioteca básica </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00041">41</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="afe6173f00c89e1ccfe06abd8502ff19f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe6173f00c89e1ccfe06abd8502ff19f">&#9670;&nbsp;</a></span>Humidity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Humidity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Umidade do ar medida pelo sensor DHT11, em porcentagem. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00064">64</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a77f4bd50e066f30cae126c62e6a2bbaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77f4bd50e066f30cae126c62e6a2bbaa">&#9670;&nbsp;</a></span>Light</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Light</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Luz medida pelo sensor LDR, em porcentagem. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00065">65</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="af7f32953ba17c92cbf90579d42732593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7f32953ba17c92cbf90579d42732593">&#9670;&nbsp;</a></span>measure_ADC1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t measure_ADC1[<a class="el" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vetor para armazenar as leituras do YL-69 e LDR, no ADC1. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00070">70</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00143">main()</a>.</p>
+
+</div>
+</div>
+<a id="ac8c05a885c354f8cf4fb9f1d9710a224"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8c05a885c354f8cf4fb9f1d9710a224">&#9670;&nbsp;</a></span>measure_ADC2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t measure_ADC2[<a class="el" href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vetor para armazenar as leituras do ACS712, no ADC2. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00071">71</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00143">main()</a>.</p>
+
+</div>
+</div>
+<a id="af07f33abf605e1e61bf0fd255ed308f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af07f33abf605e1e61bf0fd255ed308f0">&#9670;&nbsp;</a></span>Moisture</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Moisture</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Umidade do solo medida pelo sensor YL-69, em porcentagem. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00066">66</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a96df901ccc3b4e728bb157f9124c12fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96df901ccc3b4e728bb157f9124c12fa">&#9670;&nbsp;</a></span>parameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float parameter[7] ={0,50,0,100,255,255,255}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vetor com os parâmetros ideais da estufa (TemperaturaMinima,TemperaturaMaxima,UmidadeDoSoloMinima, UmidadeDoSoloMaxima, LuzVermelha, LuzVerde, LuzAzul) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00075">75</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>, <a class="el" href="main_8c_source.html#l00373">HAL_UART_RxCpltCallback()</a>, <a class="el" href="main_8c_source.html#l00121">turnOff()</a> e <a class="el" href="main_8c_source.html#l00108">turnOn()</a>.</p>
+
+</div>
+</div>
+<a id="aeca176f09c48cbe15df7fc4fff7c77f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeca176f09c48cbe15df7fc4fff7c77f7">&#9670;&nbsp;</a></span>Power</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Power</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variáveis de consumo elétrico. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00068">68</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00334">HAL_ADC_ConvCpltCallback()</a> e <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a4beeda96c3bc524c99719f9cf30c68e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4beeda96c3bc524c99719f9cf30c68e2">&#9670;&nbsp;</a></span>StateOf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t StateOf[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vetor para acompanhar estado de alguns atuadores (Cooler da Peltier, Placa Peltier, Cooler de resfriamento e Status da Estufa) </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00069">69</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>, <a class="el" href="main_8c_source.html#l00373">HAL_UART_RxCpltCallback()</a>, <a class="el" href="main_8c_source.html#l00143">main()</a>, <a class="el" href="main_8c_source.html#l00121">turnOff()</a> e <a class="el" href="main_8c_source.html#l00108">turnOn()</a>.</p>
+
+</div>
+</div>
+<a id="afa66fac91ab948980be979b768e67c5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa66fac91ab948980be979b768e67c5a">&#9670;&nbsp;</a></span>Temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Temperature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Temperatura medida pelo sensor DHT11, em graus Celsius. </p>
+
+<p class="definition">Definição na linha <a class="el" href="main_8c_source.html#l00063">63</a> do arquivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2acbf2e82f66bdf1ba4b511d6e31478afc">CoolerPeltier</a></div><div class="ttdeci">@ CoolerPeltier</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00085">main.c:85</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a287316ff3a6bd82be53e259270a24952">Moisture_Min</a></div><div class="ttdeci">@ Moisture_Min</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00080">main.c:80</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2af1f766b65249fac0dbddf379c1dcb7f7">LightRed</a></div><div class="ttdeci">@ LightRed</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00082">main.c:82</a></div></div>
+<div class="ttc" id="amain_8c_html_af23c9ef1d63df23dd4aa0dd829b3acb4"><div class="ttname"><a href="main_8c.html#af23c9ef1d63df23dd4aa0dd829b3acb4">bufferTX</a></div><div class="ttdeci">char bufferTX[SIZE_TX]</div><div class="ttdoc">Buffer de envio da USART.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00074">main.c:74</a></div></div>
+<div class="ttc" id="amain_8c_html_a47f2e62c0dbebc787052c165afcada0e"><div class="ttname"><a href="main_8c.html#a47f2e62c0dbebc787052c165afcada0e">NAME</a></div><div class="ttdeci">#define NAME</div><div class="ttdoc">Nome da estufa (ALFA, BETA, GAMA)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00046">main.c:46</a></div></div>
+<div class="ttc" id="amain_8c_html_a96df901ccc3b4e728bb157f9124c12fa"><div class="ttname"><a href="main_8c.html#a96df901ccc3b4e728bb157f9124c12fa">parameter</a></div><div class="ttdeci">float parameter[7]</div><div class="ttdoc">Vetor com os parâmetros ideais da estufa (TemperaturaMinima,TemperaturaMaxima,UmidadeDoSoloMinima,...</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00075">main.c:75</a></div></div>
+<div class="ttc" id="atim_8c_html_a0b1802cec6c627135b6c10a1ab67f7f3"><div class="ttname"><a href="tim_8c.html#a0b1802cec6c627135b6c10a1ab67f7f3">MX_TIM11_Init</a></div><div class="ttdeci">void MX_TIM11_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00174">tim.c:174</a></div></div>
+<div class="ttc" id="atim_8c_html_a7912f2916786a2c33cb6fb8259ade58c"><div class="ttname"><a href="tim_8c.html#a7912f2916786a2c33cb6fb8259ade58c">MX_TIM3_Init</a></div><div class="ttdeci">void MX_TIM3_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00077">tim.c:77</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c">Temperature_Min</a></div><div class="ttdeci">@ Temperature_Min</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00078">main.c:78</a></div></div>
+<div class="ttc" id="atim_8c_html_aac3d2c59ee0e3bbae1b99529a154eb62"><div class="ttname"><a href="tim_8c.html#aac3d2c59ee0e3bbae1b99529a154eb62">htim3</a></div><div class="ttdeci">TIM_HandleTypeDef htim3</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00028">tim.c:28</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a6f3bae902f4a1a3b69152ad13382ab18">LightGreen</a></div><div class="ttdeci">@ LightGreen</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00083">main.c:83</a></div></div>
+<div class="ttc" id="amain_8c_html_a77cfd3a4cea65c292c25621e0c82aaf5"><div class="ttname"><a href="main_8c.html#a77cfd3a4cea65c292c25621e0c82aaf5">DHT11_Data</a></div><div class="ttdeci">DHT_DataTypedef DHT11_Data</div><div class="ttdoc">Cria a estrutura para o sensor.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00041">main.c:41</a></div></div>
+<div class="ttc" id="astm32f4xx__it_8c_html_a3c386e4f1937c518c1beccddef92045e"><div class="ttname"><a href="stm32f4xx__it_8c.html#a3c386e4f1937c518c1beccddef92045e">htim10</a></div><div class="ttdeci">TIM_HandleTypeDef htim10</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00030">tim.c:30</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2afe9c3ff56c45c3357b20ccf5e6b61ada">YL_69</a></div><div class="ttdeci">@ YL_69</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00090">main.c:90</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a2cd232468a1fc44d4cc5c004e3e9dd72">Status</a></div><div class="ttdeci">@ Status</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00088">main.c:88</a></div></div>
+<div class="ttc" id="adma_8c_html_a323249dac769f9855c10b4ec9446b707"><div class="ttname"><a href="dma_8c.html#a323249dac769f9855c10b4ec9446b707">MX_DMA_Init</a></div><div class="ttdeci">void MX_DMA_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="dma_8c_source.html#l00038">dma.c:38</a></div></div>
+<div class="ttc" id="atim_8c_html_a4b8ff887fd3fdf26605e35927e4ff202"><div class="ttname"><a href="tim_8c.html#a4b8ff887fd3fdf26605e35927e4ff202">MX_TIM2_Init</a></div><div class="ttdeci">void MX_TIM2_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00034">tim.c:34</a></div></div>
+<div class="ttc" id="amain_8c_html_a95f77a4b46f8270143622e8f7de8faa7"><div class="ttname"><a href="main_8c.html#a95f77a4b46f8270143622e8f7de8faa7">VOLTAGE</a></div><div class="ttdeci">#define VOLTAGE</div><div class="ttdoc">Tensão elétrica usada para acionamento dos atuadores (Volts)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00047">main.c:47</a></div></div>
+<div class="ttc" id="amain_8c_html_a4beeda96c3bc524c99719f9cf30c68e2"><div class="ttname"><a href="main_8c.html#a4beeda96c3bc524c99719f9cf30c68e2">StateOf</a></div><div class="ttdeci">uint8_t StateOf[4]</div><div class="ttdoc">Vetor para acompanhar estado de alguns atuadores (Cooler da Peltier, Placa Peltier,...</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00069">main.c:69</a></div></div>
+<div class="ttc" id="amain_8c_html_acf88b454de739ce6d17ee6e7daadb9be"><div class="ttname"><a href="main_8c.html#acf88b454de739ce6d17ee6e7daadb9be">turnOff</a></div><div class="ttdeci">void turnOff(void)</div><div class="ttdoc">Função de desligamento da estufa. O Shutdon é ativado, todos os atuadores são desativados,...</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00121">main.c:121</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a5d0b734d6e5796473c7b3a75646bbb27">ACS712</a></div><div class="ttdeci">@ ACS712</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00091">main.c:91</a></div></div>
+<div class="ttc" id="astm32f4xx__it_8c_html_aa9479c261d65eecedd3d9582f7f0f89c"><div class="ttname"><a href="stm32f4xx__it_8c.html#aa9479c261d65eecedd3d9582f7f0f89c">huart2</a></div><div class="ttdeci">UART_HandleTypeDef huart2</div><div class="ttdef"><b>Definition:</b> <a href="usart_8c_source.html#l00027">usart.c:27</a></div></div>
+<div class="ttc" id="amain_8c_html_a0f66474c13206cee6d401b2d1a028cea"><div class="ttname"><a href="main_8c.html#a0f66474c13206cee6d401b2d1a028cea">I_MAX</a></div><div class="ttdeci">#define I_MAX</div><div class="ttdoc">Máxima corrente elétrica (Amperes)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00048">main.c:48</a></div></div>
+<div class="ttc" id="amain_8c_html_a9df846a207773eaeaee7e3795b56c151"><div class="ttname"><a href="main_8c.html#a9df846a207773eaeaee7e3795b56c151">turnOn</a></div><div class="ttdeci">void turnOn(void)</div><div class="ttdoc">Função de religamento da estufa. O PWM da fita de led é reativado, os demais atuadores esperarão por ...</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00108">main.c:108</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a08097f8a66bad5cb83aba48882a0f677">PeltierPlate</a></div><div class="ttdeci">@ PeltierPlate</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00086">main.c:86</a></div></div>
+<div class="ttc" id="amain_8c_html_afc597c76b4f04a2da506a240d51d89a0"><div class="ttname"><a href="main_8c.html#afc597c76b4f04a2da506a240d51d89a0">SAMPLE</a></div><div class="ttdeci">#define SAMPLE</div><div class="ttdoc">Número de amostras a serem analisadas pelos ADC's.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00050">main.c:50</a></div></div>
+<div class="ttc" id="atim_8c_html_a265aef7a46164094e791259bf59d9cb4"><div class="ttname"><a href="tim_8c.html#a265aef7a46164094e791259bf59d9cb4">MX_TIM8_Init</a></div><div class="ttdeci">void MX_TIM8_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00128">tim.c:128</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a3e095ea6639ee2dec5fbaedf0ff59753">LDR</a></div><div class="ttdeci">@ LDR</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00089">main.c:89</a></div></div>
+<div class="ttc" id="atim_8c_html_a897293ac5474c491773ec7404c531c3b"><div class="ttname"><a href="tim_8c.html#a897293ac5474c491773ec7404c531c3b">MX_TIM10_Init</a></div><div class="ttdeci">void MX_TIM10_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00158">tim.c:158</a></div></div>
+<div class="ttc" id="amain_8c_html_afa66fac91ab948980be979b768e67c5a"><div class="ttname"><a href="main_8c.html#afa66fac91ab948980be979b768e67c5a">Temperature</a></div><div class="ttdeci">float Temperature</div><div class="ttdoc">Temperatura medida pelo sensor DHT11, em graus Celsius.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00063">main.c:63</a></div></div>
+<div class="ttc" id="aadc_8c_html_acd9221f1aa19aebfe0b744947f2daf49"><div class="ttname"><a href="adc_8c.html#acd9221f1aa19aebfe0b744947f2daf49">hadc2</a></div><div class="ttdeci">ADC_HandleTypeDef hadc2</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00028">adc.c:28</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81">Temperature_Max</a></div><div class="ttdeci">@ Temperature_Max</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00079">main.c:79</a></div></div>
+<div class="ttc" id="amain_8c_html_aff4cb5300b1267c3f753c6e2c81eb52b"><div class="ttname"><a href="main_8c.html#aff4cb5300b1267c3f753c6e2c81eb52b">C_SENS</a></div><div class="ttdeci">#define C_SENS</div><div class="ttdoc">Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)].</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00049">main.c:49</a></div></div>
+<div class="ttc" id="amain_8c_html_af7f32953ba17c92cbf90579d42732593"><div class="ttname"><a href="main_8c.html#af7f32953ba17c92cbf90579d42732593">measure_ADC1</a></div><div class="ttdeci">volatile uint16_t measure_ADC1[SAMPLE]</div><div class="ttdoc">Vetor para armazenar as leituras do YL-69 e LDR, no ADC1.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00070">main.c:70</a></div></div>
+<div class="ttc" id="amain_8c_html_afe6173f00c89e1ccfe06abd8502ff19f"><div class="ttname"><a href="main_8c.html#afe6173f00c89e1ccfe06abd8502ff19f">Humidity</a></div><div class="ttdeci">float Humidity</div><div class="ttdoc">Umidade do ar medida pelo sensor DHT11, em porcentagem.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00064">main.c:64</a></div></div>
+<div class="ttc" id="ausart_8c_html_a052088fe5bb3f807a4b2502e664fd4fd"><div class="ttname"><a href="usart_8c.html#a052088fe5bb3f807a4b2502e664fd4fd">MX_USART2_UART_Init</a></div><div class="ttdeci">void MX_USART2_UART_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="usart_8c_source.html#l00033">usart.c:33</a></div></div>
+<div class="ttc" id="aadc_8c_html_a22b804736f5648d52f639b2647d4ed13"><div class="ttname"><a href="adc_8c.html#a22b804736f5648d52f639b2647d4ed13">hadc1</a></div><div class="ttdeci">ADC_HandleTypeDef hadc1</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00027">adc.c:27</a></div></div>
+<div class="ttc" id="amain_8c_html_ae8d3473f04d1b074e042108e0816efe6"><div class="ttname"><a href="main_8c.html#ae8d3473f04d1b074e042108e0816efe6">Current</a></div><div class="ttdeci">float Current</div><div class="ttdoc">Corrente elétrica medida pelo sensor ACS712, em ampéres.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00067">main.c:67</a></div></div>
+<div class="ttc" id="amain_8c_html_a70af21c671abfcc773614a9a4f63d920"><div class="ttname"><a href="main_8c.html#a70af21c671abfcc773614a9a4f63d920">SystemClock_Config</a></div><div class="ttdeci">void SystemClock_Config(void)</div><div class="ttdoc">System Clock Configuration.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00213">main.c:213</a></div></div>
+<div class="ttc" id="astm32f4xx__it_8c_html_a2f22f985c4f33318fdcd4cc996623bf4"><div class="ttname"><a href="stm32f4xx__it_8c.html#a2f22f985c4f33318fdcd4cc996623bf4">htim11</a></div><div class="ttdeci">TIM_HandleTypeDef htim11</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00031">tim.c:31</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1a4360030daf53036ce1cd1668dc6243">LightBlue</a></div><div class="ttdeci">@ LightBlue</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00084">main.c:84</a></div></div>
+<div class="ttc" id="amain_8c_html_aeca176f09c48cbe15df7fc4fff7c77f7"><div class="ttname"><a href="main_8c.html#aeca176f09c48cbe15df7fc4fff7c77f7">Power</a></div><div class="ttdeci">float Power</div><div class="ttdoc">Variáveis de consumo elétrico.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00068">main.c:68</a></div></div>
+<div class="ttc" id="aadc_8c_html_a101e2e3433dfe72bbbd0ae3a84489263"><div class="ttname"><a href="adc_8c.html#a101e2e3433dfe72bbbd0ae3a84489263">MX_ADC2_Init</a></div><div class="ttdeci">void MX_ADC2_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00075">adc.c:75</a></div></div>
+<div class="ttc" id="amain_8c_html_ac8c05a885c354f8cf4fb9f1d9710a224"><div class="ttname"><a href="main_8c.html#ac8c05a885c354f8cf4fb9f1d9710a224">measure_ADC2</a></div><div class="ttdeci">volatile uint16_t measure_ADC2[SAMPLE]</div><div class="ttdoc">Vetor para armazenar as leituras do ACS712, no ADC2.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00071">main.c:71</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a9535d4d809f039d69fd138f7e7d6596e">Moisture_Max</a></div><div class="ttdeci">@ Moisture_Max</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00081">main.c:81</a></div></div>
+<div class="ttc" id="agpio_8c_html_ac724e431d2af879252de35615be2bdea"><div class="ttname"><a href="gpio_8c.html#ac724e431d2af879252de35615be2bdea">MX_GPIO_Init</a></div><div class="ttdeci">void MX_GPIO_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="gpio_8c_source.html#l00040">gpio.c:40</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a464e04833a3d55c11b343b19e33481bc"><div class="ttname"><a href="_d_h_t_8c.html#a464e04833a3d55c11b343b19e33481bc">DHT_GetData</a></div><div class="ttdeci">void DHT_GetData(DHT_DataTypedef *DHT_Data)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00137">DHT.c:137</a></div></div>
+<div class="ttc" id="amain_8c_html_a7eb84dc998ad42b5b08dbb90d090630d"><div class="ttname"><a href="main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d">SIZE_RX</a></div><div class="ttdeci">#define SIZE_RX</div><div class="ttdoc">Tamanho máximo do buffer RX da usart.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00053">main.c:53</a></div></div>
+<div class="ttc" id="amain_8c_html_a90a7a2a4bac3e3ffab65a693973bbd61"><div class="ttname"><a href="main_8c.html#a90a7a2a4bac3e3ffab65a693973bbd61">bufferRX</a></div><div class="ttdeci">char bufferRX[SIZE_RX]</div><div class="ttdoc">Buffer de recebimento da USART.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00073">main.c:73</a></div></div>
+<div class="ttc" id="amain_8c_html_a9b321fc8474a410f24deb460c4fa014e"><div class="ttname"><a href="main_8c.html#a9b321fc8474a410f24deb460c4fa014e">PERCENT</a></div><div class="ttdeci">#define PERCENT</div><div class="ttdoc">Cálculo da porcentagem para medição de Luz e Umidade do Solo.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00051">main.c:51</a></div></div>
+<div class="ttc" id="amain_8c_html_a77f4bd50e066f30cae126c62e6a2bbaa"><div class="ttname"><a href="main_8c.html#a77f4bd50e066f30cae126c62e6a2bbaa">Light</a></div><div class="ttdeci">float Light</div><div class="ttdoc">Luz medida pelo sensor LDR, em porcentagem.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00065">main.c:65</a></div></div>
+<div class="ttc" id="aadc_8c_html_acccd58aa70215a6b184ad242312ffd0c"><div class="ttname"><a href="adc_8c.html#acccd58aa70215a6b184ad242312ffd0c">MX_ADC1_Init</a></div><div class="ttdeci">void MX_ADC1_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="adc_8c_source.html#l00033">adc.c:33</a></div></div>
+<div class="ttc" id="atim_8c_html_a2c80fd5510e2990a59a5c90d745c716c"><div class="ttname"><a href="tim_8c.html#a2c80fd5510e2990a59a5c90d745c716c">htim2</a></div><div class="ttdeci">TIM_HandleTypeDef htim2</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00027">tim.c:27</a></div></div>
+<div class="ttc" id="atim_8c_html_a5faa27108379f799afb6984010bf0384"><div class="ttname"><a href="tim_8c.html#a5faa27108379f799afb6984010bf0384">htim8</a></div><div class="ttdeci">TIM_HandleTypeDef htim8</div><div class="ttdef"><b>Definition:</b> <a href="tim_8c_source.html#l00029">tim.c:29</a></div></div>
+<div class="ttc" id="amain_8c_html_a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d"><div class="ttname"><a href="main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2ababdbf633bd4b1aafaacdef60504d79d">CoolerFreeze</a></div><div class="ttdeci">@ CoolerFreeze</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00087">main.c:87</a></div></div>
+<div class="ttc" id="amain_8c_html_af07f33abf605e1e61bf0fd255ed308f0"><div class="ttname"><a href="main_8c.html#af07f33abf605e1e61bf0fd255ed308f0">Moisture</a></div><div class="ttdeci">float Moisture</div><div class="ttdoc">Umidade do solo medida pelo sensor YL-69, em porcentagem.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00066">main.c:66</a></div></div>
+<div class="ttc" id="amain_8c_html_a3561c24e38962967c1ee8a2ffe5eb74b"><div class="ttname"><a href="main_8c.html#a3561c24e38962967c1ee8a2ffe5eb74b">average</a></div><div class="ttdeci">uint16_t average[3]</div><div class="ttdoc">Média aritmética das medições do ADC1 e ADC2 (LDR, YL-69, ACS712)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00072">main.c:72</a></div></div>
+<div class="ttc" id="amain_8c_html_a1730ffe1e560465665eb47d9264826f9"><div class="ttname"><a href="main_8c.html#a1730ffe1e560465665eb47d9264826f9">Error_Handler</a></div><div class="ttdeci">void Error_Handler(void)</div><div class="ttdoc">This function is executed in case of error occurrence.</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00410">main.c:410</a></div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="main_8c.html">main.c</a></li>
+    <li class="footer">Gerado por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -62,12 +62,4 @@ void MX_DMA_Init(void)
 
 /* USER CODE END 2 */
 
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
-
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

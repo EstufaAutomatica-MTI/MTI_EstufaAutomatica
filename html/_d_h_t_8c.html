@@ -1,0 +1,675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MTI_EstufaAutomatica: Referência do Arquivo Core/Src/DHT.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">MTI_EstufaAutomatica
+   &#160;<span id="projectnumber">v1.16</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Busca');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_d_h_t_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Definições e Macros</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência do Arquivo DHT.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stm32f4xx_hal.h&quot;</code><br />
+<code>#include &quot;DHT.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependência de inclusões para DHT.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_h_t_8c__incl.png" border="0" usemap="#_core_2_src_2_d_h_t_8c" alt=""/></div>
+</div>
+</div>
+<p><a href="_d_h_t_8c_source.html">Vá para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:ab9eadb7a2e5b802b8c6bbb213218e4bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#ab9eadb7a2e5b802b8c6bbb213218e4bd">TYPE_DHT11</a></td></tr>
+<tr class="separator:ab9eadb7a2e5b802b8c6bbb213218e4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf42d52e26184fffc237b7bab4abdea6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>&#160;&#160;&#160;GPIOA</td></tr>
+<tr class="separator:adf42d52e26184fffc237b7bab4abdea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661d236dd49f3aef3a2cf46cf6a1405e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>&#160;&#160;&#160;GPIO_PIN_1</td></tr>
+<tr class="separator:a661d236dd49f3aef3a2cf46cf6a1405e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a4fe08aec7b56318b01ca3ab4172861e3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a4fe08aec7b56318b01ca3ab4172861e3">DWT_Delay_Init</a> (void)</td></tr>
+<tr class="separator:a4fe08aec7b56318b01ca3ab4172861e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65c8b753e8138acf1e4f09fd2677d779"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (volatile uint32_t microseconds)</td></tr>
+<tr class="separator:a65c8b753e8138acf1e4f09fd2677d779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef1aec2157382676edb25c22e4b7ecef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#aef1aec2157382676edb25c22e4b7ecef">Set_Pin_Output</a> (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</td></tr>
+<tr class="separator:aef1aec2157382676edb25c22e4b7ecef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b8cee858a35581caf1bcb14ce5cb367"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a3b8cee858a35581caf1bcb14ce5cb367">Set_Pin_Input</a> (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</td></tr>
+<tr class="separator:a3b8cee858a35581caf1bcb14ce5cb367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9b035e01ef84cfc4f7536a8dc4c2600"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#ac9b035e01ef84cfc4f7536a8dc4c2600">DHT_Start</a> (void)</td></tr>
+<tr class="separator:ac9b035e01ef84cfc4f7536a8dc4c2600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8430977113c91b3be265deb778d163ab"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a8430977113c91b3be265deb778d163ab">DHT_Check_Response</a> (void)</td></tr>
+<tr class="separator:a8430977113c91b3be265deb778d163ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20e53d744b103fabc3888fe6312bb17c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a> (void)</td></tr>
+<tr class="separator:a20e53d744b103fabc3888fe6312bb17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a464e04833a3d55c11b343b19e33481bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a464e04833a3d55c11b343b19e33481bc">DHT_GetData</a> (DHT_DataTypedef *DHT_Data)</td></tr>
+<tr class="separator:a464e04833a3d55c11b343b19e33481bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:ad9a2a1c5f490104dc717f5a48b3b8a27"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a></td></tr>
+<tr class="separator:ad9a2a1c5f490104dc717f5a48b3b8a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dbbbd8e0fc90796f6389fc31ef811ad"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a2dbbbd8e0fc90796f6389fc31ef811ad">Rh_byte2</a></td></tr>
+<tr class="separator:a2dbbbd8e0fc90796f6389fc31ef811ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0074c25d30592e460b56b9f87d1ba9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a></td></tr>
+<tr class="separator:a8b0074c25d30592e460b56b9f87d1ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5544d12933412c17ee41513fa46cac02"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a5544d12933412c17ee41513fa46cac02">Temp_byte2</a></td></tr>
+<tr class="separator:a5544d12933412c17ee41513fa46cac02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4622f107cd73d99fbf4ca91205f3acca"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a4622f107cd73d99fbf4ca91205f3acca">SUM</a></td></tr>
+<tr class="separator:a4622f107cd73d99fbf4ca91205f3acca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a653c5750f288e99e638bbd607fb885dc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_d_h_t_8c.html#a653c5750f288e99e638bbd607fb885dc">Presence</a> = 0</td></tr>
+<tr class="separator:a653c5750f288e99e638bbd607fb885dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Definições e macros</h2>
+<a id="a661d236dd49f3aef3a2cf46cf6a1405e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a661d236dd49f3aef3a2cf46cf6a1405e">&#9670;&nbsp;</a></span>DHT_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DHT_PIN&#160;&#160;&#160;GPIO_PIN_1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00011">11</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+</div>
+</div>
+<a id="adf42d52e26184fffc237b7bab4abdea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf42d52e26184fffc237b7bab4abdea6">&#9670;&nbsp;</a></span>DHT_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DHT_PORT&#160;&#160;&#160;GPIOA</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00010">10</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+</div>
+</div>
+<a id="ab9eadb7a2e5b802b8c6bbb213218e4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9eadb7a2e5b802b8c6bbb213218e4bd">&#9670;&nbsp;</a></span>TYPE_DHT11</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TYPE_DHT11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00006">6</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Funções</h2>
+<a id="a65c8b753e8138acf1e4f09fd2677d779"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65c8b753e8138acf1e4f09fd2677d779">&#9670;&nbsp;</a></span>delay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__STATIC_INLINE void delay </td>
+          <td>(</td>
+          <td class="paramtype">volatile uint32_t&#160;</td>
+          <td class="paramname"><em>microseconds</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00054">54</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  uint32_t clk_cycle_start = DWT-&gt;CYCCNT;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="comment">/* Go to number of cycles for system */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  microseconds *= (HAL_RCC_GetHCLKFreq() / 1000000);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="comment">/* Delay till end */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">while</span> ((DWT-&gt;CYCCNT - clk_cycle_start) &lt; microseconds);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00103">DHT_Check_Response()</a>, <a class="el" href="_d_h_t_8c_source.html#l00118">DHT_Read()</a> e <a class="el" href="_d_h_t_8c_source.html#l00084">DHT_Start()</a>.</p>
+
+</div>
+</div>
+<a id="a8430977113c91b3be265deb778d163ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8430977113c91b3be265deb778d163ab">&#9670;&nbsp;</a></span>DHT_Check_Response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DHT_Check_Response </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00103">103</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    uint8_t Response = 0;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (40);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (!(HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>)))</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (80);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> ((HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>))) Response = 1;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">else</span> Response = -1;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">while</span> ((HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>)));   <span class="comment">// wait for the pin to go low</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordflow">return</span> Response;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="_d_h_t_8c_source.html#l00054">delay()</a>, <a class="el" href="_d_h_t_8c_source.html#l00011">DHT_PIN</a> e <a class="el" href="_d_h_t_8c_source.html#l00010">DHT_PORT</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_h_t_8c_a8430977113c91b3be265deb778d163ab_cgraph.png" border="0" usemap="#_d_h_t_8c_a8430977113c91b3be265deb778d163ab_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a464e04833a3d55c11b343b19e33481bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464e04833a3d55c11b343b19e33481bc">&#9670;&nbsp;</a></span>DHT_GetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DHT_GetData </td>
+          <td>(</td>
+          <td class="paramtype">DHT_DataTypedef *&#160;</td>
+          <td class="paramname"><em>DHT_Data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00137">137</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;{</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="_d_h_t_8c.html#ac9b035e01ef84cfc4f7536a8dc4c2600">DHT_Start</a> ();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="_d_h_t_8c.html#a653c5750f288e99e638bbd607fb885dc">Presence</a> = <a class="code" href="_d_h_t_8c.html#a8430977113c91b3be265deb778d163ab">DHT_Check_Response</a> ();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a> = <a class="code" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a> ();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="_d_h_t_8c.html#a2dbbbd8e0fc90796f6389fc31ef811ad">Rh_byte2</a> = <a class="code" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a> ();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <a class="code" href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a> = <a class="code" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a> ();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <a class="code" href="_d_h_t_8c.html#a5544d12933412c17ee41513fa46cac02">Temp_byte2</a> = <a class="code" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a> ();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="_d_h_t_8c.html#a4622f107cd73d99fbf4ca91205f3acca">SUM</a> = <a class="code" href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a>();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="_d_h_t_8c.html#a4622f107cd73d99fbf4ca91205f3acca">SUM</a> == (<a class="code" href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a>+<a class="code" href="_d_h_t_8c.html#a2dbbbd8e0fc90796f6389fc31ef811ad">Rh_byte2</a>+<a class="code" href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a>+<a class="code" href="_d_h_t_8c.html#a5544d12933412c17ee41513fa46cac02">Temp_byte2</a>))</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">        #if defined(TYPE_DHT11)</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            DHT_Data-&gt;Temperature = <a class="code" href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            DHT_Data-&gt;Humidity = <a class="code" href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a>;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">        #if defined(TYPE_DHT22)</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            DHT_Data-&gt;Temperature = ((<a class="code" href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a>&lt;&lt;8)|<a class="code" href="_d_h_t_8c.html#a5544d12933412c17ee41513fa46cac02">Temp_byte2</a>);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            DHT_Data-&gt;Humidity = ((<a class="code" href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a>&lt;&lt;8)|<a class="code" href="_d_h_t_8c.html#a2dbbbd8e0fc90796f6389fc31ef811ad">Rh_byte2</a>);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="_d_h_t_8c_source.html#l00103">DHT_Check_Response()</a>, <a class="el" href="_d_h_t_8c_source.html#l00118">DHT_Read()</a>, <a class="el" href="_d_h_t_8c_source.html#l00084">DHT_Start()</a>, <a class="el" href="_d_h_t_8c_source.html#l00019">Presence</a>, <a class="el" href="_d_h_t_8c_source.html#l00018">Rh_byte1</a>, <a class="el" href="_d_h_t_8c_source.html#l00018">Rh_byte2</a>, <a class="el" href="_d_h_t_8c_source.html#l00019">SUM</a>, <a class="el" href="_d_h_t_8c_source.html#l00018">Temp_byte1</a> e <a class="el" href="_d_h_t_8c_source.html#l00018">Temp_byte2</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="main_8c_source.html#l00259">HAL_TIM_PeriodElapsedCallback()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_h_t_8c_a464e04833a3d55c11b343b19e33481bc_cgraph.png" border="0" usemap="#_d_h_t_8c_a464e04833a3d55c11b343b19e33481bc_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a20e53d744b103fabc3888fe6312bb17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20e53d744b103fabc3888fe6312bb17c">&#9670;&nbsp;</a></span>DHT_Read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DHT_Read </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00118">118</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    uint8_t i,j;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">for</span> (j=0;j&lt;8;j++)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">while</span> (!(HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>)));   <span class="comment">// wait for the pin to go high</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (40);   <span class="comment">// wait for 40 us</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">if</span> (!(HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>)))   <span class="comment">// if the pin is low</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            i&amp;= ~(1&lt;&lt;(7-j));   <span class="comment">// write 0</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">else</span> i|= (1&lt;&lt;(7-j));  <span class="comment">// if the pin is high, write 1</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">while</span> ((HAL_GPIO_ReadPin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>)));  <span class="comment">// wait for the pin to go low</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">return</span> i;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="_d_h_t_8c_source.html#l00054">delay()</a>, <a class="el" href="_d_h_t_8c_source.html#l00011">DHT_PIN</a> e <a class="el" href="_d_h_t_8c_source.html#l00010">DHT_PORT</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_h_t_8c_a20e53d744b103fabc3888fe6312bb17c_cgraph.png" border="0" usemap="#_d_h_t_8c_a20e53d744b103fabc3888fe6312bb17c_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac9b035e01ef84cfc4f7536a8dc4c2600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b035e01ef84cfc4f7536a8dc4c2600">&#9670;&nbsp;</a></span>DHT_Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DHT_Start </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00084">84</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="_d_h_t_8c.html#a4fe08aec7b56318b01ca3ab4172861e3">DWT_Delay_Init</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="_d_h_t_8c.html#aef1aec2157382676edb25c22e4b7ecef">Set_Pin_Output</a> (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>);  <span class="comment">// set the pin as output</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    HAL_GPIO_WritePin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>, 0);   <span class="comment">// pull the pin low</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#if defined(TYPE_DHT11)</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (18000);   <span class="comment">// wait for 18ms</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#if defined(TYPE_DHT22)</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (1200);  <span class="comment">// &gt;1ms delay</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    HAL_GPIO_WritePin (<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>, 1);   <span class="comment">// pull the pin high</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a> (20);   <span class="comment">// wait for 30us</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="_d_h_t_8c.html#a3b8cee858a35581caf1bcb14ce5cb367">Set_Pin_Input</a>(<a class="code" href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a>, <a class="code" href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a>);    <span class="comment">// set as input</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referencias <a class="el" href="_d_h_t_8c_source.html#l00054">delay()</a>, <a class="el" href="_d_h_t_8c_source.html#l00011">DHT_PIN</a>, <a class="el" href="_d_h_t_8c_source.html#l00010">DHT_PORT</a>, <a class="el" href="_d_h_t_8c_source.html#l00023">DWT_Delay_Init()</a>, <a class="el" href="_d_h_t_8c_source.html#l00074">Set_Pin_Input()</a> e <a class="el" href="_d_h_t_8c_source.html#l00065">Set_Pin_Output()</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_h_t_8c_ac9b035e01ef84cfc4f7536a8dc4c2600_cgraph.png" border="0" usemap="#_d_h_t_8c_ac9b035e01ef84cfc4f7536a8dc4c2600_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a4fe08aec7b56318b01ca3ab4172861e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fe08aec7b56318b01ca3ab4172861e3">&#9670;&nbsp;</a></span>DWT_Delay_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t DWT_Delay_Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00023">23</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="comment">/* Disable TRC */</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  CoreDebug-&gt;DEMCR &amp;= ~CoreDebug_DEMCR_TRCENA_Msk; <span class="comment">// ~0x01000000;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  <span class="comment">/* Enable TRC */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  CoreDebug-&gt;DEMCR |=  CoreDebug_DEMCR_TRCENA_Msk; <span class="comment">// 0x01000000;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="comment">/* Disable clock cycle counter */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  DWT-&gt;CTRL &amp;= ~DWT_CTRL_CYCCNTENA_Msk; <span class="comment">//~0x00000001;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="comment">/* Enable  clock cycle counter */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  DWT-&gt;CTRL |=  DWT_CTRL_CYCCNTENA_Msk; <span class="comment">//0x00000001;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="comment">/* Reset the clock cycle counter value */</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  DWT-&gt;CYCCNT = 0;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;     <span class="comment">/* 3 NO OPERATION instructions */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;     __ASM <span class="keyword">volatile</span> (<span class="stringliteral">&quot;NOP&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;     __ASM <span class="keyword">volatile</span> (<span class="stringliteral">&quot;NOP&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  __ASM <span class="keyword">volatile</span> (<span class="stringliteral">&quot;NOP&quot;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="comment">/* Check if clock cycle counter has started */</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;     <span class="keywordflow">if</span>(DWT-&gt;CYCCNT)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;     {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;       <span class="keywordflow">return</span> 0; <span class="comment">/*clock cycle counter started*/</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;     }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;     <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> 1; <span class="comment">/*clock cycle counter not started*/</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00084">DHT_Start()</a>.</p>
+
+</div>
+</div>
+<a id="a3b8cee858a35581caf1bcb14ce5cb367"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b8cee858a35581caf1bcb14ce5cb367">&#9670;&nbsp;</a></span>Set_Pin_Input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Set_Pin_Input </td>
+          <td>(</td>
+          <td class="paramtype">GPIO_TypeDef *&#160;</td>
+          <td class="paramname"><em>GPIOx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>GPIO_Pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00074">74</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    GPIO_InitStruct.Pin = GPIO_Pin;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    GPIO_InitStruct.Pull = GPIO_NOPULL;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    HAL_GPIO_Init(GPIOx, &amp;GPIO_InitStruct);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00084">DHT_Start()</a>.</p>
+
+</div>
+</div>
+<a id="aef1aec2157382676edb25c22e4b7ecef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef1aec2157382676edb25c22e4b7ecef">&#9670;&nbsp;</a></span>Set_Pin_Output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Set_Pin_Output </td>
+          <td>(</td>
+          <td class="paramtype">GPIO_TypeDef *&#160;</td>
+          <td class="paramname"><em>GPIOx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>GPIO_Pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00065">65</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    GPIO_InitTypeDef GPIO_InitStruct = {0};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    GPIO_InitStruct.Pin = GPIO_Pin;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    HAL_GPIO_Init(GPIOx, &amp;GPIO_InitStruct);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00084">DHT_Start()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variáveis</h2>
+<a id="a653c5750f288e99e638bbd607fb885dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a653c5750f288e99e638bbd607fb885dc">&#9670;&nbsp;</a></span>Presence</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Presence = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00019">19</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+<a id="ad9a2a1c5f490104dc717f5a48b3b8a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a2a1c5f490104dc717f5a48b3b8a27">&#9670;&nbsp;</a></span>Rh_byte1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Rh_byte1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00018">18</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+<a id="a2dbbbd8e0fc90796f6389fc31ef811ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dbbbd8e0fc90796f6389fc31ef811ad">&#9670;&nbsp;</a></span>Rh_byte2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Rh_byte2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00018">18</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+<a id="a4622f107cd73d99fbf4ca91205f3acca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4622f107cd73d99fbf4ca91205f3acca">&#9670;&nbsp;</a></span>SUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SUM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00019">19</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+<a id="a8b0074c25d30592e460b56b9f87d1ba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0074c25d30592e460b56b9f87d1ba9">&#9670;&nbsp;</a></span>Temp_byte1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Temp_byte1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00018">18</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+<a id="a5544d12933412c17ee41513fa46cac02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5544d12933412c17ee41513fa46cac02">&#9670;&nbsp;</a></span>Temp_byte2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Temp_byte2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="_d_h_t_8c_source.html#l00018">18</a> do arquivo <a class="el" href="_d_h_t_8c_source.html">DHT.c</a>.</p>
+
+<p class="reference">Referenciado(a) por <a class="el" href="_d_h_t_8c_source.html#l00137">DHT_GetData()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="a_d_h_t_8c_html_a20e53d744b103fabc3888fe6312bb17c"><div class="ttname"><a href="_d_h_t_8c.html#a20e53d744b103fabc3888fe6312bb17c">DHT_Read</a></div><div class="ttdeci">uint8_t DHT_Read(void)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00118">DHT.c:118</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_aef1aec2157382676edb25c22e4b7ecef"><div class="ttname"><a href="_d_h_t_8c.html#aef1aec2157382676edb25c22e4b7ecef">Set_Pin_Output</a></div><div class="ttdeci">void Set_Pin_Output(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00065">DHT.c:65</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a65c8b753e8138acf1e4f09fd2677d779"><div class="ttname"><a href="_d_h_t_8c.html#a65c8b753e8138acf1e4f09fd2677d779">delay</a></div><div class="ttdeci">__STATIC_INLINE void delay(volatile uint32_t microseconds)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00054">DHT.c:54</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a661d236dd49f3aef3a2cf46cf6a1405e"><div class="ttname"><a href="_d_h_t_8c.html#a661d236dd49f3aef3a2cf46cf6a1405e">DHT_PIN</a></div><div class="ttdeci">#define DHT_PIN</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00011">DHT.c:11</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_adf42d52e26184fffc237b7bab4abdea6"><div class="ttname"><a href="_d_h_t_8c.html#adf42d52e26184fffc237b7bab4abdea6">DHT_PORT</a></div><div class="ttdeci">#define DHT_PORT</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00010">DHT.c:10</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a653c5750f288e99e638bbd607fb885dc"><div class="ttname"><a href="_d_h_t_8c.html#a653c5750f288e99e638bbd607fb885dc">Presence</a></div><div class="ttdeci">uint8_t Presence</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00019">DHT.c:19</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a2dbbbd8e0fc90796f6389fc31ef811ad"><div class="ttname"><a href="_d_h_t_8c.html#a2dbbbd8e0fc90796f6389fc31ef811ad">Rh_byte2</a></div><div class="ttdeci">uint8_t Rh_byte2</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00018">DHT.c:18</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a5544d12933412c17ee41513fa46cac02"><div class="ttname"><a href="_d_h_t_8c.html#a5544d12933412c17ee41513fa46cac02">Temp_byte2</a></div><div class="ttdeci">uint8_t Temp_byte2</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00018">DHT.c:18</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a8430977113c91b3be265deb778d163ab"><div class="ttname"><a href="_d_h_t_8c.html#a8430977113c91b3be265deb778d163ab">DHT_Check_Response</a></div><div class="ttdeci">uint8_t DHT_Check_Response(void)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00103">DHT.c:103</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a4622f107cd73d99fbf4ca91205f3acca"><div class="ttname"><a href="_d_h_t_8c.html#a4622f107cd73d99fbf4ca91205f3acca">SUM</a></div><div class="ttdeci">uint16_t SUM</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00019">DHT.c:19</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a8b0074c25d30592e460b56b9f87d1ba9"><div class="ttname"><a href="_d_h_t_8c.html#a8b0074c25d30592e460b56b9f87d1ba9">Temp_byte1</a></div><div class="ttdeci">uint8_t Temp_byte1</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00018">DHT.c:18</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a4fe08aec7b56318b01ca3ab4172861e3"><div class="ttname"><a href="_d_h_t_8c.html#a4fe08aec7b56318b01ca3ab4172861e3">DWT_Delay_Init</a></div><div class="ttdeci">uint32_t DWT_Delay_Init(void)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00023">DHT.c:23</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_ad9a2a1c5f490104dc717f5a48b3b8a27"><div class="ttname"><a href="_d_h_t_8c.html#ad9a2a1c5f490104dc717f5a48b3b8a27">Rh_byte1</a></div><div class="ttdeci">uint8_t Rh_byte1</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00018">DHT.c:18</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_ac9b035e01ef84cfc4f7536a8dc4c2600"><div class="ttname"><a href="_d_h_t_8c.html#ac9b035e01ef84cfc4f7536a8dc4c2600">DHT_Start</a></div><div class="ttdeci">void DHT_Start(void)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00084">DHT.c:84</a></div></div>
+<div class="ttc" id="a_d_h_t_8c_html_a3b8cee858a35581caf1bcb14ce5cb367"><div class="ttname"><a href="_d_h_t_8c.html#a3b8cee858a35581caf1bcb14ce5cb367">Set_Pin_Input</a></div><div class="ttdeci">void Set_Pin_Input(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</div><div class="ttdef"><b>Definition:</b> <a href="_d_h_t_8c_source.html#l00074">DHT.c:74</a></div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c6310732a22f63c0c2fc5595561e68f1.html">Core</a></li><li class="navelem"><a class="el" href="dir_b596f468b52957496e4f78b80e029268.html">Src</a></li><li class="navelem"><a class="el" href="_d_h_t_8c.html">DHT.c</a></li>
+    <li class="footer">Gerado por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>
