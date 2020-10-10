@@ -7,36 +7,6 @@
         "info": ""
     },
     {
-        "id": "799ea8b9.290ba8",
-        "type": "debug",
-        "z": "36088eac.626c12",
-        "name": "UsartRX",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 360,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "9e16f6dc.c5ecd8",
-        "type": "debug",
-        "z": "36088eac.626c12",
-        "name": "ToJSON",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 540,
-        "y": 320,
-        "wires": []
-    },
-    {
         "id": "c135464d.b9a248",
         "type": "json",
         "z": "36088eac.626c12",
@@ -44,11 +14,10 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 540,
+        "x": 700,
         "y": 360,
         "wires": [
             [
-                "9e16f6dc.c5ecd8",
                 "7bd47f05.3a85b"
             ]
         ]
@@ -61,41 +30,25 @@
         "func": "var date = new Date();\ndate = (('00' + date.getDate()).slice(-2)+\"/\"+('00' + (date.getMonth()+1)).slice(-2)+\"/\"+date.getFullYear()+\" - \"+('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2)+\"\\\"}\");\nmsg.payload = msg.payload.replace(\"}\",\", \\\"Date\\\": \\\"\") + date;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 560,
+        "x": 720,
         "y": 480,
         "wires": [
             [
-                "6e32d218.ba364c",
                 "69ed648e.c81dcc"
             ]
         ]
-    },
-    {
-        "id": "6e32d218.ba364c",
-        "type": "debug",
-        "z": "36088eac.626c12",
-        "name": "MQTT_Tx",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 560,
-        "y": 440,
-        "wires": []
     },
     {
         "id": "1cfa9fa4.9a7af",
         "type": "mqtt out",
         "z": "36088eac.626c12",
         "name": "Atuadores",
-        "topic": "EstufaAutomatica/Atuadores",
+        "topic": "iotTro/EstufaAutomatica/Atuadores",
         "qos": "0",
         "retain": "false",
-        "broker": "e51f551a.32fa38",
-        "x": 790,
-        "y": 820,
+        "broker": "ac94a2c.211056",
+        "x": 1090,
+        "y": 860,
         "wires": []
     },
     {
@@ -104,8 +57,8 @@
         "z": "36088eac.626c12",
         "name": "",
         "serial": "aea72efb.b292c",
-        "x": 630,
-        "y": 900,
+        "x": 570,
+        "y": 1060,
         "wires": []
     },
     {
@@ -114,11 +67,10 @@
         "z": "36088eac.626c12",
         "name": "",
         "serial": "aea72efb.b292c",
-        "x": 350,
+        "x": 510,
         "y": 480,
         "wires": [
             [
-                "799ea8b9.290ba8",
                 "a31391f8.bd0a"
             ]
         ]
@@ -128,11 +80,11 @@
         "type": "mqtt out",
         "z": "36088eac.626c12",
         "name": "Sensores",
-        "topic": "EstufaAutomatica/Sensores",
+        "topic": "iotTro/EstufaAutomatica/Sensores",
         "qos": "0",
         "retain": "false",
-        "broker": "e51f551a.32fa38",
-        "x": 740,
+        "broker": "ac94a2c.211056",
+        "x": 900,
         "y": 480,
         "wires": []
     },
@@ -141,12 +93,12 @@
         "type": "mqtt in",
         "z": "36088eac.626c12",
         "name": "Atuadores",
-        "topic": "EstufaAutomatica/Atuadores",
+        "topic": "iotTro/EstufaAutomatica/Atuadores",
         "qos": "0",
         "datatype": "auto",
-        "broker": "e51f551a.32fa38",
-        "x": 480,
-        "y": 900,
+        "broker": "ac94a2c.211056",
+        "x": 420,
+        "y": 1060,
         "wires": [
             [
                 "634189.dee34e78"
@@ -158,15 +110,14 @@
         "type": "mqtt in",
         "z": "36088eac.626c12",
         "name": "Sensores",
-        "topic": "EstufaAutomatica/Sensores",
+        "topic": "iotTro/EstufaAutomatica/Sensores",
         "qos": "0",
         "datatype": "auto",
-        "broker": "e51f551a.32fa38",
-        "x": 360,
+        "broker": "ac94a2c.211056",
+        "x": 520,
         "y": 360,
         "wires": [
             [
-                "f6e4018f.36e61",
                 "c135464d.b9a248"
             ]
         ]
@@ -198,7 +149,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 760,
+        "x": 920,
         "y": 360,
         "wires": [
             [
@@ -210,45 +161,38 @@
                 "f2c57086.37704",
                 "9ce594fa.ffea28",
                 "57c945b1.2d027c",
-                "a4980821.312e58"
+                "a4980821.312e58",
+                "42aa1f11.d85fa",
+                "ad631746.e147a8",
+                "f49f5f68.d4fb"
             ],
             [
                 "68748dd7.206194",
                 "b30607cc.5c19d8",
-                "827ea6dc.e21818",
-                "da85c69c.7cc458",
                 "38bb0b5e.fb9724",
                 "deac004d.200ac",
                 "c0682c16.c8c98",
                 "13b101ec.39427e",
-                "1ac82a4f.03b756"
+                "4b8c3333.3f16fc",
+                "f6359b8a.1cb748",
+                "92a0769a.fb0498",
+                "156beae4.e6ff45",
+                "570663a2.44720c"
             ],
             [
                 "fb66e521.73c108",
-                "16d08f07.f16b41",
-                "f6544e74.0c6f9",
                 "ccbb1ceb.dd396",
                 "17c3f360.56bcdd",
                 "690d176.2694ee8",
                 "abc5eece.054dd",
-                "4d6e82b9.2de1ec"
+                "4d6e82b9.2de1ec",
+                "9cdce64f.6b9de8",
+                "4def786a.9a1f08",
+                "a64dc68e.4d96d8",
+                "df568506.f6b578",
+                "3fe2c1b4.53c2de"
             ]
         ]
-    },
-    {
-        "id": "f6e4018f.36e61",
-        "type": "debug",
-        "z": "36088eac.626c12",
-        "name": "MQTT_Rx",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 350,
-        "y": 320,
-        "wires": []
     },
     {
         "id": "4f8bbb86.277b94",
@@ -262,8 +206,8 @@
         "label": "Atualizado em ",
         "format": "{{msg.payload.Date}}",
         "layout": "row-center",
-        "x": 1050,
-        "y": 40,
+        "x": 1210,
+        "y": 100,
         "wires": []
     },
     {
@@ -278,8 +222,8 @@
         "label": "Atualizado em ",
         "format": "{{msg.payload.Date}}",
         "layout": "row-center",
-        "x": 1040,
-        "y": 800,
+        "x": 2060,
+        "y": 100,
         "wires": []
     },
     {
@@ -294,8 +238,8 @@
         "label": "Atualizado em ",
         "format": "{{msg.payload.Date}}",
         "layout": "row-center",
-        "x": 1030,
-        "y": 420,
+        "x": 1630,
+        "y": 100,
         "wires": []
     },
     {
@@ -303,11 +247,11 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nreturn msg;",
+        "func": "var command;\nif(msg.payload.Temperature<=10)\n    command = \"#thermometer_empty\";\n\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    command = \"#thermometer_quarter\";\n\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    command = \"#thermometer_half\";\n\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    command = \"#thermometer_three_quarters\";\n\nif(msg.payload.Temperature>40)\n    command = \"#thermometer_full\";\n\nmsg.payload = \n    {\n      \"command\": \"update_attribute\",\n      \"selector\": \"#thermometer\",\n      \"attributeName\": \"xlink:href\",\n      \"attributeValue\": command\n    };\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1010,
-        "y": 240,
+        "x": 1170,
+        "y": 340,
         "wires": [
             [
                 "136ef34d.4bdc0d"
@@ -319,11 +263,11 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "\n\nif(msg.payload.Humidity<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_10);\"\n    },\n    ];\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_20);\"\n    },\n    ];\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_30);\"\n    },\n    ];\nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_40);\"\n    },\n    ];\nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_50);\"\n    },\n    ];\nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_60);\"\n    },\n    ];\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_70);\"\n    },\n    ];\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_80);\"\n    },\n    ];\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_90);\"\n    },\n    ];\nif(msg.payload.Humidity>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_100);\"\n    },\n    ];\nreturn msg;",
+        "func": "var command;\nif(msg.payload.Humidity<=10)\n    command = \"fill:url(#alfaHumidity_10);\";\n\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    command = \"fill:url(#alfaHumidity_20);\";\n\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    command = \"fill:url(#alfaHumidity_30);\";\n    \nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    command = \"fill:url(#alfaHumidity_40);\";\n    \nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    command = \"fill:url(#alfaHumidity_50);\";\n    \nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    command = \"fill:url(#alfaHumidity_60);\";\n\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    command = \"fill:url(#alfaHumidity_70);\";\n\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    command = \"fill:url(#alfaHumidity_80);\";\n\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    command = \"fill:url(#alfaHumidity_90);\";\n    \nif(msg.payload.Humidity>90)\n    command = \"fill:url(#alfaHumidity_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaHumidity\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1010,
-        "y": 320,
+        "x": 1170,
+        "y": 420,
         "wires": [
             [
                 "795fc59b.e184bc"
@@ -342,10 +286,10 @@
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
-        "showCoordinates": true,
+        "showCoordinates": false,
         "autoFormatAfterEdit": false,
-        "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "showBrowserErrors": true,
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -354,8 +298,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Temperature [BETA]",
-        "x": 1180,
-        "y": 620,
+        "x": 1780,
+        "y": 340,
         "wires": [
             []
         ]
@@ -372,10 +316,10 @@
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
-        "showCoordinates": true,
+        "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -384,8 +328,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Temperature [GAMA]",
-        "x": 1180,
-        "y": 1000,
+        "x": 2200,
+        "y": 340,
         "wires": [
             []
         ]
@@ -395,11 +339,11 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nreturn msg;",
+        "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 990,
-        "y": 620,
+        "x": 1590,
+        "y": 340,
         "wires": [
             [
                 "7ccf4a4e.78d4f4"
@@ -411,11 +355,11 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nreturn msg;",
+        "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 990,
-        "y": 1000,
+        "x": 2010,
+        "y": 340,
         "wires": [
             [
                 "3c11902e.b2221"
@@ -427,78 +371,14 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "if(msg.payload.Light<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_10);\"\n    },\n    ];\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_20);\"\n    },\n    ];\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_30);\"\n    },\n    ];\nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_40);\"\n    },\n    ];\nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_50);\"\n    },\n    ];\nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_60);\"\n    },\n    ];\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_70);\"\n    },\n    ];\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_80);\"\n    },\n    ];\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_90);\"\n    },\n    ];\nif(msg.payload.Light>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_100);\"\n    },\n    ];\nreturn msg;",
+        "func": "var command;\nif(msg.payload.Light<=10)\n    command = \"fill:url(#alfaLightness_10);\";\n\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    command = \"fill:url(#alfaLightness_20);\";\n\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    command = \"fill:url(#alfaLightness_30);\";\n    \nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    command = \"fill:url(#alfaLightness_40);\";\n    \nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    command = \"fill:url(#alfaLightness_50);\";\n    \nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    command = \"fill:url(#alfaLightness_60);\";\n\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    command = \"fill:url(#alfaLightness_70);\";\n\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    command = \"fill:url(#alfaLightness_80);\";\n\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    command = \"fill:url(#alfaLightness_90);\";\n    \nif(msg.payload.Light>90)\n    command = \"fill:url(#alfaLightness_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaLightness\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1010,
-        "y": 280,
+        "x": 1170,
+        "y": 380,
         "wires": [
             [
                 "97f13339.5bdb1"
-            ]
-        ]
-    },
-    {
-        "id": "827ea6dc.e21818",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "if(msg.payload.Light<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_10);\"\n    },\n    ];\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_20);\"\n    },\n    ];\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_30);\"\n    },\n    ];\nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_40);\"\n    },\n    ];\nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_50);\"\n    },\n    ];\nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_60);\"\n    },\n    ];\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_70);\"\n    },\n    ];\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_80);\"\n    },\n    ];\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_90);\"\n    },\n    ];\nif(msg.payload.Light>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 660,
-        "wires": [
-            [
-                "de8023a4.29843"
-            ]
-        ]
-    },
-    {
-        "id": "16d08f07.f16b41",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "if(msg.payload.Light<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_10);\"\n    },\n    ];\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_20);\"\n    },\n    ];\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_30);\"\n    },\n    ];\nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_40);\"\n    },\n    ];\nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_50);\"\n    },\n    ];\nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_60);\"\n    },\n    ];\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_70);\"\n    },\n    ];\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_80);\"\n    },\n    ];\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_90);\"\n    },\n    ];\nif(msg.payload.Light>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#lightness\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#lightness_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 1040,
-        "wires": [
-            [
-                "594109a.c4b4ff8"
-            ]
-        ]
-    },
-    {
-        "id": "da85c69c.7cc458",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "\n\nif(msg.payload.Humidity<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_10);\"\n    },\n    ];\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_20);\"\n    },\n    ];\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_30);\"\n    },\n    ];\nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_40);\"\n    },\n    ];\nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_50);\"\n    },\n    ];\nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_60);\"\n    },\n    ];\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_70);\"\n    },\n    ];\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_80);\"\n    },\n    ];\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_90);\"\n    },\n    ];\nif(msg.payload.Humidity>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 700,
-        "wires": [
-            [
-                "2bb3a460.2f2d1c"
-            ]
-        ]
-    },
-    {
-        "id": "f6544e74.0c6f9",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "\n\nif(msg.payload.Humidity<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_10);\"\n    },\n    ];\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_20);\"\n    },\n    ];\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_30);\"\n    },\n    ];\nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_40);\"\n    },\n    ];\nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_50);\"\n    },\n    ];\nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_60);\"\n    },\n    ];\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_70);\"\n    },\n    ];\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_80);\"\n    },\n    ];\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_90);\"\n    },\n    ];\nif(msg.payload.Humidity>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#humidity\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#humidity_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 1080,
-        "wires": [
-            [
-                "c8d182d1.67acf"
             ]
         ]
     },
@@ -514,8 +394,8 @@
         "label": "Temperature",
         "format": "{{msg.payload.Temperature}}ºC",
         "layout": "col-center",
-        "x": 1070,
-        "y": 160,
+        "x": 1230,
+        "y": 220,
         "wires": []
     },
     {
@@ -530,8 +410,8 @@
         "label": "Humidity",
         "format": "{{msg.payload.Humidity}}%",
         "layout": "col-center",
-        "x": 1060,
-        "y": 80,
+        "x": 1220,
+        "y": 140,
         "wires": []
     },
     {
@@ -542,14 +422,14 @@
         "order": 1,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"thermometer\" xlink:href=\"#thermometer_empty\" x=\"75\" y=\"0\" width=\"150\" height=\"300\" fill=\"midnightblue\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"thermometer_empty\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-35.346 28.654-64 64-64s64 28.654 64 64zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_quarter\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V288c0-17.673 14.327-32 32-32s32 14.327 32 32v40.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_half\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V224c0-17.673 14.327-32 32-32s32 14.327 32 32v104.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_three_quarters\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64-35.346 0-64-28.654-64-64 0-23.685 12.876-44.349 32-55.417V160c0-17.673 14.327-32 32-32s32 14.327 32 32v168.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_full\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\">\n    <path d=\"M224 96c0-53.019-42.981-96-96-96S32 42.981 32 96v203.347C12.225 321.756.166 351.136.002 383.333c-.359 70.303 56.787 128.176 127.089 128.664.299.002.61.003.909.003 70.698 0 128-57.304 128-128 0-32.459-12.088-62.09-32-84.653V96zm-96 368l-.576-.002c-43.86-.304-79.647-36.544-79.423-80.42.173-33.98 19.266-51.652 31.999-66.08V96c0-26.467 21.533-48 48-48s48 21.533 48 48v221.498c12.63 14.312 32 32.164 32 66.502 0 44.112-35.888 80-80 80zm64-80c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V96c0-17.673 14.327-32 32-32s32 14.327 32 32v232.583c19.124 11.068 32 31.732 32 55.417z\" />\n  </symbol>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"thermometer\" xlink:href=\"#thermometer_empty\" x=\"75\" y=\"0\" width=\"150\" height=\"300\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"thermometer_empty\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\" style=\"fill:midnightblue;\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-35.346 28.654-64 64-64s64 28.654 64 64zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_quarter\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\" style=\"fill:navyblue;\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V288c0-17.673 14.327-32 32-32s32 14.327 32 32v40.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_half\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\" style=\"fill:gold;\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V224c0-17.673 14.327-32 32-32s32 14.327 32 32v104.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_three_quarters\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\" style=\"fill:coral;\">\n    <path d=\"M192 384c0 35.346-28.654 64-64 64-35.346 0-64-28.654-64-64 0-23.685 12.876-44.349 32-55.417V160c0-17.673 14.327-32 32-32s32 14.327 32 32v168.583c19.124 11.068 32 31.732 32 55.417zm32-84.653c19.912 22.563 32 52.194 32 84.653 0 70.696-57.303 128-128 128-.299 0-.609-.001-.909-.003C56.789 511.509-.357 453.636.002 383.333.166 351.135 12.225 321.755 32 299.347V96c0-53.019 42.981-96 96-96s96 42.981 96 96v203.347zM208 384c0-34.339-19.37-52.19-32-66.502V96c0-26.467-21.533-48-48-48S80 69.533 80 96v221.498c-12.732 14.428-31.825 32.1-31.999 66.08-.224 43.876 35.563 80.116 79.423 80.42L128 464c44.112 0 80-35.888 80-80z\" />\n  </symbol>\n  <symbol id=\"thermometer_full\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 256 512\" style=\"fill:crimson;\">\n    <path d=\"M224 96c0-53.019-42.981-96-96-96S32 42.981 32 96v203.347C12.225 321.756.166 351.136.002 383.333c-.359 70.303 56.787 128.176 127.089 128.664.299.002.61.003.909.003 70.698 0 128-57.304 128-128 0-32.459-12.088-62.09-32-84.653V96zm-96 368l-.576-.002c-43.86-.304-79.647-36.544-79.423-80.42.173-33.98 19.266-51.652 31.999-66.08V96c0-26.467 21.533-48 48-48s48 21.533 48 48v221.498c12.63 14.312 32 32.164 32 66.502 0 44.112-35.888 80-80 80zm64-80c0 35.346-28.654 64-64 64s-64-28.654-64-64c0-23.685 12.876-44.349 32-55.417V96c0-17.673 14.327-32 32-32s32 14.327 32 32v232.583c19.124 11.068 32 31.732 32 55.417z\" />\n  </symbol>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
-        "showCoordinates": true,
+        "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -558,8 +438,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Temperature [ALFA]",
-        "x": 1200,
-        "y": 240,
+        "x": 1360,
+        "y": 340,
         "wires": [
             []
         ]
@@ -576,8 +456,8 @@
         "label": "Lightness",
         "format": "{{msg.payload.Light}}%",
         "layout": "col-center",
-        "x": 1060,
-        "y": 120,
+        "x": 1220,
+        "y": 180,
         "wires": []
     },
     {
@@ -592,8 +472,8 @@
         "label": "Moisture",
         "format": "{{msg.payload.Moisture}}%",
         "layout": "col-center",
-        "x": 1060,
-        "y": 200,
+        "x": 1220,
+        "y": 260,
         "wires": []
     },
     {
@@ -608,8 +488,8 @@
         "label": "Temperature",
         "format": "{{msg.payload.Temperature}}ºC",
         "layout": "col-center",
-        "x": 1050,
-        "y": 540,
+        "x": 1650,
+        "y": 220,
         "wires": []
     },
     {
@@ -624,8 +504,8 @@
         "label": "Humidity",
         "format": "{{msg.payload.Humidity}}%",
         "layout": "col-center",
-        "x": 1040,
-        "y": 460,
+        "x": 1640,
+        "y": 140,
         "wires": []
     },
     {
@@ -640,8 +520,8 @@
         "label": "Lightness",
         "format": "{{msg.payload.Light}}%",
         "layout": "col-center",
-        "x": 1050,
-        "y": 500,
+        "x": 1650,
+        "y": 180,
         "wires": []
     },
     {
@@ -656,8 +536,8 @@
         "label": "Moisture",
         "format": "{{msg.payload.Moisture}}%",
         "layout": "col-center",
-        "x": 1040,
-        "y": 580,
+        "x": 1640,
+        "y": 260,
         "wires": []
     },
     {
@@ -672,8 +552,8 @@
         "label": "Temperature",
         "format": "{{msg.payload.Temperature}}ºC",
         "layout": "col-center",
-        "x": 1060,
-        "y": 920,
+        "x": 2080,
+        "y": 220,
         "wires": []
     },
     {
@@ -688,8 +568,8 @@
         "label": "Humidity",
         "format": "{{msg.payload.Humidity}}%",
         "layout": "col-center",
-        "x": 1040,
-        "y": 840,
+        "x": 2060,
+        "y": 140,
         "wires": []
     },
     {
@@ -704,8 +584,8 @@
         "label": "Lightness",
         "format": "{{msg.payload.Light}}%",
         "layout": "col-center",
-        "x": 1050,
-        "y": 880,
+        "x": 2070,
+        "y": 180,
         "wires": []
     },
     {
@@ -720,8 +600,8 @@
         "label": "Moisture",
         "format": "{{msg.payload.Moisture}}%",
         "layout": "col-center",
-        "x": 1050,
-        "y": 960,
+        "x": 2070,
+        "y": 260,
         "wires": []
     },
     {
@@ -729,11 +609,11 @@
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "\n\nif(msg.payload.Moisture<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_10);\"\n    },\n    ];\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_20);\"\n    },\n    ];\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_30);\"\n    },\n    ];\nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_40);\"\n    },\n    ];\nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_50);\"\n    },\n    ];\nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_60);\"\n    },\n    ];\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_70);\"\n    },\n    ];\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_80);\"\n    },\n    ];\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_90);\"\n    },\n    ];\nif(msg.payload.Moisture>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_100);\"\n    },\n    ];\nreturn msg;",
+        "func": "var command;\nif(msg.payload.Moisture<=10)\n    command = \"fill:url(#alfaMoisture_10);\";\n\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    command = \"fill:url(#alfaMoisture_20);\";\n\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    command = \"fill:url(#alfaMoisture_30);\";\n    \nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    command = \"fill:url(#alfaMoisture_40);\";\n    \nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    command = \"fill:url(#alfaMoisture_50);\";\n    \nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    command = \"fill:url(#alfaMoisture_60);\";\n\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    command = \"fill:url(#alfaMoisture_70);\";\n\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    command = \"fill:url(#alfaMoisture_80);\";\n\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    command = \"fill:url(#alfaMoisture_90);\";\n    \nif(msg.payload.Moisture>90)\n    command = \"fill:url(#alfaMoisture_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaMoisture\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1010,
-        "y": 360,
+        "x": 1170,
+        "y": 460,
         "wires": [
             [
                 "2a899c5d.a38d24"
@@ -748,14 +628,14 @@
         "order": 3,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"moisture\" xlink:href=\"#plant\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#moisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"plant\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"moisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"alfaMoisture\" xlink:href=\"#alfaMoisture_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#alfaMoisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"alfaMoisture_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"alfaMoisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaMoisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -764,26 +644,10 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Moisture [ALFA]",
-        "x": 1180,
-        "y": 360,
+        "x": 1340,
+        "y": 460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "1ac82a4f.03b756",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "\n\nif(msg.payload.Moisture<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_10);\"\n    },\n    ];\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_20);\"\n    },\n    ];\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_30);\"\n    },\n    ];\nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_40);\"\n    },\n    ];\nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_50);\"\n    },\n    ];\nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_60);\"\n    },\n    ];\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_70);\"\n    },\n    ];\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_80);\"\n    },\n    ];\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_90);\"\n    },\n    ];\nif(msg.payload.Moisture>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 740,
-        "wires": [
-            [
-                "99486b2a.0458b8"
-            ]
         ]
     },
     {
@@ -794,14 +658,14 @@
         "order": 3,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"moisture\" xlink:href=\"#plant\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#moisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"plant\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"moisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"betaMoisture\" xlink:href=\"#betaMoisture_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#betaMoisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"betaMoisture_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"betaMoisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaMoisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -810,26 +674,10 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Moisture [BETA]",
-        "x": 1160,
-        "y": 740,
+        "x": 1760,
+        "y": 460,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "e0b302c6.85518",
-        "type": "function",
-        "z": "36088eac.626c12",
-        "name": "",
-        "func": "\n\nif(msg.payload.Moisture<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_10);\"\n    },\n    ];\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_20);\"\n    },\n    ];\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_30);\"\n    },\n    ];\nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_40);\"\n    },\n    ];\nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_50);\"\n    },\n    ];\nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_60);\"\n    },\n    ];\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_70);\"\n    },\n    ];\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_80);\"\n    },\n    ];\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_90);\"\n    },\n    ];\nif(msg.payload.Moisture>90)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#moisture\",\n        \"attributeName\": \"style\",\n        \"attributeValue\": \"fill:url(#moisture_100);\"\n    },\n    ];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 990,
-        "y": 1120,
-        "wires": [
-            [
-                "e4af6d3a.c3c0b"
-            ]
         ]
     },
     {
@@ -840,14 +688,14 @@
         "order": 3,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"moisture\" xlink:href=\"#plant\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#moisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"plant\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"moisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"moisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"gamaMoisture\" xlink:href=\"#gamaMoisture_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#gamaMoisture_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"gamaMoisture_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 512 512\">\n    <path d=\"M64 96H0c0 123.7 100.3 224 224 224v144c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V320C288 196.3 187.7 96 64 96zm384-64c-84.2 0-157.4 46.5-195.7 115.2 27.7 30.2 48.2 66.9 59 107.6C424 243.1 512 147.9 512 32h-64z\" />\n  </symbol>\n  <linearGradient id=\"gamaMoisture_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaMoisture_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: yellowgreen; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -856,8 +704,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Moisture [GAMA]",
-        "x": 1170,
-        "y": 1120,
+        "x": 2190,
+        "y": 460,
         "wires": [
             []
         ]
@@ -870,14 +718,14 @@
         "order": 4,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"lightness\" xlink:href=\"#lightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#lightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"lightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"lightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"alfaLightness\" xlink:href=\"#alfaLightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#alfaLightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"alfaLightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"alfaLightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaLightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -886,38 +734,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Lightness [ALFA]",
-        "x": 1190,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "de8023a4.29843",
-        "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
-        "order": 4,
-        "width": 3,
-        "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"lightness\" xlink:href=\"#lightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#lightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"lightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"lightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
-        "clickableShapes": [],
-        "smilAnimations": [],
-        "bindings": [],
-        "showCoordinates": false,
-        "autoFormatAfterEdit": false,
-        "showBrowserErrors": false,
-        "outputField": "anotherField",
-        "editorUrl": "//drawsvg.org/drawsvg.html",
-        "directory": "",
-        "panning": "disabled",
-        "zooming": "disabled",
-        "panOnlyWhenZoomed": false,
-        "doubleClickZoomEnabled": false,
-        "mouseWheelZoomEnabled": false,
-        "name": "Lightness [BETA]",
-        "x": 1170,
-        "y": 660,
+        "x": 1350,
+        "y": 380,
         "wires": [
             []
         ]
@@ -930,14 +748,14 @@
         "order": 4,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"lightness\" xlink:href=\"#lightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#lightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"lightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"lightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"lightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"gamaLightness\" xlink:href=\"#gamaLightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#gamaLightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"gamaLightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"gamaLightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaLightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -946,8 +764,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Lightness [GAMA]",
-        "x": 1170,
-        "y": 1040,
+        "x": 2190,
+        "y": 380,
         "wires": [
             []
         ]
@@ -960,14 +778,14 @@
         "order": 2,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"humidity\" xlink:href=\"#water\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#humidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"water\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"humidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"alfaHumidity\" xlink:href=\"#alfaHumidity_icon\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#alfaHumidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"alfaHumidity_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"alfaHumidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaHumidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -976,8 +794,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Humidity [ALFA]",
-        "x": 1180,
-        "y": 320,
+        "x": 1340,
+        "y": 420,
         "wires": [
             []
         ]
@@ -990,14 +808,14 @@
         "order": 2,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"humidity\" xlink:href=\"#water\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#humidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"water\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"humidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"betaHumidity\" xlink:href=\"#betaHumidity_icon\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#betaHumidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"betaHumidity_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"betaHumidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaHumidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -1006,8 +824,8 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Humidity [BETA]",
-        "x": 1160,
-        "y": 700,
+        "x": 1760,
+        "y": 420,
         "wires": [
             []
         ]
@@ -1020,14 +838,14 @@
         "order": 2,
         "width": 3,
         "height": 3,
-        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"humidity\" xlink:href=\"#water\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#humidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"water\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"humidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"humidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"gamaHumidity\" xlink:href=\"#gamaHumidity_icon\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#gamaHumidity_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"gamaHumidity_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M205.22 22.09c-7.94-28.78-49.44-30.12-58.44 0C100.01 179.85 0 222.72 0 333.91 0 432.35 78.72 512 176 512s176-79.65 176-178.09c0-111.75-99.79-153.34-146.78-311.82zM176 448c-61.75 0-112-50.25-112-112 0-8.84 7.16-16 16-16s16 7.16 16 16c0 44.11 35.89 80 80 80 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"gamaHumidity_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaHumidity_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: midnightblue; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
         "clickableShapes": [],
         "smilAnimations": [],
         "bindings": [],
         "showCoordinates": false,
         "autoFormatAfterEdit": false,
         "showBrowserErrors": false,
-        "outputField": "anotherField",
+        "outputField": "",
         "editorUrl": "//drawsvg.org/drawsvg.html",
         "directory": "",
         "panning": "disabled",
@@ -1036,44 +854,18 @@
         "doubleClickZoomEnabled": false,
         "mouseWheelZoomEnabled": false,
         "name": "Humidity [GAMA]",
-        "x": 1170,
-        "y": 1080,
+        "x": 2190,
+        "y": 420,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "a71edcb9.51dbc",
-        "type": "ui_numeric",
-        "z": "36088eac.626c12",
-        "name": "Moisture [%]",
-        "label": "",
-        "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 6,
-        "width": 4,
-        "height": 1,
-        "wrap": true,
-        "passthru": false,
-        "topic": "moiMin",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 350,
-        "y": 640,
-        "wires": [
-            [
-                "c5c709db.1b2828"
-            ]
         ]
     },
     {
         "id": "8fa9b686.6c30d8",
         "type": "ui_colour_picker",
         "z": "36088eac.626c12",
-        "name": "",
-        "label": "Light",
+        "name": "LedLight",
+        "label": "Led Light ",
         "group": "ac75c8d1.91fa48",
         "format": "rgb",
         "outformat": "object",
@@ -1085,13 +877,13 @@
         "showLightness": true,
         "square": "false",
         "dynOutput": "false",
-        "order": 10,
+        "order": 11,
         "width": 5,
         "height": 2,
         "passthru": false,
         "topic": "rgb",
-        "x": 330,
-        "y": 720,
+        "x": 500,
+        "y": 840,
         "wires": [
             [
                 "c5c709db.1b2828"
@@ -1102,7 +894,7 @@
         "id": "c5c709db.1b2828",
         "type": "join",
         "z": "36088eac.626c12",
-        "name": "",
+        "name": "JoinMsg",
         "mode": "custom",
         "build": "object",
         "property": "payload",
@@ -1118,8 +910,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 530,
-        "y": 820,
+        "x": 680,
+        "y": 860,
         "wires": [
             [
                 "7e3187e3.c8e738"
@@ -1130,7 +922,7 @@
         "id": "8c7951.1777e6b",
         "type": "change",
         "z": "36088eac.626c12",
-        "name": "OK",
+        "name": "Complete",
         "rules": [
             {
                 "t": "move",
@@ -1145,8 +937,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 390,
-        "y": 820,
+        "x": 500,
+        "y": 880,
         "wires": [
             [
                 "c5c709db.1b2828"
@@ -1159,46 +951,65 @@
         "z": "36088eac.626c12",
         "name": "",
         "group": "ac75c8d1.91fa48",
-        "order": 13,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "button",
+        "order": 15,
+        "width": 2,
+        "height": 2,
+        "passthru": true,
+        "label": "",
         "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "a",
-        "payloadType": "str",
+        "color": "#0094ce",
+        "bgcolor": "white",
+        "icon": "fa-check-square fa-5x",
+        "payload": "0",
+        "payloadType": "num",
         "topic": "forced",
-        "x": 295,
-        "y": 820,
+        "x": 375,
+        "y": 880,
         "wires": [
             [
-                "8c7951.1777e6b"
+                "8c7951.1777e6b",
+                "480e2124.8f80c",
+                "b425bd80.dbf53",
+                "9019eec4.7fe8f",
+                "f2bc8ed6.8a88a",
+                "8fa9b686.6c30d8"
             ]
         ],
         "l": false
     },
     {
-        "id": "9d688003.ef748",
-        "type": "ui_numeric",
+        "id": "7e3187e3.c8e738",
+        "type": "function",
         "z": "36088eac.626c12",
-        "name": "Moisture [%]",
-        "label": "Moisture ",
+        "name": "ValueAnalyze",
+        "func": "var warning = 0;\n//condicional que proteje de valores superiores ou inferiores dos limites que são suportados\nif((msg.payload.temMin<0)||(msg.payload.temMin>50)||(msg.payload.moiMin<0)||(msg.payload.moiMin>100))\n{\n    flow.set('warning',1);\n}\nif((msg.payload.temMax<0)||(msg.payload.temMax>50)||(msg.payload.moiMax<0)||(msg.payload.moiMax>100))\n{\n    flow.set('warning',1);\n}\n//condicional para quando o valor mínimo é maior que o máximo\nif((msg.payload.temMin>=msg.payload.temMax)||(msg.payload.moiMin>=msg.payload.moiMax))\n{\n    flow.set('warning',1);\n}\n\n//caso os valores estajam de acordo com o esperado, envia a string convertida para o ARM\nif(warning===0){\nvar string = msg.payload.temMin+\" \"+msg.payload.temMax+\" \"+msg.payload.moiMin+\" \"+msg.payload.moiMax+\" \"+msg.payload.rgb.r+\" \"+msg.payload.rgb.g+\" \"+msg.payload.rgb.b;\nvar size = string.length;\nif(size<25)\n{\n    for ( var i=0; i<(25-size); i++)\n    {\n        string += \" \";\n    }\n}\nmsg.payload = string;\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 860,
+        "wires": [
+            [
+                "1cfa9fa4.9a7af",
+                "d50c48e5.4cdea8"
+            ]
+        ]
+    },
+    {
+        "id": "480e2124.8f80c",
+        "type": "ui_text_input",
+        "z": "36088eac.626c12",
+        "name": "TempMin",
+        "label": "Temperature Minimum [>0°C]",
         "tooltip": "",
         "group": "ac75c8d1.91fa48",
-        "order": 7,
-        "width": 4,
+        "order": 3,
+        "width": 5,
         "height": 1,
-        "wrap": true,
-        "passthru": false,
-        "topic": "moiMax",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 350,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "temMin",
+        "x": 500,
         "y": 680,
         "wires": [
             [
@@ -1207,51 +1018,22 @@
         ]
     },
     {
-        "id": "23aab846.9e1808",
-        "type": "ui_numeric",
+        "id": "b425bd80.dbf53",
+        "type": "ui_text_input",
         "z": "36088eac.626c12",
-        "name": "Temperature",
-        "label": "",
+        "name": "TempMax",
+        "label": "Temperature Maximum [<50°C]",
         "tooltip": "",
         "group": "ac75c8d1.91fa48",
-        "order": 2,
-        "width": 4,
+        "order": 4,
+        "width": 5,
         "height": 1,
-        "wrap": true,
-        "passthru": false,
-        "topic": "temMin",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 350,
-        "y": 560,
-        "wires": [
-            [
-                "c5c709db.1b2828"
-            ]
-        ]
-    },
-    {
-        "id": "ac38f426.48ed18",
-        "type": "ui_numeric",
-        "z": "36088eac.626c12",
-        "name": "Temperature",
-        "label": "Temperature",
-        "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 3,
-        "width": 4,
-        "height": 1,
-        "wrap": true,
-        "passthru": false,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
         "topic": "temMax",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "step": 1,
-        "x": 350,
-        "y": 600,
+        "x": 500,
+        "y": 720,
         "wires": [
             [
                 "c5c709db.1b2828"
@@ -1259,30 +1041,650 @@
         ]
     },
     {
-        "id": "7e3187e3.c8e738",
+        "id": "9019eec4.7fe8f",
+        "type": "ui_text_input",
+        "z": "36088eac.626c12",
+        "name": "MoisMin",
+        "label": "Moisture [>0%]",
+        "tooltip": "",
+        "group": "ac75c8d1.91fa48",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "moiMin",
+        "x": 500,
+        "y": 760,
+        "wires": [
+            [
+                "c5c709db.1b2828"
+            ]
+        ]
+    },
+    {
+        "id": "f2bc8ed6.8a88a",
+        "type": "ui_text_input",
+        "z": "36088eac.626c12",
+        "name": "MoisMax",
+        "label": "Moisture [<100%]",
+        "tooltip": "",
+        "group": "ac75c8d1.91fa48",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": "0",
+        "topic": "moiMax",
+        "x": 500,
+        "y": 800,
+        "wires": [
+            [
+                "c5c709db.1b2828"
+            ]
+        ]
+    },
+    {
+        "id": "d50c48e5.4cdea8",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "WarningNotify",
+        "func": "//SE A NOTIFICAÇÃO FOI LIDA\nif(msg.payload == \"OK\"){\n    flow.set('warning', 0);\n}\n\n//SE OS VALORES ESTÃO INCOERENTES\nvar Warn = flow.get('warning');\nif(Warn!==0){\n    msg.payload = \"Os valores estão fora dos limites!\";\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 920,
+        "wires": [
+            [
+                "e80d8839.fb7768",
+                "9c22d9a4.be0a38"
+            ]
+        ]
+    },
+    {
+        "id": "e80d8839.fb7768",
+        "type": "ui_toast",
+        "z": "36088eac.626c12",
+        "position": "dialog",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "AVISO",
+        "name": "Notification",
+        "x": 1090,
+        "y": 920,
+        "wires": [
+            [
+                "d50c48e5.4cdea8"
+            ]
+        ]
+    },
+    {
+        "id": "42aa1f11.d85fa",
         "type": "function",
         "z": "36088eac.626c12",
         "name": "",
-        "func": "msg.payload = msg.payload.temMin+\" \"+msg.payload.temMax+\" \"+msg.payload.moiMin+\" \"+msg.payload.moiMax+\" \"+msg.payload.rgb.r+\" \"+msg.payload.rgb.g+\" \"+msg.payload.rgb.b;\nreturn msg;",
+        "func": "var command;\nif(msg.payload.Power<=5)\n    command = \"fill:url(#alfaPower_10);\";\n\nif((msg.payload.Power>5)&&(msg.payload.Power<=10))\n    command = \"fill:url(#alfaPower_20);\";\n\nif((msg.payload.Power>10)&&(msg.payload.Power<=15))\n    command = \"fill:url(#alfaPower_30);\";\n    \nif((msg.payload.Power>15)&&(msg.payload.Power<=20))\n    command = \"fill:url(#alfaPower_40);\";\n    \nif((msg.payload.Power>20)&&(msg.payload.Power<=25))\n    command = \"fill:url(#alfaPower_50);\";\n    \nif((msg.payload.Power>25)&&(msg.payload.Power<=30))\n    command = \"fill:url(#alfaPower_60);\";\n\nif((msg.payload.Power>30)&&(msg.payload.Power<=35))\n    command = \"fill:url(#alfaPower_70);\";\n\nif((msg.payload.Power>35)&&(msg.payload.Power<=40))\n    command = \"fill:url(#alfaPower_80);\";\n\nif((msg.payload.Power>40)&&(msg.payload.Power<=45))\n    command = \"fill:url(#alfaPower_90);\";\n    \nif(msg.payload.Power>45)\n    command = \"fill:url(#alfaPower_100);\";\n    \nif(msg.payload.Status===0)\n    command = \"fill:url(#alfaPower_off);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaPower\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command,\n    };\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 650,
-        "y": 820,
+        "x": 1170,
+        "y": 500,
         "wires": [
             [
-                "1cfa9fa4.9a7af"
+                "43079f26.f48ad"
             ]
         ]
     },
     {
-        "id": "e51f551a.32fa38",
+        "id": "43079f26.f48ad",
+        "type": "ui_svg_graphics",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 3,
+        "width": 3,
+        "height": 3,
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"alfaPower\" xlink:href=\"#alfaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#alfaPower_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"alfaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"alfaPower_off\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"alfaPower_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "clickableShapes": [],
+        "smilAnimations": [],
+        "bindings": [],
+        "showCoordinates": false,
+        "autoFormatAfterEdit": false,
+        "showBrowserErrors": false,
+        "outputField": "",
+        "editorUrl": "//drawsvg.org/drawsvg.html",
+        "directory": "",
+        "panning": "disabled",
+        "zooming": "disabled",
+        "panOnlyWhenZoomed": false,
+        "doubleClickZoomEnabled": false,
+        "mouseWheelZoomEnabled": false,
+        "name": "Power [ALFA]",
+        "x": 1340,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6e242c5.39b7e",
+        "type": "ui_svg_graphics",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 4,
+        "width": 3,
+        "height": 3,
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"betaPower\" xlink:href=\"#betaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#betaPower_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"betaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"betaPower_off\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaPower_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "clickableShapes": [],
+        "smilAnimations": [],
+        "bindings": [],
+        "showCoordinates": false,
+        "autoFormatAfterEdit": false,
+        "showBrowserErrors": false,
+        "outputField": "",
+        "editorUrl": "//drawsvg.org/drawsvg.html",
+        "directory": "",
+        "panning": "disabled",
+        "zooming": "disabled",
+        "panOnlyWhenZoomed": false,
+        "doubleClickZoomEnabled": false,
+        "mouseWheelZoomEnabled": false,
+        "name": "Power [BETA]",
+        "x": 1760,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "414e25e9.b35e2c",
+        "type": "ui_svg_graphics",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 5,
+        "width": 3,
+        "height": 3,
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"gamaPower\" xlink:href=\"#gamaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#gamaPower_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"gamaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"gamaPower_off\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"gamaPower_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "clickableShapes": [],
+        "smilAnimations": [],
+        "bindings": [],
+        "showCoordinates": false,
+        "autoFormatAfterEdit": false,
+        "showBrowserErrors": false,
+        "outputField": "",
+        "editorUrl": "//drawsvg.org/drawsvg.html",
+        "directory": "",
+        "panning": "disabled",
+        "zooming": "disabled",
+        "panOnlyWhenZoomed": false,
+        "doubleClickZoomEnabled": false,
+        "mouseWheelZoomEnabled": false,
+        "name": "Power [GAMA]",
+        "x": 2180,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad631746.e147a8",
+        "type": "ui_text",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "name": "Power_label [ALFA]",
+        "label": "Alfa Power",
+        "format": "{{msg.payload.Power}}W",
+        "layout": "col-center",
+        "x": 1210,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4b8c3333.3f16fc",
+        "type": "ui_text",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "name": "Power_label [BETA]",
+        "label": "Beta Power",
+        "format": "{{msg.payload.Power}}W",
+        "layout": "col-center",
+        "x": 1640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9cdce64f.6b9de8",
+        "type": "ui_text",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 13,
+        "width": 3,
+        "height": 1,
+        "name": "Power_label [GAMA]",
+        "label": "Gama Power",
+        "format": "{{msg.payload.Power}}W",
+        "layout": "col-center",
+        "x": 2060,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d35ae6df.2a33e8",
+        "type": "ui_text",
+        "z": "36088eac.626c12",
+        "group": "1d26ead8.5cce25",
+        "order": 1,
+        "width": 12,
+        "height": 1,
+        "name": "InfoTurnOnOff",
+        "label": "",
+        "format": "Pressione o botão para desligar/religar as estufas",
+        "layout": "col-center",
+        "x": 780,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "f6359b8a.1cb748",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Light<=10)\n    command = \"fill:url(#betaLightness_10);\";\n\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    command = \"fill:url(#betaLightness_20);\";\n\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    command = \"fill:url(#betaLightness_30);\";\n    \nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    command = \"fill:url(#betaLightness_40);\";\n    \nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    command = \"fill:url(#betaLightness_50);\";\n    \nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    command = \"fill:url(#betaLightness_60);\";\n\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    command = \"fill:url(#betaLightness_70);\";\n\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    command = \"fill:url(#betaLightness_80);\";\n\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    command = \"fill:url(#betaLightness_90);\";\n    \nif(msg.payload.Light>90)\n    command = \"fill:url(#betaLightness_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaLightness\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1590,
+        "y": 380,
+        "wires": [
+            [
+                "d1cc0f55.deb3e"
+            ]
+        ]
+    },
+    {
+        "id": "92a0769a.fb0498",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Humidity<=10)\n    command = \"fill:url(#betaHumidity_10);\";\n\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    command = \"fill:url(#betaHumidity_20);\";\n\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    command = \"fill:url(#betaHumidity_30);\";\n    \nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    command = \"fill:url(#betaHumidity_40);\";\n    \nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    command = \"fill:url(#betaHumidity_50);\";\n    \nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    command = \"fill:url(#betaHumidity_60);\";\n\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    command = \"fill:url(#betaHumidity_70);\";\n\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    command = \"fill:url(#betaHumidity_80);\";\n\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    command = \"fill:url(#betaHumidity_90);\";\n    \nif(msg.payload.Humidity>90)\n    command = \"fill:url(#betaHumidity_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaHumidity\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1590,
+        "y": 420,
+        "wires": [
+            [
+                "2bb3a460.2f2d1c"
+            ]
+        ]
+    },
+    {
+        "id": "156beae4.e6ff45",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Moisture<=10)\n    command = \"fill:url(#betaMoisture_10);\";\n\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    command = \"fill:url(#betaMoisture_20);\";\n\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    command = \"fill:url(#betaMoisture_30);\";\n    \nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    command = \"fill:url(#betaMoisture_40);\";\n    \nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    command = \"fill:url(#betaMoisture_50);\";\n    \nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    command = \"fill:url(#betaMoisture_60);\";\n\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    command = \"fill:url(#betaMoisture_70);\";\n\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    command = \"fill:url(#betaMoisture_80);\";\n\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    command = \"fill:url(#betaMoisture_90);\";\n    \nif(msg.payload.Moisture>90)\n    command = \"fill:url(#betaMoisture_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaMoisture\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1590,
+        "y": 460,
+        "wires": [
+            [
+                "99486b2a.0458b8"
+            ]
+        ]
+    },
+    {
+        "id": "570663a2.44720c",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Power<=5)\n    command = \"fill:url(#betaPower_10);\";\n\nif((msg.payload.Power>5)&&(msg.payload.Power<=10))\n    command = \"fill:url(#betaPower_20);\";\n\nif((msg.payload.Power>10)&&(msg.payload.Power<=15))\n    command = \"fill:url(#betaPower_30);\";\n    \nif((msg.payload.Power>15)&&(msg.payload.Power<=20))\n    command = \"fill:url(#betaPower_40);\";\n    \nif((msg.payload.Power>20)&&(msg.payload.Power<=25))\n    command = \"fill:url(#betaPower_50);\";\n    \nif((msg.payload.Power>25)&&(msg.payload.Power<=30))\n    command = \"fill:url(#betaPower_60);\";\n\nif((msg.payload.Power>30)&&(msg.payload.Power<=35))\n    command = \"fill:url(#betaPower_70);\";\n\nif((msg.payload.Power>35)&&(msg.payload.Power<=40))\n    command = \"fill:url(#betaPower_80);\";\n\nif((msg.payload.Power>40)&&(msg.payload.Power<=45))\n    command = \"fill:url(#betaPower_90);\";\n    \nif(msg.payload.Power>45)\n    command = \"fill:url(#betaPower_100);\";\n    \nif(msg.payload.Status===0)\n    command = \"fill:url(#betaPower_off);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaPower\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1590,
+        "y": 500,
+        "wires": [
+            [
+                "d6e242c5.39b7e"
+            ]
+        ]
+    },
+    {
+        "id": "3fe2c1b4.53c2de",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Light<=10)\n    command = \"fill:url(#gamaLightness_10);\";\n\nif((msg.payload.Light>10)&&(msg.payload.Light<=20))\n    command = \"fill:url(#gamaLightness_20);\";\n\nif((msg.payload.Light>20)&&(msg.payload.Light<=30))\n    command = \"fill:url(#gamaLightness_30);\";\n    \nif((msg.payload.Light>30)&&(msg.payload.Light<=40))\n    command = \"fill:url(#gamaLightness_40);\";\n    \nif((msg.payload.Light>40)&&(msg.payload.Light<=50))\n    command = \"fill:url(#gamaLightness_50);\";\n    \nif((msg.payload.Light>50)&&(msg.payload.Light<=60))\n    command = \"fill:url(#gamaLightness_60);\";\n\nif((msg.payload.Light>60)&&(msg.payload.Light<=70))\n    command = \"fill:url(#gamaLightness_70);\";\n\nif((msg.payload.Light>70)&&(msg.payload.Light<=80))\n    command = \"fill:url(#gamaLightness_80);\";\n\nif((msg.payload.Light>80)&&(msg.payload.Light<=90))\n    command = \"fill:url(#gamaLightness_90);\";\n    \nif(msg.payload.Light>90)\n    command = \"fill:url(#gamaLightness_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaLightness\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2010,
+        "y": 380,
+        "wires": [
+            [
+                "594109a.c4b4ff8"
+            ]
+        ]
+    },
+    {
+        "id": "df568506.f6b578",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Humidity<=10)\n    command = \"fill:url(#gamaHumidity_10);\";\n\nif((msg.payload.Humidity>10)&&(msg.payload.Humidity<=20))\n    command = \"fill:url(#gamaHumidity_20);\";\n\nif((msg.payload.Humidity>20)&&(msg.payload.Humidity<=30))\n    command = \"fill:url(#gamaHumidity_30);\";\n    \nif((msg.payload.Humidity>30)&&(msg.payload.Humidity<=40))\n    command = \"fill:url(#gamaHumidity_40);\";\n    \nif((msg.payload.Humidity>40)&&(msg.payload.Humidity<=50))\n    command = \"fill:url(#gamaHumidity_50);\";\n    \nif((msg.payload.Humidity>50)&&(msg.payload.Humidity<=60))\n    command = \"fill:url(#gamaHumidity_60);\";\n\nif((msg.payload.Humidity>60)&&(msg.payload.Humidity<=70))\n    command = \"fill:url(#gamaHumidity_70);\";\n\nif((msg.payload.Humidity>70)&&(msg.payload.Humidity<=80))\n    command = \"fill:url(#gamaHumidity_80);\";\n\nif((msg.payload.Humidity>80)&&(msg.payload.Humidity<=90))\n    command = \"fill:url(#gamaHumidity_90);\";\n    \nif(msg.payload.Humidity>90)\n    command = \"fill:url(#gamaHumidity_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaHumidity\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2010,
+        "y": 420,
+        "wires": [
+            [
+                "c8d182d1.67acf"
+            ]
+        ]
+    },
+    {
+        "id": "a64dc68e.4d96d8",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Moisture<=10)\n    command = \"fill:url(#gamaMoisture_10);\";\n\nif((msg.payload.Moisture>10)&&(msg.payload.Moisture<=20))\n    command = \"fill:url(#gamaMoisture_20);\";\n\nif((msg.payload.Moisture>20)&&(msg.payload.Moisture<=30))\n    command = \"fill:url(#gamaMoisture_30);\";\n    \nif((msg.payload.Moisture>30)&&(msg.payload.Moisture<=40))\n    command = \"fill:url(#gamaMoisture_40);\";\n    \nif((msg.payload.Moisture>40)&&(msg.payload.Moisture<=50))\n    command = \"fill:url(#gamaMoisture_50);\";\n    \nif((msg.payload.Moisture>50)&&(msg.payload.Moisture<=60))\n    command = \"fill:url(#gamaMoisture_60);\";\n\nif((msg.payload.Moisture>60)&&(msg.payload.Moisture<=70))\n    command = \"fill:url(#gamaMoisture_70);\";\n\nif((msg.payload.Moisture>70)&&(msg.payload.Moisture<=80))\n    command = \"fill:url(#gamaMoisture_80);\";\n\nif((msg.payload.Moisture>80)&&(msg.payload.Moisture<=90))\n    command = \"fill:url(#gamaMoisture_90);\";\n    \nif(msg.payload.Moisture>90)\n    command = \"fill:url(#gamaMoisture_100);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaMoisture\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2010,
+        "y": 460,
+        "wires": [
+            [
+                "e4af6d3a.c3c0b"
+            ]
+        ]
+    },
+    {
+        "id": "4def786a.9a1f08",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "",
+        "func": "var command;\nif(msg.payload.Power<=5)\n    command = \"fill:url(#gamaPower_10);\";\n\nif((msg.payload.Power>5)&&(msg.payload.Power<=10))\n    command = \"fill:url(#gamaPower_20);\";\n\nif((msg.payload.Power>10)&&(msg.payload.Power<=15))\n    command = \"fill:url(#gamaPower_30);\";\n    \nif((msg.payload.Power>15)&&(msg.payload.Power<=20))\n    command = \"fill:url(#gamaPower_40);\";\n    \nif((msg.payload.Power>20)&&(msg.payload.Power<=25))\n    command = \"fill:url(#gamaPower_50);\";\n    \nif((msg.payload.Power>25)&&(msg.payload.Power<=30))\n    command = \"fill:url(#gamaPower_60);\";\n\nif((msg.payload.Power>30)&&(msg.payload.Power<=35))\n    command = \"fill:url(#gamaPower_70);\";\n\nif((msg.payload.Power>35)&&(msg.payload.Power<=40))\n    command = \"fill:url(#gamaPower_80);\";\n\nif((msg.payload.Power>40)&&(msg.payload.Power<=45))\n    command = \"fill:url(#gamaPower_90);\";\n    \nif(msg.payload.Power>45)\n    command = \"fill:url(#gamaPower_100);\";\n    \nif(msg.payload.Status===0)\n    command = \"fill:url(#gamaPower_off);\";\n    \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaPower\",\n        \"attributeName\" : \"style\",\n        \"attributeValue\": command};\nmsg.topic = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2010,
+        "y": 500,
+        "wires": [
+            [
+                "414e25e9.b35e2c"
+            ]
+        ]
+    },
+    {
+        "id": "245cce6c.37ba62",
+        "type": "ui_switch",
+        "z": "36088eac.626c12",
+        "name": "On / Off",
+        "label": "",
+        "tooltip": "",
+        "group": "1d26ead8.5cce25",
+        "order": 8,
+        "width": 2,
+        "height": 2,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-power-off fa-5x",
+        "oncolor": "crimson",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-power-off fa-5x",
+        "offcolor": "seagreen",
+        "x": 680,
+        "y": 720,
+        "wires": [
+            [
+                "17fb9563.5a7a0b"
+            ]
+        ]
+    },
+    {
+        "id": "17fb9563.5a7a0b",
+        "type": "function",
+        "z": "36088eac.626c12",
+        "name": "CodeTurnOnOff",
+        "func": "if(msg.payload===true){\n    msg.payload=\"0 99 0 99 255 255 255    \";\n}\nif(msg.payload===false){\n    msg.payload=\"0 88 0 99 255 255 255    \";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 860,
+        "y": 720,
+        "wires": [
+            [
+                "1cfa9fa4.9a7af",
+                "2596f927.6c84e6"
+            ]
+        ]
+    },
+    {
+        "id": "cb3e0100.8c24b",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Controle de Ligamento/Desligamento",
+        "info": "",
+        "x": 770,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f9ea60d3.30e0d",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Definições das estufas",
+        "info": "",
+        "x": 440,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "3353c6e8.c73dfa",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Junção das definições",
+        "info": "",
+        "x": 660,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "f3531117.9f737",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Análise e notificação de erro",
+        "info": "",
+        "x": 900,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "dc03e297.4025c",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Envio ao tópico de atuadores",
+        "info": "",
+        "x": 1160,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "750a3c7e.6eb0f4",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Recebimento local das definições",
+        "info": "",
+        "x": 490,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "bd7c16b9.46f298",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Envio local das informações",
+        "info": "",
+        "x": 460,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "97b4d991.1cce58",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Anexa o horário do envio",
+        "info": "",
+        "x": 710,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3a7403fd.60e94c",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Envio ao tópico de sensores",
+        "info": "",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6b73cb67.dc8f44",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Conversão dos dados",
+        "info": "",
+        "x": 700,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "2a745b39.9eb9e4",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Recebimento local dos dados coletados",
+        "info": "",
+        "x": 430,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "ff53a23e.026bb",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Separação das estufas",
+        "info": "",
+        "x": 920,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "36baa1ae.d790ce",
+        "type": "comment",
+        "z": "36088eac.626c12",
+        "name": "Interface gráfica e apresentação visual dos dados de cada estufa",
+        "info": "",
+        "x": 1690,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "db2f1ce7.47343",
+        "type": "ui_text",
+        "z": "36088eac.626c12",
+        "group": "ac75c8d1.91fa48",
+        "order": 1,
+        "width": 12,
+        "height": 1,
+        "name": "InfoDefinitions",
+        "label": "",
+        "format": "*Sempre atualize TODOS os parâmetros",
+        "layout": "col-center",
+        "x": 480,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "d1cc0f55.deb3e",
+        "type": "ui_svg_graphics",
+        "z": "36088eac.626c12",
+        "group": "e79f0760.0d92c8",
+        "order": 4,
+        "width": 3,
+        "height": 3,
+        "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"betaLightness\" xlink:href=\"#betaLightbulb\" x=\"50\" y=\"0\" width=\"200\" height=\"300\" style=\"fill:url(#betaLightness_10);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"betaLightbulb\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 352 512\">\n    <path d=\"M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z\" />\n  </symbol>\n  <linearGradient id=\"betaLightness_10\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"90%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_20\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"80%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_30\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"70%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_40\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"60%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_50\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"50%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_60\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"40%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_70\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"30%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_80\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"20%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_90\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"10%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n  <linearGradient id=\"betaLightness_100\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop offset=\"0%\" style=\"stop-color: lightgrey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: gold; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
+        "clickableShapes": [],
+        "smilAnimations": [],
+        "bindings": [],
+        "showCoordinates": false,
+        "autoFormatAfterEdit": false,
+        "showBrowserErrors": false,
+        "outputField": "",
+        "editorUrl": "//drawsvg.org/drawsvg.html",
+        "directory": "",
+        "panning": "disabled",
+        "zooming": "disabled",
+        "panOnlyWhenZoomed": false,
+        "doubleClickZoomEnabled": false,
+        "mouseWheelZoomEnabled": false,
+        "name": "Lightness [BETA]",
+        "x": 1770,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f49f5f68.d4fb",
+        "type": "debug",
+        "z": "36088eac.626c12",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 890,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2596f927.6c84e6",
+        "type": "debug",
+        "z": "36088eac.626c12",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1050,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ac94a2c.211056",
         "type": "mqtt-broker",
         "z": "",
-        "name": "Eclipse_Broker",
+        "name": "EclipseCrypto",
         "broker": "mqtt.eclipse.org",
-        "port": "1883",
+        "port": "8883",
+        "tls": "64f0087b.3e25f8",
         "clientid": "",
-        "usetls": false,
+        "usetls": true,
         "compatmode": false,
         "keepalive": "60",
         "cleansession": true,
@@ -1355,10 +1757,35 @@
         "z": "",
         "name": "CONTROLE DAS ESTUFAS",
         "tab": "89ba2785.17e178",
+        "order": 5,
+        "disp": true,
+        "width": "12",
+        "collapse": true
+    },
+    {
+        "id": "1d26ead8.5cce25",
+        "type": "ui_group",
+        "z": "",
+        "name": "CONSUMO ELÉTRICO",
+        "tab": "89ba2785.17e178",
         "order": 4,
         "disp": true,
         "width": "12",
         "collapse": true
+    },
+    {
+        "id": "64f0087b.3e25f8",
+        "type": "tls-config",
+        "z": "",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
     },
     {
         "id": "89ba2785.17e178",
@@ -1366,7 +1793,7 @@
         "z": "",
         "name": "MeuTrecoNaInternet",
         "icon": "filter_vintage",
-        "order": 1,
+        "order": 2,
         "disabled": false,
         "hidden": false
     }

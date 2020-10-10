@@ -47,6 +47,7 @@ DHT_DataTypedef DHT11_Data;						///< Cria a estrutura para o sensor
 #define VOLTAGE 12.00							///< Tensão elétrica usada para acionamento dos atuadores (Volts)
 #define I_MAX   4.00							///< Máxima corrente elétrica (Amperes)
 #define C_SENS  0.066							///< Coeficiente de sensibilidade do sensor ACS712 [0.185(5A), 0.1(20A), 0.066(30A)]
+#define ZERO    (4.85/2)*(4096/3.3)				///< Valor de variação centrald o sensor ACS712, que depende da tensão de alimentação do sensor
 #define SAMPLE  20								///< Número de amostras a serem analisadas pelos ADC's
 #define PERCENT (100.0/(4095.0*10.0)) 			///< Cálculo da porcentagem para medição de Luz e Umidade do Solo
 #define SIZE_TX 150								///< Tamanho máximo do buffer TX da usart
@@ -107,12 +108,22 @@ void SystemClock_Config(void);
   */
 void turnOn(void)
 {
-	HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin, GPIO_PIN_RESET); 		// Desativa o desligamento forçado dos atuadores
+	HAL_GPIO_WritePin(Shutdown_GPIO_Port, Shutdown_Pin,         GPIO_PIN_RESET);// Desativa o desligamento forçado dos atuadores
+	HAL_GPIO_WritePin(PeltierPlate_GPIO_Port,PeltierPlate_Pin,  GPIO_PIN_RESET);// Desativação do atuador
+	HAL_GPIO_WritePin(CoolerPeltier_GPIO_Port,CoolerPeltier_Pin,GPIO_PIN_RESET);// Desativação do atuador
+	HAL_GPIO_WritePin(CoolerFreeze_GPIO_Port, CoolerFreeze_Pin, GPIO_PIN_RESET);// Desativação do atuador
+	HAL_GPIO_WritePin(WaterPump_GPIO_Port,    WaterPump_Pin,    GPIO_PIN_RESET);// Desativação do atuador
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);									// Dispara a geração do sinal PWM - TIMER 3
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);									// Dispara a geração do sinal PWM - TIMER 3
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);									// Dispara a geração do sinal PWM - TIMER 3
-	parameter[0] = 0.0;															// Remove o código de reativação
-	StateOf[Status] = 1;														// Guarda estado atual
+	parameter[0]=0; parameter[1]=50; parameter[2]=0;							// Remove o código de reativação e reseta os parâmetros
+	parameter[3]=100; parameter[4]=255; parameter[5]=255; parameter[6]=255;
+	Current = 0;																// Reseta a variável de corrente para evitar medições enganosas
+	Power = 0;																    // Reseta a variável de potência para evitar medições enganosas
+	StateOf[PeltierPlate]  =   0;												// Guarda estado atual
+	StateOf[CoolerPeltier] =   0;												// Guarda estado atual
+	StateOf[CoolerFreeze]  =   0;												// Guarda estado atual
+	StateOf[Status]        =   1;												// Guarda estado atual
 }
 /**
   * @brief  Função de desligamento da estufa. O Shutdon é ativado, todos os atuadores são desativados, o PWM da fita de led é desligado.
@@ -128,7 +139,10 @@ void turnOff(void)
     HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_1);									// Desliga a geração do sinal PWM - TIMER 3
     HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_3);									// Desliga a geração do sinal PWM - TIMER 3
     HAL_TIM_PWM_Stop(&htim3, TIM_CHANNEL_4);									// Desliga a geração do sinal PWM - TIMER 3
-    parameter[0]           = 0.0;												// Remove o código de desativação
+	parameter[0]=0; parameter[1]=50; parameter[2]=0;							// Remove o código de reativação e reseta os parâmetros
+	parameter[3]=100; parameter[4]=255; parameter[5]=255; parameter[6]=255;
+	Current = 0;																// Reseta a variável de corrente para evitar medições enganosas
+	Power = 0;																    // Reseta a variável de potência para evitar medições enganosas
 	StateOf[PeltierPlate]  =   0;												// Guarda estado atual
 	StateOf[CoolerPeltier] =   0;												// Guarda estado atual
 	StateOf[CoolerFreeze]  =   0;												// Guarda estado atual
@@ -346,7 +360,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		Moisture = average[YL_69]*PERCENT;							// Retorna a porcentagem do valor medido de cada sensor
 	}																// Fim da conversão completa do ADC1
 	// GUARDA OS VALORES DO SENSOR DE CORRENTE
-	if(hadc->Instance==ADC2)										// Verifica se o CallBack foi feito pelo ADC2
+	if((hadc->Instance==ADC2)&&(StateOf[Status]==1))				// Verifica se o CallBack foi feito pelo ADC2 e a estufa está ativa
 	{																// Início da conversao completa do ADC2
 		average[ACS712] = 0;										// Zera as posições do vetor de média
 		for(int i=0;i<SAMPLE;i++)									// Laço para guardar as medidas
@@ -355,7 +369,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 			}														//
 		// CALCULO DA CORRENTE ELÉTRICA
 		average[ACS712] /= SAMPLE;									// Calcula a média aritmética das medidas
-		Current = (((3122.0-average[ACS712])/4096.0)*(3.3/C_SENS));	// Calcula a corrente elétrica a partir da medição do sensor de corrente
+		Current = (((ZERO-average[ACS712])/4096.0)*(3.3/C_SENS));	// Calcula a corrente elétrica a partir da medição do sensor de corrente
 		Current = abs(Current*1000)/1000.0;							// Arredonda o módulo do valor em 3 casas decimais
 		// CONTROLE DE SOBRECORRENTE
 		if(Current>I_MAX)											// Se a corrente atual ultrapassa o valor máximo
@@ -391,14 +405,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
 		i++;																		// Segue para o próximo parâmetro ser convertido
 	}																				//
 	// REATIVAÇÃO DA ESTUFA
-	if((StateOf[Status] == 0)&&(parameter[0] == 99.9))								// Se o sistema estiver desligado e o código de reativação foi recebido
+	if((StateOf[Status] == 0)&&(parameter[1] == 99))								// Se o sistema estiver desligado e o código de reativação foi recebido
 	{																				//
-		turnOn();																	// Chama a função de religamento da estufa
+		turnOn();																	// Chama a função de religamento
 	}																				//
 	// DESLIGAMENTO DA ESTUFA
-	if((StateOf[Status] == 1)&& (parameter[0] == 88.8))								// Se o sistema estiver ativado e o código de deativação foi recebido
+	if((StateOf[Status] == 1)&&(parameter[1] == 88))								// Se o sistema estiver ativado e o código de deativação foi recebido
 	{																				//
-		turnOff();																	// Chama a função de desligamento da estufa
+		turnOff();																	// Chama a função de desligamento
 	}																				//
 }
 /* USER CODE END 4 */

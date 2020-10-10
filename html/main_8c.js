@@ -8,6 +8,7 @@ var main_8c =
     [ "SIZE_RX", "main_8c.html#a7eb84dc998ad42b5b08dbb90d090630d", null ],
     [ "SIZE_TX", "main_8c.html#a8f28b43c8547d756cbc5b1bfe87fc5b4", null ],
     [ "VOLTAGE", "main_8c.html#a95f77a4b46f8270143622e8f7de8faa7", null ],
+    [ "ZERO", "main_8c.html#ac328e551bde3d39b6d7b8cc9e048d941", null ],
     [ "AUX", "main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2", [
       [ "Temperature_Min", "main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a73fe85d10801e6e8658310e32a8cba4c", null ],
       [ "Temperature_Max", "main_8c.html#a98b5db52b002ff78f33e52e32bb5cab2a1d6cdb4180b225779fd3271e84d78d81", null ],

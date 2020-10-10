@@ -44,7 +44,8 @@ var menudata={children:[
 {text:"t",url:"globals.html#index_t"},
 {text:"u",url:"globals.html#index_u"},
 {text:"v",url:"globals.html#index_v"},
-{text:"y",url:"globals.html#index_y"}]},
+{text:"y",url:"globals.html#index_y"},
+{text:"z",url:"globals.html#index_z"}]},
 {text:"Funções",url:"globals_func.html",children:[
 {text:"_",url:"globals_func.html#index__5F"},
 {text:"b",url:"globals_func.html#index_b"},
