@@ -1,15 +1,15 @@
 [
     {
-        "id": "36088eac.626c12",
+        "id": "815170dd.fddee",
         "type": "tab",
         "label": "MeuTrecoNaInternet",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "c135464d.b9a248",
+        "id": "b60b1ece.48a3e",
         "type": "json",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "BufferToJSON",
         "property": "payload",
         "action": "",
@@ -18,14 +18,14 @@
         "y": 360,
         "wires": [
             [
-                "7bd47f05.3a85b"
+                "86537b5d.b48ab8"
             ]
         ]
     },
     {
-        "id": "a31391f8.bd0a",
+        "id": "17600f34.0fd691",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Date Function",
         "func": "//CRIA UMA VARIÁVEL COM ESTRUTURA TIPO DATA\nvar date = new Date();\n//CONSTRÓI A DATA ATUAL DO SISTEMA\ndate = (('00' + date.getDate()).slice(-2)+\"/\"+('00' + (date.getMonth()+1)).slice(-2)+\"/\"+date.getFullYear()+\" - \"+('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2)+\"\\\"}\");\n//CONCATENA A DATA AOS DEMAIS OBJETOS\nmsg.payload = msg.payload.replace(\"}\",\", \\\"Date\\\": \\\"\") + date;\n//RETORNA A MSG\nreturn msg;",
         "outputs": 1,
@@ -34,98 +34,99 @@
         "y": 480,
         "wires": [
             [
-                "69ed648e.c81dcc"
+                "e57dcfd7.18221"
             ]
         ]
     },
     {
-        "id": "1cfa9fa4.9a7af",
+        "id": "4ba1dfd6.499b5",
         "type": "mqtt out",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Atuadores",
         "topic": "iotTro/EstufaAutomatica/Atuadores",
         "qos": "0",
         "retain": "false",
-        "broker": "ac94a2c.211056",
+        "broker": "7f61345c.d3baac",
         "x": 1090,
         "y": 860,
         "wires": []
     },
     {
-        "id": "634189.dee34e78",
+        "id": "9a94658d.10a1c8",
         "type": "serial out",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
-        "serial": "aea72efb.b292c",
+        "serial": "4ae9a96a.683c28",
         "x": 570,
         "y": 1060,
         "wires": []
     },
     {
-        "id": "2e9737ec.d573b8",
+        "id": "9497628b.b0c97",
         "type": "serial in",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
-        "serial": "aea72efb.b292c",
+        "serial": "4ae9a96a.683c28",
         "x": 510,
         "y": 480,
         "wires": [
             [
-                "a31391f8.bd0a"
+                "17600f34.0fd691"
             ]
         ]
     },
     {
-        "id": "69ed648e.c81dcc",
+        "id": "e57dcfd7.18221",
         "type": "mqtt out",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Sensores",
         "topic": "iotTro/EstufaAutomatica/Sensores",
         "qos": "0",
         "retain": "false",
-        "broker": "ac94a2c.211056",
+        "broker": "7f61345c.d3baac",
         "x": 900,
         "y": 480,
         "wires": []
     },
     {
-        "id": "b329ade8.f490a",
+        "id": "bc3bf79b.e68818",
         "type": "mqtt in",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Atuadores",
         "topic": "iotTro/EstufaAutomatica/Atuadores",
         "qos": "0",
         "datatype": "auto",
-        "broker": "ac94a2c.211056",
+        "broker": "7f61345c.d3baac",
         "x": 420,
         "y": 1060,
         "wires": [
             [
-                "634189.dee34e78"
+                "9a94658d.10a1c8",
+                "eb8b6c6e.fe086"
             ]
         ]
     },
     {
-        "id": "4aa68321.79a78c",
+        "id": "94f5f79b.d2d0b8",
         "type": "mqtt in",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Sensores",
         "topic": "iotTro/EstufaAutomatica/Sensores",
         "qos": "0",
         "datatype": "auto",
-        "broker": "ac94a2c.211056",
+        "broker": "7f61345c.d3baac",
         "x": 520,
         "y": 360,
         "wires": [
             [
-                "c135464d.b9a248"
+                "b60b1ece.48a3e"
             ]
         ]
     },
     {
-        "id": "7bd47f05.3a85b",
+        "id": "86537b5d.b48ab8",
         "type": "switch",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Identificação da Estufa",
         "property": "payload.Name",
         "propertyType": "msg",
@@ -153,51 +154,51 @@
         "y": 360,
         "wires": [
             [
-                "4f8bbb86.277b94",
-                "6909139c.24989c",
-                "ca5ef986.593ae8",
-                "172a7ebf.7e4631",
-                "47847cd7.644054",
-                "f2c57086.37704",
-                "9ce594fa.ffea28",
-                "57c945b1.2d027c",
-                "a4980821.312e58",
-                "42aa1f11.d85fa",
-                "ad631746.e147a8"
+                "cea94bb8.50f2c8",
+                "c49803d2.9b75e",
+                "7681b380.a59c0c",
+                "378bf94f.e04806",
+                "afa460ce.68001",
+                "f4b98ed9.37fd3",
+                "c2ee14c2.5745a8",
+                "e1594ae9.fa3468",
+                "19a4c23e.eedf5e",
+                "9347a0ed.c7a34",
+                "4e8e8835.467ac8"
             ],
             [
-                "68748dd7.206194",
-                "b30607cc.5c19d8",
-                "38bb0b5e.fb9724",
-                "deac004d.200ac",
-                "c0682c16.c8c98",
-                "13b101ec.39427e",
-                "4b8c3333.3f16fc",
-                "f6359b8a.1cb748",
-                "92a0769a.fb0498",
-                "156beae4.e6ff45",
-                "570663a2.44720c"
+                "7217e5c6.9009ac",
+                "6f247497.7d6b5c",
+                "35866e4a.4dc8c2",
+                "b36562ee.48662",
+                "f01e8ba7.636a48",
+                "590b5fc0.77152",
+                "a438bd2d.16e54",
+                "f03332f7.81f3e",
+                "685bb315.7cc96c",
+                "7ee5c9cd.9b2238",
+                "234b386c.c748a8"
             ],
             [
-                "fb66e521.73c108",
-                "ccbb1ceb.dd396",
-                "17c3f360.56bcdd",
-                "690d176.2694ee8",
-                "abc5eece.054dd",
-                "4d6e82b9.2de1ec",
-                "9cdce64f.6b9de8",
-                "4def786a.9a1f08",
-                "a64dc68e.4d96d8",
-                "df568506.f6b578",
-                "3fe2c1b4.53c2de"
+                "ff242fe5.6451d",
+                "5fbff62f.2c0508",
+                "81963eb7.4df6c",
+                "3ee32a79.e0dae6",
+                "83facad3.a50a78",
+                "3843a90f.358136",
+                "999006e6.b2fd08",
+                "81d093fa.7101e",
+                "aab2f95.2274508",
+                "7782ebc8.75e1e4",
+                "b73f2bd5.6caa28"
             ]
         ]
     },
     {
-        "id": "4f8bbb86.277b94",
+        "id": "cea94bb8.50f2c8",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 9,
         "width": 12,
         "height": 1,
@@ -210,10 +211,10 @@
         "wires": []
     },
     {
-        "id": "ccbb1ceb.dd396",
+        "id": "5fbff62f.2c0508",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 9,
         "width": 12,
         "height": 1,
@@ -226,10 +227,10 @@
         "wires": []
     },
     {
-        "id": "68748dd7.206194",
+        "id": "7217e5c6.9009ac",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 9,
         "width": 12,
         "height": 1,
@@ -242,9 +243,9 @@
         "wires": []
     },
     {
-        "id": "6909139c.24989c",
+        "id": "c49803d2.9b75e",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "var command;\nif(msg.payload.Temperature<=10)\n    command = \"#thermometer_empty\";\n\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    command = \"#thermometer_quarter\";\n\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    command = \"#thermometer_half\";\n\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    command = \"#thermometer_three_quarters\";\n\nif(msg.payload.Temperature>40)\n    command = \"#thermometer_full\";\n\nmsg.payload = \n    {\n      \"command\": \"update_attribute\",\n      \"selector\": \"#thermometer\",\n      \"attributeName\": \"xlink:href\",\n      \"attributeValue\": command\n    };\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
@@ -253,14 +254,14 @@
         "y": 340,
         "wires": [
             [
-                "136ef34d.4bdc0d"
+                "575ad219.36c89c"
             ]
         ]
     },
     {
-        "id": "ca5ef986.593ae8",
+        "id": "7681b380.a59c0c",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaColor_H\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Humidity+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -269,15 +270,15 @@
         "y": 420,
         "wires": [
             [
-                "795fc59b.e184bc"
+                "3ff06df.6149092"
             ]
         ]
     },
     {
-        "id": "7ccf4a4e.78d4f4",
+        "id": "46e3c7ea.ad7988",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 1,
         "width": 3,
         "height": 3,
@@ -304,10 +305,10 @@
         ]
     },
     {
-        "id": "3c11902e.b2221",
+        "id": "62b1e6a6.4463e8",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 1,
         "width": 3,
         "height": 3,
@@ -334,9 +335,9 @@
         ]
     },
     {
-        "id": "b30607cc.5c19d8",
+        "id": "6f247497.7d6b5c",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
@@ -345,14 +346,14 @@
         "y": 340,
         "wires": [
             [
-                "7ccf4a4e.78d4f4"
+                "46e3c7ea.ad7988"
             ]
         ]
     },
     {
-        "id": "fb66e521.73c108",
+        "id": "ff242fe5.6451d",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "if(msg.payload.Temperature<=10)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"midnightblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_empty\"\n    }\n    ];\nif((msg.payload.Temperature>10)&&(msg.payload.Temperature<=20))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"navyblue\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_quarter\"\n    }\n    ];\nif((msg.payload.Temperature>20)&&(msg.payload.Temperature<=30))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"gold\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_half\"\n    }\n    ];\nif((msg.payload.Temperature>30)&&(msg.payload.Temperature<=40))\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"coral\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_three_quarters\"\n    }\n    ];\nif(msg.payload.Temperature>=40)\n    msg.payload = [\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"fill\",\n        \"attributeValue\": \"crimson\"\n    },\n    {\n        \"command\": \"update_attribute\",\n        \"selector\": \"#thermometer\",\n        \"attributeName\": \"xlink:href\",\n        \"attributeValue\": \"#thermometer_full\"\n    }\n    ];\nmsg.topic = \"\";\nreturn msg;",
         "outputs": 1,
@@ -361,14 +362,14 @@
         "y": 340,
         "wires": [
             [
-                "3c11902e.b2221"
+                "62b1e6a6.4463e8"
             ]
         ]
     },
     {
-        "id": "172a7ebf.7e4631",
+        "id": "378bf94f.e04806",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaColor_L\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Light+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -377,15 +378,15 @@
         "y": 380,
         "wires": [
             [
-                "97f13339.5bdb1"
+                "a7557680.34e2e8"
             ]
         ]
     },
     {
-        "id": "47847cd7.644054",
+        "id": "afa460ce.68001",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 5,
         "width": 3,
         "height": 1,
@@ -398,10 +399,10 @@
         "wires": []
     },
     {
-        "id": "f2c57086.37704",
+        "id": "f4b98ed9.37fd3",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 6,
         "width": 3,
         "height": 1,
@@ -414,10 +415,10 @@
         "wires": []
     },
     {
-        "id": "136ef34d.4bdc0d",
+        "id": "575ad219.36c89c",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 1,
         "width": 3,
         "height": 3,
@@ -444,10 +445,10 @@
         ]
     },
     {
-        "id": "9ce594fa.ffea28",
+        "id": "c2ee14c2.5745a8",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 8,
         "width": 3,
         "height": 1,
@@ -460,10 +461,10 @@
         "wires": []
     },
     {
-        "id": "57c945b1.2d027c",
+        "id": "e1594ae9.fa3468",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 7,
         "width": 3,
         "height": 1,
@@ -476,10 +477,10 @@
         "wires": []
     },
     {
-        "id": "c0682c16.c8c98",
+        "id": "f01e8ba7.636a48",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 5,
         "width": 3,
         "height": 1,
@@ -492,10 +493,10 @@
         "wires": []
     },
     {
-        "id": "38bb0b5e.fb9724",
+        "id": "35866e4a.4dc8c2",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 6,
         "width": 3,
         "height": 1,
@@ -508,10 +509,10 @@
         "wires": []
     },
     {
-        "id": "deac004d.200ac",
+        "id": "b36562ee.48662",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 8,
         "width": 3,
         "height": 1,
@@ -524,10 +525,10 @@
         "wires": []
     },
     {
-        "id": "13b101ec.39427e",
+        "id": "590b5fc0.77152",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 7,
         "width": 3,
         "height": 1,
@@ -540,10 +541,10 @@
         "wires": []
     },
     {
-        "id": "abc5eece.054dd",
+        "id": "83facad3.a50a78",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 5,
         "width": 3,
         "height": 1,
@@ -556,10 +557,10 @@
         "wires": []
     },
     {
-        "id": "17c3f360.56bcdd",
+        "id": "81963eb7.4df6c",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 6,
         "width": 3,
         "height": 1,
@@ -572,10 +573,10 @@
         "wires": []
     },
     {
-        "id": "690d176.2694ee8",
+        "id": "3ee32a79.e0dae6",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 8,
         "width": 3,
         "height": 1,
@@ -588,10 +589,10 @@
         "wires": []
     },
     {
-        "id": "4d6e82b9.2de1ec",
+        "id": "3843a90f.358136",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 7,
         "width": 3,
         "height": 1,
@@ -604,9 +605,9 @@
         "wires": []
     },
     {
-        "id": "a4980821.312e58",
+        "id": "19a4c23e.eedf5e",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#alfaColor_M\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Moisture+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -615,15 +616,15 @@
         "y": 460,
         "wires": [
             [
-                "2a899c5d.a38d24"
+                "6728328e.376a5c"
             ]
         ]
     },
     {
-        "id": "2a899c5d.a38d24",
+        "id": "6728328e.376a5c",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 3,
         "width": 3,
         "height": 3,
@@ -650,10 +651,10 @@
         ]
     },
     {
-        "id": "99486b2a.0458b8",
+        "id": "88b7f9ec.edb408",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 3,
         "width": 3,
         "height": 3,
@@ -680,10 +681,10 @@
         ]
     },
     {
-        "id": "e4af6d3a.c3c0b",
+        "id": "100ce000.16ba",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 3,
         "width": 3,
         "height": 3,
@@ -710,10 +711,10 @@
         ]
     },
     {
-        "id": "97f13339.5bdb1",
+        "id": "a7557680.34e2e8",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 4,
         "width": 3,
         "height": 3,
@@ -740,10 +741,10 @@
         ]
     },
     {
-        "id": "594109a.c4b4ff8",
+        "id": "cb98e2f9.b6891",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 4,
         "width": 3,
         "height": 3,
@@ -770,10 +771,10 @@
         ]
     },
     {
-        "id": "795fc59b.e184bc",
+        "id": "3ff06df.6149092",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "6b102e41.e5d07",
+        "z": "815170dd.fddee",
+        "group": "bf26d515.9d7f08",
         "order": 2,
         "width": 3,
         "height": 3,
@@ -800,10 +801,10 @@
         ]
     },
     {
-        "id": "2bb3a460.2f2d1c",
+        "id": "4cd5910a.174ca",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 2,
         "width": 3,
         "height": 3,
@@ -830,10 +831,10 @@
         ]
     },
     {
-        "id": "c8d182d1.67acf",
+        "id": "d256633b.27507",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "237595ce.6279ca",
+        "z": "815170dd.fddee",
+        "group": "66ea7126.e404b",
         "order": 2,
         "width": 3,
         "height": 3,
@@ -860,12 +861,12 @@
         ]
     },
     {
-        "id": "8fa9b686.6c30d8",
+        "id": "ef8422e2.1fbb2",
         "type": "ui_colour_picker",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "LedLight",
         "label": "Led Light ",
-        "group": "ac75c8d1.91fa48",
+        "group": "a6e7b68d.5ee648",
         "format": "rgb",
         "outformat": "object",
         "showSwatch": true,
@@ -875,8 +876,8 @@
         "showAlpha": false,
         "showLightness": true,
         "square": "false",
-        "dynOutput": "false",
-        "order": 11,
+        "dynOutput": "true",
+        "order": 8,
         "width": 5,
         "height": 2,
         "passthru": false,
@@ -885,14 +886,14 @@
         "y": 840,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "c5c709db.1b2828",
+        "id": "b64a1517.7a4a18",
         "type": "join",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "JoinMsg",
         "mode": "custom",
         "build": "object",
@@ -913,14 +914,14 @@
         "y": 860,
         "wires": [
             [
-                "7e3187e3.c8e738"
+                "6696390f.a653a8"
             ]
         ]
     },
     {
-        "id": "8c7951.1777e6b",
+        "id": "bf93c3cc.fc1e2",
         "type": "change",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Complete",
         "rules": [
             {
@@ -940,17 +941,17 @@
         "y": 880,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "9c22d9a4.be0a38",
+        "id": "5e83feaf.55d56",
         "type": "ui_button",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 15,
+        "group": "a6e7b68d.5ee648",
+        "order": 11,
         "width": 2,
         "height": 2,
         "passthru": true,
@@ -966,20 +967,20 @@
         "y": 680,
         "wires": [
             [
-                "8c7951.1777e6b",
-                "480e2124.8f80c",
-                "b425bd80.dbf53",
-                "9019eec4.7fe8f",
-                "f2bc8ed6.8a88a",
-                "8fa9b686.6c30d8"
+                "bf93c3cc.fc1e2",
+                "dda686c.918d478",
+                "2205de93.716ec2",
+                "4770d4d2.177abc",
+                "83be57ce.131fe8",
+                "ef8422e2.1fbb2"
             ]
         ],
         "l": false
     },
     {
-        "id": "7e3187e3.c8e738",
+        "id": "6696390f.a653a8",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "ValueAnalyze",
         "func": "//INICIALIZA A VARIÁVEL DE AVISO\nvar warning = 0;\n//condicionais que protejem de valores superiores ou inferiores dos limites que são suportados\nif((msg.payload.temMin<0)||(msg.payload.temMin>50)||(msg.payload.moiMin<0)||(msg.payload.moiMin>100))\n{\n    warning = 1;\n}\nif((msg.payload.temMax<0)||(msg.payload.temMax>50)||(msg.payload.moiMax<0)||(msg.payload.moiMax>100))\n{\n    warning = 1;\n}\n//condicional para quando o valor mínimo é maior ou igual ao máximo\nif((msg.payload.temMin>=msg.payload.temMax)||(msg.payload.moiMin>=msg.payload.moiMax))\n{\n    warning = 1;\n}\n//GUARDA O VALOR ATUAL DA VARIÁVEL\nflow.set('warning',warning);\n//caso os valores estajam de acordo com o esperado, envia a string convertida para o ARM\nif(warning===0){\n    var string = msg.payload.temMin+\" \"+msg.payload.temMax+\" \"+msg.payload.moiMin+\" \"+msg.payload.moiMax+\" \"+msg.payload.rgb.r+\" \"+msg.payload.rgb.g+\" \"+msg.payload.rgb.b;\n    //preenche os espaços necessários para uma string de 25c\n    var size = string.length;\n    if(size<25)\n    {\n        for ( var i=0; i<(25-size); i++)\n        {\n            string += \" \";\n        }\n    }\n    msg.payload = string;\n}\nelse{\nmsg.payload = \"\";\n}\nreturn msg;",
         "outputs": 1,
@@ -988,108 +989,108 @@
         "y": 860,
         "wires": [
             [
-                "1cfa9fa4.9a7af",
-                "d50c48e5.4cdea8",
-                "47bfaa30.b79274"
+                "4ba1dfd6.499b5",
+                "a51a79e.343bd88",
+                "dd788a55.2aa008"
             ]
         ]
     },
     {
-        "id": "480e2124.8f80c",
+        "id": "dda686c.918d478",
         "type": "ui_text_input",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "TempMin",
         "label": "Temperature Minimum [>0°C]",
         "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 3,
+        "group": "a6e7b68d.5ee648",
+        "order": 2,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "1",
         "topic": "temMin",
         "x": 500,
         "y": 680,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "b425bd80.dbf53",
+        "id": "2205de93.716ec2",
         "type": "ui_text_input",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "TempMax",
         "label": "Temperature Maximum [<50°C]",
         "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 4,
+        "group": "a6e7b68d.5ee648",
+        "order": 3,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "1",
         "topic": "temMax",
         "x": 500,
         "y": 720,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "9019eec4.7fe8f",
+        "id": "4770d4d2.177abc",
         "type": "ui_text_input",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "MoisMin",
-        "label": "Moisture [>0%]",
+        "label": "Moisture Minumum [>0%]",
         "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 7,
+        "group": "a6e7b68d.5ee648",
+        "order": 5,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "1",
         "topic": "moiMin",
         "x": 500,
         "y": 760,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "f2bc8ed6.8a88a",
+        "id": "83be57ce.131fe8",
         "type": "ui_text_input",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "MoisMax",
-        "label": "Moisture [<100%]",
+        "label": "Moisture Maximum [<100%]",
         "tooltip": "",
-        "group": "ac75c8d1.91fa48",
-        "order": 8,
+        "group": "a6e7b68d.5ee648",
+        "order": 6,
         "width": 5,
         "height": 1,
         "passthru": true,
         "mode": "number",
-        "delay": "0",
+        "delay": "1",
         "topic": "moiMax",
         "x": 500,
         "y": 800,
         "wires": [
             [
-                "c5c709db.1b2828"
+                "b64a1517.7a4a18"
             ]
         ]
     },
     {
-        "id": "d50c48e5.4cdea8",
+        "id": "a51a79e.343bd88",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "WarningNotify",
         "func": "//SE A NOTIFICAÇÃO FOI LIDA\nif(msg.payload == \"OK\"){\n    flow.set('warning', 0);\n}\n\n//SE OS VALORES ESTÃO INCOERENTES\nvar warning = flow.get('warning');\nif(warning!==0){\n    msg.payload = \"Os valores estão fora dos limites!\";\n    return msg;\n}\n\n",
         "outputs": 1,
@@ -1098,14 +1099,14 @@
         "y": 920,
         "wires": [
             [
-                "e80d8839.fb7768"
+                "efbb00cc.b9add"
             ]
         ]
     },
     {
-        "id": "e80d8839.fb7768",
+        "id": "efbb00cc.b9add",
         "type": "ui_toast",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "position": "dialog",
         "displayTime": "5",
         "highlight": "red",
@@ -1120,14 +1121,14 @@
         "y": 920,
         "wires": [
             [
-                "d50c48e5.4cdea8"
+                "a51a79e.343bd88"
             ]
         ]
     },
     {
-        "id": "42aa1f11.d85fa",
+        "id": "9347a0ed.c7a34",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//SE A ESTUFA ESTÁ DESATIVADA\nif(msg.payload.Status===0){\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR GREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#alfaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: grey; stop-opacity: 1;\",\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#alfaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": \"100%\",\n        }];\n}\nelse{\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR LIGHTGREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#alfaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: lightgrey; stop-opacity: 1;\"\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#alfaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": ((100-2*msg.payload.Power)+\"%\")\n        }];\n}\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1136,16 +1137,16 @@
         "y": 500,
         "wires": [
             [
-                "43079f26.f48ad"
+                "cbff075c.a0ff38"
             ]
         ]
     },
     {
-        "id": "43079f26.f48ad",
+        "id": "cbff075c.a0ff38",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 3,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 2,
         "width": 3,
         "height": 3,
         "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"alfaPower\" xlink:href=\"#alfaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#alfaPower_);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"alfaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"alfaPower_\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop id=\"alfaColor_P\" offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
@@ -1171,11 +1172,11 @@
         ]
     },
     {
-        "id": "d6e242c5.39b7e",
+        "id": "282f85da.3d5caa",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 4,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 3,
         "width": 3,
         "height": 3,
         "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"betaPower\" xlink:href=\"#betaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#betaPower_);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"betaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"betaPower_\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop id=\"betaColor_P\" offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
@@ -1201,11 +1202,11 @@
         ]
     },
     {
-        "id": "414e25e9.b35e2c",
+        "id": "7ceba33e.f9b50c",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 5,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 4,
         "width": 3,
         "height": 3,
         "svgString": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 300 300\" x=\"0px\" y=\"0px\" width=\"100%\" height=\"100%\">\n  <rect id=\"svgEditorBackground\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:none;\" />\n  <use id=\"gamaPower\" xlink:href=\"#gamaPower_icon\" x=\"0\" y=\"0\" width=\"300\" height=\"300\" style=\"fill:url(#gamaPower_);\" transform=\"matrix(1 0 0 1 0 0)\" />\n  <symbol id=\"gamaPower_icon\" preserveAspectRatio=\"xMidYMid meet\" viewBox=\"0 0 320 512\">\n    <path d=\"M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z\" />\n  </symbol>\n  <linearGradient id=\"gamaPower_\" gradientUnits=\"objectBoundingBox\" spreadMethod=\"reflect\" x1=\"0%\" x2=\"0%\" y1=\"0%\" y2=\"100%\">\n    <stop id=\"gamaColor_P\" offset=\"100%\" style=\"stop-color: grey; stop-opacity: 1;\" />\n    <stop offset=\"0%\" style=\"stop-color: firebrick; stop-opacity: 1;\" />\n  </linearGradient>\n</svg>",
@@ -1231,11 +1232,11 @@
         ]
     },
     {
-        "id": "ad631746.e147a8",
+        "id": "4e8e8835.467ac8",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 11,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 9,
         "width": 3,
         "height": 1,
         "name": "Power_label [ALFA]",
@@ -1247,11 +1248,11 @@
         "wires": []
     },
     {
-        "id": "4b8c3333.3f16fc",
+        "id": "a438bd2d.16e54",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 12,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 10,
         "width": 3,
         "height": 1,
         "name": "Power_label [BETA]",
@@ -1263,11 +1264,11 @@
         "wires": []
     },
     {
-        "id": "9cdce64f.6b9de8",
+        "id": "999006e6.b2fd08",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
-        "order": 13,
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
+        "order": 11,
         "width": 3,
         "height": 1,
         "name": "Power_label [GAMA]",
@@ -1279,10 +1280,10 @@
         "wires": []
     },
     {
-        "id": "d35ae6df.2a33e8",
+        "id": "121a6260.53745e",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "1d26ead8.5cce25",
+        "z": "815170dd.fddee",
+        "group": "2dde741c.3f25ec",
         "order": 1,
         "width": 12,
         "height": 1,
@@ -1295,9 +1296,9 @@
         "wires": []
     },
     {
-        "id": "f6359b8a.1cb748",
+        "id": "f03332f7.81f3e",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaColor_L\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Light+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1306,14 +1307,14 @@
         "y": 380,
         "wires": [
             [
-                "d1cc0f55.deb3e"
+                "69f42c49.f41294"
             ]
         ]
     },
     {
-        "id": "92a0769a.fb0498",
+        "id": "685bb315.7cc96c",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaColor_H\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Humidity+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1322,14 +1323,14 @@
         "y": 420,
         "wires": [
             [
-                "2bb3a460.2f2d1c"
+                "4cd5910a.174ca"
             ]
         ]
     },
     {
-        "id": "156beae4.e6ff45",
+        "id": "7ee5c9cd.9b2238",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#betaColor_M\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Moisture+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1338,14 +1339,14 @@
         "y": 460,
         "wires": [
             [
-                "99486b2a.0458b8"
+                "88b7f9ec.edb408"
             ]
         ]
     },
     {
-        "id": "570663a2.44720c",
+        "id": "234b386c.c748a8",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//SE A ESTUFA ESTÁ DESATIVADA\nif(msg.payload.Status===0){\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR GREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#betaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: grey; stop-opacity: 1;\",\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#betaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": \"100%\",\n        }];\n}\nelse{\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR LIGHTGREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#betaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: lightgrey; stop-opacity: 1;\"\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#betaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": ((100-2*msg.payload.Power)+\"%\")\n        }];\n}\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1354,14 +1355,14 @@
         "y": 500,
         "wires": [
             [
-                "d6e242c5.39b7e"
+                "282f85da.3d5caa"
             ]
         ]
     },
     {
-        "id": "3fe2c1b4.53c2de",
+        "id": "b73f2bd5.6caa28",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaColor_L\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Light+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1370,14 +1371,14 @@
         "y": 380,
         "wires": [
             [
-                "594109a.c4b4ff8"
+                "cb98e2f9.b6891"
             ]
         ]
     },
     {
-        "id": "df568506.f6b578",
+        "id": "7782ebc8.75e1e4",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaColor_H\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Humidity+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1386,14 +1387,14 @@
         "y": 420,
         "wires": [
             [
-                "c8d182d1.67acf"
+                "d256633b.27507"
             ]
         ]
     },
     {
-        "id": "a64dc68e.4d96d8",
+        "id": "aab2f95.2274508",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO \nmsg.payload =   \n    {   \"command\"       : \"update_attribute\",\n        \"selector\"      : \"#gamaColor_M\",\n        \"attributeName\" : \"offset\",\n        \"attributeValue\": (100-msg.payload.Moisture+\"%\")\n    };\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1402,14 +1403,14 @@
         "y": 460,
         "wires": [
             [
-                "e4af6d3a.c3c0b"
+                "100ce000.16ba"
             ]
         ]
     },
     {
-        "id": "4def786a.9a1f08",
+        "id": "81d093fa.7101e",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "",
         "func": "//SE A ESTUFA ESTÁ DESATIVADA\nif(msg.payload.Status===0){\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR GREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#gamaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: grey; stop-opacity: 1;\",\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#gamaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": \"100%\",\n        }];\n}\nelse{\n//CONSTRÓI A ATUALIZAÇÃO DO ATRIBUTO \"OFFSET\" USANDO O VALOR MEDIDO, COM A COR LIGHTGREY\n    msg.payload =   \n        [{   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#gamaColor_P\",\n            \"attributeName\" : \"style\",\n            \"attributeValue\": \"stop-color: lightgrey; stop-opacity: 1;\"\n        },\n        {   \"command\"       : \"update_attribute\",\n            \"selector\"      : \"#gamaColor_P\",\n            \"attributeName\" : \"offset\",\n            \"attributeValue\": ((100-2*msg.payload.Power)+\"%\")\n        }];\n}\n//LIMPA O TÓPICO DA MSG\nmsg.topic = \"\";\n//RETORNA MSG\nreturn msg;",
         "outputs": 1,
@@ -1418,19 +1419,19 @@
         "y": 500,
         "wires": [
             [
-                "414e25e9.b35e2c"
+                "7ceba33e.f9b50c"
             ]
         ]
     },
     {
-        "id": "245cce6c.37ba62",
+        "id": "3af67163.e01aae",
         "type": "ui_switch",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "On / Off",
         "label": "",
         "tooltip": "",
-        "group": "1d26ead8.5cce25",
-        "order": 8,
+        "group": "2dde741c.3f25ec",
+        "order": 6,
         "width": 2,
         "height": 2,
         "passthru": true,
@@ -1449,14 +1450,14 @@
         "y": 720,
         "wires": [
             [
-                "17fb9563.5a7a0b"
+                "187dd147.9e5eaf"
             ]
         ]
     },
     {
-        "id": "17fb9563.5a7a0b",
+        "id": "187dd147.9e5eaf",
         "type": "function",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "CodeTurnOnOff",
         "func": "//SE RECEBEU VERDADEIRO, ENVIA O CÓDIGO DE REATIVAÇÃO\nif(msg.payload===true){\n    msg.payload=\"0 99 0 99 255 255 255    \";\n}\n//SE RECEBEU FALSO, ENVIA O CÓDIGO DE DESLIGAMENTO\nif(msg.payload===false){\n    msg.payload=\"0 88 0 99 255 255 255    \";\n}\nreturn msg;",
         "outputs": 1,
@@ -1465,14 +1466,14 @@
         "y": 720,
         "wires": [
             [
-                "1cfa9fa4.9a7af"
+                "4ba1dfd6.499b5"
             ]
         ]
     },
     {
-        "id": "cb3e0100.8c24b",
+        "id": "21ec3407.ad1e8c",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Controle de Ligamento/Desligamento",
         "info": "",
         "x": 770,
@@ -1480,9 +1481,9 @@
         "wires": []
     },
     {
-        "id": "f9ea60d3.30e0d",
+        "id": "36cd741f.824dbc",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Definições das estufas",
         "info": "",
         "x": 440,
@@ -1490,9 +1491,9 @@
         "wires": []
     },
     {
-        "id": "3353c6e8.c73dfa",
+        "id": "471a4ca1.2ef3f4",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Junção das definições",
         "info": "",
         "x": 660,
@@ -1500,9 +1501,9 @@
         "wires": []
     },
     {
-        "id": "f3531117.9f737",
+        "id": "5508d24a.6a9b3c",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Análise e notificação de erro",
         "info": "",
         "x": 900,
@@ -1510,9 +1511,9 @@
         "wires": []
     },
     {
-        "id": "dc03e297.4025c",
+        "id": "e075a5e4.edee78",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Envio ao tópico de atuadores",
         "info": "",
         "x": 1160,
@@ -1520,9 +1521,9 @@
         "wires": []
     },
     {
-        "id": "750a3c7e.6eb0f4",
+        "id": "f977376.c5253c8",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Recebimento local das definições",
         "info": "",
         "x": 490,
@@ -1530,9 +1531,9 @@
         "wires": []
     },
     {
-        "id": "bd7c16b9.46f298",
+        "id": "3b0efbaa.9da694",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Envio local das informações",
         "info": "",
         "x": 460,
@@ -1540,9 +1541,9 @@
         "wires": []
     },
     {
-        "id": "97b4d991.1cce58",
+        "id": "4bf4aeff.8e841",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Anexa o horário do envio",
         "info": "",
         "x": 710,
@@ -1550,9 +1551,9 @@
         "wires": []
     },
     {
-        "id": "3a7403fd.60e94c",
+        "id": "4f09d080.9870b",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Envio ao tópico de sensores",
         "info": "",
         "x": 960,
@@ -1560,9 +1561,9 @@
         "wires": []
     },
     {
-        "id": "6b73cb67.dc8f44",
+        "id": "6efafcd4.a00574",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Conversão dos dados",
         "info": "",
         "x": 700,
@@ -1570,9 +1571,9 @@
         "wires": []
     },
     {
-        "id": "2a745b39.9eb9e4",
+        "id": "4efb8cde.c26594",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Recebimento local dos dados coletados",
         "info": "",
         "x": 430,
@@ -1580,9 +1581,9 @@
         "wires": []
     },
     {
-        "id": "ff53a23e.026bb",
+        "id": "94b22769.d1dcb8",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Separação das estufas",
         "info": "",
         "x": 920,
@@ -1590,9 +1591,9 @@
         "wires": []
     },
     {
-        "id": "36baa1ae.d790ce",
+        "id": "d353d812.60e968",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Interface gráfica e apresentação visual dos dados de cada estufa",
         "info": "",
         "x": 1690,
@@ -1600,10 +1601,10 @@
         "wires": []
     },
     {
-        "id": "db2f1ce7.47343",
+        "id": "9e08d1b4.34114",
         "type": "ui_text",
-        "z": "36088eac.626c12",
-        "group": "ac75c8d1.91fa48",
+        "z": "815170dd.fddee",
+        "group": "a6e7b68d.5ee648",
         "order": 1,
         "width": 12,
         "height": 1,
@@ -1616,10 +1617,10 @@
         "wires": []
     },
     {
-        "id": "d1cc0f55.deb3e",
+        "id": "69f42c49.f41294",
         "type": "ui_svg_graphics",
-        "z": "36088eac.626c12",
-        "group": "e79f0760.0d92c8",
+        "z": "815170dd.fddee",
+        "group": "868f50bf.00a19",
         "order": 4,
         "width": 3,
         "height": 3,
@@ -1646,9 +1647,9 @@
         ]
     },
     {
-        "id": "47bfaa30.b79274",
+        "id": "dd788a55.2aa008",
         "type": "change",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "ResetValues",
         "rules": [
             {
@@ -1668,18 +1669,18 @@
         "y": 860,
         "wires": [
             [
-                "480e2124.8f80c",
-                "b425bd80.dbf53",
-                "9019eec4.7fe8f",
-                "f2bc8ed6.8a88a",
-                "8fa9b686.6c30d8"
+                "dda686c.918d478",
+                "2205de93.716ec2",
+                "4770d4d2.177abc",
+                "83be57ce.131fe8",
+                "ef8422e2.1fbb2"
             ]
         ]
     },
     {
-        "id": "83790e59.ee836",
+        "id": "1d2df954.24dc77",
         "type": "comment",
-        "z": "36088eac.626c12",
+        "z": "815170dd.fddee",
         "name": "Reseta os valores",
         "info": "",
         "x": 290,
@@ -1687,13 +1688,28 @@
         "wires": []
     },
     {
-        "id": "ac94a2c.211056",
+        "id": "eb8b6c6e.fe086",
+        "type": "debug",
+        "z": "815170dd.fddee",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 630,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "7f61345c.d3baac",
         "type": "mqtt-broker",
         "z": "",
         "name": "EclipseCrypto",
         "broker": "mqtt.eclipse.org",
         "port": "8883",
-        "tls": "64f0087b.3e25f8",
+        "tls": "e80cecc6.82ca9",
         "clientid": "",
         "usetls": true,
         "compatmode": false,
@@ -1710,7 +1726,7 @@
         "willPayload": ""
     },
     {
-        "id": "aea72efb.b292c",
+        "id": "4ae9a96a.683c28",
         "type": "serial-port",
         "z": "",
         "serialport": "COM3",
@@ -1730,62 +1746,62 @@
         "responsetimeout": "10000"
     },
     {
-        "id": "6b102e41.e5d07",
+        "id": "bf26d515.9d7f08",
         "type": "ui_group",
         "z": "",
         "name": "ESTUFA ALFA",
-        "tab": "89ba2785.17e178",
+        "tab": "38f8cdfb.1b7712",
         "order": 1,
         "disp": true,
         "width": "12",
         "collapse": true
     },
     {
-        "id": "237595ce.6279ca",
+        "id": "66ea7126.e404b",
         "type": "ui_group",
         "z": "",
         "name": "ESTUFA GAMA",
-        "tab": "89ba2785.17e178",
+        "tab": "38f8cdfb.1b7712",
         "order": 3,
         "disp": true,
         "width": "12",
         "collapse": true
     },
     {
-        "id": "e79f0760.0d92c8",
+        "id": "868f50bf.00a19",
         "type": "ui_group",
         "z": "",
         "name": "ESTUFA BETA",
-        "tab": "89ba2785.17e178",
+        "tab": "38f8cdfb.1b7712",
         "order": 2,
         "disp": true,
         "width": "12",
         "collapse": true
     },
     {
-        "id": "ac75c8d1.91fa48",
+        "id": "a6e7b68d.5ee648",
         "type": "ui_group",
         "z": "",
         "name": "CONTROLE DAS ESTUFAS",
-        "tab": "89ba2785.17e178",
+        "tab": "38f8cdfb.1b7712",
         "order": 5,
         "disp": true,
         "width": "12",
         "collapse": true
     },
     {
-        "id": "1d26ead8.5cce25",
+        "id": "2dde741c.3f25ec",
         "type": "ui_group",
         "z": "",
         "name": "CONSUMO ELÉTRICO",
-        "tab": "89ba2785.17e178",
+        "tab": "38f8cdfb.1b7712",
         "order": 4,
         "disp": true,
         "width": "12",
         "collapse": true
     },
     {
-        "id": "64f0087b.3e25f8",
+        "id": "e80cecc6.82ca9",
         "type": "tls-config",
         "z": "",
         "name": "",
@@ -1799,7 +1815,7 @@
         "verifyservercert": false
     },
     {
-        "id": "89ba2785.17e178",
+        "id": "38f8cdfb.1b7712",
         "type": "ui_tab",
         "z": "",
         "name": "MeuTrecoNaInternet",
