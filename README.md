@@ -46,6 +46,15 @@ O projeto Estufa Automática tem por objetivo desenvolver três estufas, medindo
 		<img src="https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/picGama3.jpeg?raw=true"/>
 		<img src="https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/picGama4.jpeg?raw=true"/>
 	</p>
+-	Fotos do Dashboard.
+	<p align="center">
+		<img src="https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/picDashboard1.jpeg?raw=true"/>
+		<img src="https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/picDashboard2.jpeg?raw=true"/>
+	</p>
+-	Foto do Flow.
+	<p align="center">
+		<img src="https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/picFlow.jpeg?raw=true"/>
+	</p>
 -	**[DOXYGEN](https://github.com/EstufaAutomatica-MTI/MTI_EstufaAutomatica/blob/master/html/index.html)**
 
 ## DESCRIÇÃO DA ARQUITETURA
